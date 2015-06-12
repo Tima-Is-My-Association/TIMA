@@ -35,15 +35,6 @@ class Word(models.Model):
     count = models.BigIntegerField(default=0)
     languages = models.ManyToManyField(Language, related_name='words')
 
-    def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(self.name)
-        else:
-            orig = Word.objects.get(pk=self.id)
-            if orig.name != self.name:
-                self.slug = slugify(self.name)
-        super(Word, self).save(*args, **kwargs)
-
     def __str__(self):
         return self.name
 
