@@ -59,6 +59,8 @@ class Association(models.Model):
     count = models.BigIntegerField(default=0)
 
     def save(self, *args, **kwargs):
+        self.word.count += 1
+        self.word.save()
         self.count += 1
         super(Association, self).save(*args, **kwargs)
 
