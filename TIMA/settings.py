@@ -13,19 +13,30 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
+from configparser import RawConfigParser
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+config = RawConfigParser()
+config.optionxform = str
+config.read(BASE_DIR + '/TIMA/settings.ini')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'hsl13(k%y59oc3vv5!m2f2*uq*h48wiyfiuv#@mdt)1p68j8vj'
+SECRET_KEY = config.get('secrets','SECRET_KEY')
+SESSION_COOKIE_SECURE = config.getboolean('secrets','SESSION_COOKIE_SECURE')
+CSRF_COOKIE_SECURE = config.getboolean('secrets','CSRF_COOKIE_SECURE')
+SESSION_EXPIRE_AT_BROWSER_CLOSE = config.getboolean('secrets','SESSION_EXPIRE_AT_BROWSER_CLOSE')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config.getboolean('debug','DEBUG')
+TEMPLATE_DEBUG = config.getboolean('debug','TEMPLATE_DEBUG')
 
-ALLOWED_HOSTS = []
+
+ALLOWED_HOSTS = config.get('host','ALLOWED_HOSTS').split()
+ADMINS = tuple(config.items('admins'))
 
 
 # Application definition
@@ -55,7 +66,7 @@ ROOT_URLCONF = 'TIMA.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -76,8 +87,12 @@ WSGI_APPLICATION = 'TIMA.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': config.get('database', 'DATABASE_ENGINE'),
+        'NAME': config.get('database', 'DATABASE_NAME'),
+        'USER': config.get('database', 'DATABASE_USER'),
+        'PASSWORD': config.get('database', 'DATABASE_PASSWORD'),
+        'HOST': config.get('database', 'DATABASE_HOST'),
+        'PORT': config.get('database', 'DATABASE_PORT'),
     }
 }
 
@@ -100,3 +115,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'assets'),
+)
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+)
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
