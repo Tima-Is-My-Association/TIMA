@@ -32,7 +32,6 @@ class Word(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     name = TextFieldSingleLine(unique=True)
-    slug = models.SlugField(unique=True)
     count = models.BigIntegerField(default=0)
     languages = models.ManyToManyField(Language, related_name='words')
 

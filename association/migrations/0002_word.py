@@ -19,7 +19,6 @@ class Migration(migrations.Migration):
                 ('updated_at', models.DateTimeField(auto_now=True)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('name', association.models.TextFieldSingleLine(unique=True)),
-                ('slug', models.SlugField(unique=True)),
                 ('count', models.BigIntegerField(default=0)),
                 ('languages', models.ManyToManyField(to='association.Language', related_name='words')),
             ],
