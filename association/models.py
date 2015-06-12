@@ -50,3 +50,21 @@ class Word(models.Model):
 
     class Meta:
         ordering = ('name',)
+
+class Association(models.Model):
+    updated_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    word = models.ForeignKey(Word, related_name='word')
+    association = models.ForeignKey(Word, related_name='association')
+    count = models.BigIntegerField(default=0)
+
+    def save(self, *args, **kwargs):
+        self.count += 1
+        super(Association, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return '%s -> %s' % (self.word, self.association)
+
+    class Meta:
+        ordering = ('word', 'association')
