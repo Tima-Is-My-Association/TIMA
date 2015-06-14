@@ -1,4 +1,4 @@
-from django.contrib.auth.models import User
+from django.conf import settings
 from django.db import models
 
 class TextFieldSingleLine(models.TextField):
@@ -8,7 +8,7 @@ class Profile(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
-    user = models.ForeignKey(User)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL)
     cultural_background = TextFieldSingleLine(null=True, blank=True)
     points = models.FloatField(default=0)
 
