@@ -14,7 +14,7 @@ class Profile(models.Model):
     points = models.FloatField(default=0)
 
     def __str__(self):
-        return self.user
+        return self.user.username
 
     class Meta:
         ordering = ('user',)
@@ -23,7 +23,7 @@ class AssociationHistory(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
-    user = models.OneToOneField(settings.AUTH_USER_MODEL)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL)
     association = models.ForeignKey(Association)
     points = models.FloatField(default=0)
 
