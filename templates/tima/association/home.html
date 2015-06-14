@@ -1,0 +1,28 @@
+{% extends 'tima/base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h1 class="text-center">Welcome to TIMA</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+
+        <div class="text-center">
+            <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    Select Language <span class="caret"></span>
+                </button>
+
+                <ul class="dropdown-menu" role="menu">
+                    {% for language in languages %}
+                        <li><a href="{% url 'association' language.slug %}">{{ language }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
