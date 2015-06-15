@@ -1,0 +1,28 @@
+{% extends 'tima/base.html' %}
+{% load bootstrap3 %}
+
+{% block breadcrumbs %}
+<li class="active">Login</li>
+{% endblock %}
+
+{% block content %}
+<div class="row" style="margin-top: 5%;">
+    <div class="col-md-2 col-md-offset-5">
+        <h1 class="text-center">TIMA</h1>
+    </div>
+</div>
+<div class="row" style="margin-top: 20px;">
+    <div class="col-md-2 col-md-offset-5">
+        <form action="{{ app_path }}{% if gnext %}?next={{ gnext }}{% endif %}" method="post" id="login-form" class="form">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            {% buttons %}
+                <button type="submit" class="btn btn-primary">Log in</button>
+            {% endbuttons %}
+        </form>
+        <script type="text/javascript">
+            $('#id_username').focus();
+        </script>
+    </div>
+</div>
+{% endblock %}
