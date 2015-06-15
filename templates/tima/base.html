@@ -23,6 +23,7 @@
                     <a class="navbar-brand" href="{% url 'home' %}">TIMA</a>
                 </div>
                 <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{% url 'leaderboard' %}">Leaderboard</a></li>
                     {% if user.is_authenticated %}
                         <li class="dropdown active">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><b>{{ user }}</b> <span class="caret"></span></a>
