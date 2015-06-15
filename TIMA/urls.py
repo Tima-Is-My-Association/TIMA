@@ -5,7 +5,8 @@ urlpatterns = [
     url(r'^$', 'association.views.home', name='home'),
     url(r'^(?P<slug>[\w-]+)/association$', 'association.views.association', name='association'),
 
-    url(r'^login/$', 'app.views.ulogin', name='login'),
-    url(r'^logout/$', 'django.contrib.auth.views.logout', name='logout'),
+    url(r'^signin/$', 'app.views.signin', name='signin'),
+    url(r'^signout/$', 'django.contrib.auth.views.logout', name='signout'),
+    url(r'^signup/$', 'app.views.signup', name='signup'),
     url(r'^admin/', include(admin.site.urls)),
 ]

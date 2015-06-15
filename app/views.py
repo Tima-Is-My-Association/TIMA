@@ -1,12 +1,12 @@
 from app.models import Profile
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.shortcuts import redirect, render
 from django.views.decorators.csrf import csrf_protect
 
 @csrf_protect
-def ulogin(request):
+def signin(request):
     gnext = request.GET.get('next')
     if request.method == 'POST':
         username = request.POST['username']
@@ -33,3 +33,19 @@ def ulogin(request):
     else:
         form = AuthenticationForm(request)
         return render(request, 'registration/login.html', locals())
+
+@csrf_protect
+def signup(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            new_user = form.save()
+            messages.info(request, 'Thanks for signing up. You are now logged in.')
+            new_user = authenticate(username=request.POST['username'], password=request.POST['password1'])
+            login(request, new_user)
+            return redirect('home')
+        else:
+            return render(request, 'registration/signup.html', locals())
+    else:
+        form = UserCreationForm()
+        return render(request, 'registration/signup.html', locals())
