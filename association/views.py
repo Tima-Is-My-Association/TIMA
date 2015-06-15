@@ -29,7 +29,7 @@ def association(request, slug):
             association, created = Association.objects.update_or_create(word=word, association=word1)
             if request.user:
                 points = calculate_points(request.user, association)
-                messages.add_message(request, messages.INFO, 'You received %s points for you association.' % points)
+                messages.add_message(request, messages.INFO, 'You received %s points for your association of %s.' % (points, association))
         else:
             word = Word.objects.get(name=form.cleaned_data['word'])
             return render(request, 'tima/association/association.html', locals())
