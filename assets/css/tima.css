@@ -1,1 +1,4 @@
 body { padding-top: 70px; }
+
+.required:after {content: " *";
+    color: gray;}
