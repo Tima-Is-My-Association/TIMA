@@ -14,9 +14,10 @@
             {% url 'profile' as profile_url %}
             {% url 'association_history' as association_history_url %}
             {% url 'profile_edit' as profile_edit_url %}
+            {% url 'password_change' as password_change_url %}
             <li role="presentation" {% if profile_url == request.path %}class="active"{% endif %}><a href="{% url 'profile' %}">Profile</a></li>
             <li role="presentation" {% if association_history_url == request.path %}class="active"{% endif %}><a href="{% url 'association_history' %}">Association History</a></li>
-            <li role="presentation" {% if profile_edit_url == request.path %}class="active"{% endif %}><a href="{% url 'profile_edit' %}">Edit Profile</a></li>
+            <li role="presentation" {% if profile_edit_url == request.path or password_change_url == request.path %}class="active"{% endif %}><a href="{% url 'profile_edit' %}">Edit Profile</a></li>
         </ul>
     </div>
 </div>
