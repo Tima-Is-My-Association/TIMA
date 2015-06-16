@@ -27,7 +27,7 @@ def association(request, slug):
                 word1.save()
 
             association, created = Association.objects.update_or_create(word=word, association=word1)
-            if request.user:
+            if not request.user.is_anonymous():
                 points = calculate_points(request.user, association)
                 messages.add_message(request, messages.INFO, 'You received %s points for your association of %s.' % (points, association))
         else:

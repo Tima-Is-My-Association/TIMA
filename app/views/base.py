@@ -1,7 +1,9 @@
+from app.forms import UserCreationForm
 from app.models import Profile
+from django.core.urlresolvers import reverse
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import redirect, render
 from django.views.decorators.csrf import csrf_protect
 
@@ -40,10 +42,11 @@ def signup(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             new_user = form.save()
+            Profile.objects.create(user=new_user)
             messages.info(request, 'Thanks for signing up. You are now logged in.')
             new_user = authenticate(username=request.POST['username'], password=request.POST['password1'])
             login(request, new_user)
-            return redirect('home')
+            return redirect(reverse('profile'))
         else:
             return render(request, 'registration/signup.html', locals())
     else:
