@@ -14,6 +14,7 @@ def home(request):
 def association(request, slug):
     language = get_object_or_404(Language, slug=slug)
 
+    excludes = []
     if request.method == 'POST':
         form = AssociationForm(request.POST)
         if form.is_valid():
@@ -27,6 +28,8 @@ def association(request, slug):
                 word1.save()
 
             association, created = Association.objects.update_or_create(word=word, association=word1)
+            excludes.append(word)
+            excludes.append(word1)
             if not request.user.is_anonymous():
                 points = calculate_points(request.user, association)
                 messages.add_message(request, messages.INFO, 'You received %s points for your association of %s.' % (points, association))
@@ -34,6 +37,6 @@ def association(request, slug):
             word = Word.objects.get(name=form.cleaned_data['word'])
             return render(request, 'tima/association/association.html', locals())
 
-    word = get_next_word(language=language, user=request.user)
+    word = get_next_word(language=language, user=request.user, excludes=excludes)
     form = AssociationForm(initial={'word':word.name})
     return render(request, 'tima/association/association.html', locals())
