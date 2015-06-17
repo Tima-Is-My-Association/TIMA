@@ -1,0 +1,21 @@
+{% extends 'tima/base.html' %}
+{% load static %}
+
+{% block extrahead %}
+<script type="text/javascript" src="{% static 'js/d3.min.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+        <div class="page-header">
+            <h2>{{ word }}</h2>
+        </div>
+    </div>
+</div>
+<div id="graph" style="display: block; width: inherit; border: 1px solid black; padding: 5px;"></div>
+<script type="text/javascript">
+    var url = "{% url 'word_graph' word.id %}"
+</script>
+<script type="text/javascript" src="{% static 'js/graphs/word.js' %}"></script>
+{% endblock %}

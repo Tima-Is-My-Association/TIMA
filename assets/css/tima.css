@@ -2,3 +2,13 @@ body { padding-top: 70px; }
 
 .required:after {content: " *";
     color: gray;}
+
+.link {
+  fill: none;
+  stroke: #666666;
+}
+
+.node circle {
+  stroke: #ccc;
+  stroke-width: 1.5px;
+}

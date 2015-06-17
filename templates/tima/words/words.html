@@ -1,0 +1,57 @@
+{% extends 'tima/base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+        <div class="page-header">
+            <h2>Words</h2>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Words</th>
+                    <th>Languages</th>
+                    <th>Associations</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for word in words %}
+                    <tr>
+                        <td><a href="{% url 'word' word.id %}">{{ word }}</a></td>
+                        <td>{{ word.languages.all|join:', ' }}</td>
+                        <td>{{ word.word.count }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-8 col-md-offset-2 text-center">
+        <nav>
+            <ul class="pagination">
+                <li {% if not words.has_previous %}class="disabled"{% endif %}>
+                    <a href="?page={% if words.has_previous %}{{ words.previous_page_number }}{% else %}#{% endif %}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+
+                {% for page in paginator.page_range %}
+                    <li {% if words.number == page %}class="active"{% endif %}><a href="?page={{ page }}">{{ page }}</a></li>
+                {% endfor %}
+
+                
+                <li {% if not words.has_next %}class="disabled"{% endif %}>
+                    <a href="?page={% if words.has_next %}{{ words.next_page_number }}{% else %}#{% endif %}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+{% endblock %}
