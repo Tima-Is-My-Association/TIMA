@@ -8,6 +8,7 @@
         <link rel="shortcut icon" href="{% static 'images/logo.png' %}"/>
         {% bootstrap_css %}
         <link rel="stylesheet" href="{% static 'css/jquery-ui.css' %}"/>
+        <link rel="stylesheet" href="{% static 'css/footer.css' %}"/>
         <link rel="stylesheet" href="{% static 'css/tima.css' %}"/>
         {% bootstrap_javascript jquery=1 %}
         <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
@@ -67,5 +68,10 @@
 				</div>
 			</div>
 		</div>
+        <footer class="footer">
+            <div class="container">
+                <div class="text-right"><a href="{% url 'page' 'imprint' %}">Imprint</a></div>
+            </div>
+        </footer>
 	</body>
 </html>
