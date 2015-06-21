@@ -16,6 +16,8 @@ urlpatterns = [
     url(r'^profile/edit/password/$', 'django.contrib.auth.views.password_change', name='password_change'),
     url(r'^profile/edit/password/done/$', 'django.contrib.auth.views.password_change_done', name='password_change_done'),
 
+    url(r'^pages/(?P<slug>[\w-]+)/$', 'pages.views.page', name='page'),
+
     url(r'^signin/$', 'app.views.base.signin', name='signin'),
     url(r'^signout/$', 'django.contrib.auth.views.logout', name='signout'),
     url(r'^signup/$', 'app.views.base.signup', name='signup'),

@@ -1,3 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
+from pages.models import Page
 
-# Create your views here.
+def page(request, slug):
+    page = get_object_or_404(Page, slug=slug)
+    return render(request, 'tima/pages/page.html', {'page': page})
