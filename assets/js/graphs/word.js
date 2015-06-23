@@ -46,6 +46,8 @@ d3.json(url, function(data) {
             .attr("class", "link")
             .style("stroke-width", function(d) { return Math.sqrt(d.value); })
             .attr("marker-end", "url(#end)");
+    path.append("svg:title")
+            .text(function(d) { return d.value });
 
     var node_drag = d3.behavior.drag()
             .on("dragstart", dragstart)
@@ -69,7 +71,7 @@ d3.json(url, function(data) {
     node.append("svg:text")
             .attr("x", 12)
             .attr("dy", ".35em")
-            .style("fill",function(d) { return fill(d.group); })
+            .style("fill", function(d) { return fill(d.group); })
             .append("a")
             .attr("xlink:href", function (d) { return "/words/" + d.id; } )
             .text(function(d) { return d.name; });
