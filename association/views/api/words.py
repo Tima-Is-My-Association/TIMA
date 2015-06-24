@@ -46,3 +46,28 @@ def graph(request, word_id):
 
     mimetype = 'application/json'
     return HttpResponse(dumps(data), mimetype)
+
+@csrf_exempt
+def isA(request):
+    """Handels a GET/POST request to check if a given word is a word.
+
+    GET/POST parameters:
+    language --- language of the word
+    word --- word to check
+    """
+    if request.method == 'POST':
+        print(request.POST.get('language'))
+        print(request.POST.get('word'))
+        language = get_object_or_404(Language,
+            code=request.POST.get('language'))
+        word = get_object_or_404(Word,
+            name=request.POST.get('word'))
+        return HttpResponse()
+    elif request.method == 'GET':
+        language = get_object_or_404(Language,
+            code=request.GET.get('language'))
+        word = get_object_or_404(Word,
+            name=request.GET.get('word'))
+        return HttpResponse()
+    else:
+         return HttpResponseBadRequest()
