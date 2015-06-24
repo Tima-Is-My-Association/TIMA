@@ -19,3 +19,38 @@ def get_next_word(language, user=None, excludes=[]):
     else:
         words = words.order_by('count')[:15]
     return words[randint(0,14 if words.count() == 15 else words.count())]
+
+def build_graph(word, depth=2):
+    nodes = []
+    links = []
+    n = {}
+    n[word.id] = len(nodes)
+    nodes.append({'id':word.id, 'name':word.name, 'group':0})
+    _build_graph_rec(word, n, nodes, links, depth - 1)
+    return (nodes, links)
+
+def _build_graph_rec(word, n, nodes, links, depth):
+    for a in word.word.all():
+        if not a.association.id in n.keys():
+            n[a.association.id] = len(nodes)
+            nodes.append({'id':a.association.id,
+                'name':a.association.name,
+                'group':a.count})
+        links.append({'source':n[word.id],
+            'target':n[a.association.id],
+            'value':a.count})
+
+        if depth == 0:
+            continue;
+
+        for b in a.association.word.all():
+            if not b.association.id in n:
+                n[b.association.id] = len(nodes)
+                nodes.append({'id':b.association.id,
+                    'name':b.association.name,
+                    'group':b.count})
+            links.append({'source':n[a.association.id],
+                'target':n[b.association.id],
+                'value':b.count})
+            if depth > 1:
+                _build_graph_rec(b.association, n, nodes, links, depth - 2)

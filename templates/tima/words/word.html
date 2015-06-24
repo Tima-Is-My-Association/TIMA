@@ -13,9 +13,27 @@
         </div>
     </div>
 </div>
+<div style="margin-bottom: 10px; margin-left: auto; margin-right: auto; max-width: 50%;">
+    <label for="depth">Depth: </label><input type="text" id="depth" readonly style="border: 0;" value="2">
+    <div id="slider"></div>
+</div>
 <div id="graph" style="display: block; width: inherit; border: 1px solid black; padding: 5px;"></div>
 <script type="text/javascript">
-    var url = "{% url 'word_graph' word.id %}"
+    var url = "{% url 'word_graph' word.id %}?depth=2"
 </script>
 <script type="text/javascript" src="{% static 'js/graphs/word.js' %}"></script>
+<script type="text/javascript">
+    $(function() {
+        $("#slider").slider({
+            min: 1,
+            max: 10,
+            value: 2,
+            slide: function( event, ui ) {
+                $("#depth").val(ui.value);
+                d3.select("svg").remove();
+                render(url.replace(/(depth=)\d/,'$1' + ui.value));
+            }
+        });
+    });
+</script>
 {% endblock %}
