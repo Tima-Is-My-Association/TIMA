@@ -1,5 +1,5 @@
 {% extends 'tima/base.html' %}
-{% load bootstrap3 %}
+{% load tima %}
 
 {% block breadcrumbs %}
 <li class="active">Login</li>
@@ -15,10 +15,19 @@
     <div class="col-md-2 col-md-offset-5">
         <form action="{{ app_path }}{% if gnext %}?next={{ gnext }}{% endif %}" method="post" id="login-form" class="form">
             {% csrf_token %}
-            {% bootstrap_form form %}
-            {% buttons %}
+
+            {% for field in form %}
+                <div class="form-group{% if form.errors %} {{ field.errors|yesno:'has-error,has-success' }}{% endif %}">
+                    <label class="control-label{% if field.field.required %} required{% endif %}" for="{{ field.auto_id }}">{{ field.label }}:</label>
+                    {{ field|addcss:'form-control' }}
+                    <span class="help-block">{{ field.help_text }}</span>
+                    <span class="help-block">{{ field.errors }}</span>
+                </div>
+            {% endfor %}
+
+            <div class="form-group">
                 <button type="submit" class="btn btn-primary">Log in</button>
-            {% endbuttons %}
+            </div>
         </form>
         <script type="text/javascript">
             $('#id_username').focus();
