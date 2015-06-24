@@ -24,6 +24,7 @@ urlpatterns = [
 
     url(r'^admin/', include(admin.site.urls)),
 
+    url(r'^api/languages/$', 'association.views.api.languages.list'),
     url(r'^api/words/(?P<word_id>\d+)/graph$', 'association.views.api.words.graph', name='word_graph'),
-    url(r'^api/words/next$', 'association.views.api.words.next'),
+    url(r'^api/words/next/$', 'association.views.api.words.next'),
 ]
