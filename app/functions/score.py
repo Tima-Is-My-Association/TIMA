@@ -2,6 +2,16 @@ from app.models import AssociationHistory, Profile
 from math import cos
 
 def calculate_points(user, association):
+    """Calculates the points for the association.
+    Based on the funtion: max(b * cos(x/700) * cos(y/400), 1)
+    b: base points
+    x: word count
+    y: association count
+
+    Keyword arguments:
+    user --- user object
+    association --- association object
+    """
     BASE_POINTS = 10
 
     x = association.word.count

@@ -3,6 +3,13 @@ from django.db.models import Count
 from random import randint
 
 def get_next_word(language, user=None, excludes=None):
+    """Returns the next word that should be asked for association.
+    
+    Keyword arguments:
+    language --- language of the word
+    user --- user object (default None)
+    excludes --- list of words that should be exclude from the result (default None)
+    """
     words = Word.objects.filter(languages=language)
     for exclude in excludes:
         words = words.exclude(id=exclude.id)
