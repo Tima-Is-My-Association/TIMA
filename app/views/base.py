@@ -1,4 +1,5 @@
 from app.forms import UserCreationForm
+from app.functions.piwik import track
 from app.models import Profile
 from django.core.urlresolvers import reverse
 from django.contrib import messages
@@ -10,6 +11,7 @@ from django.views.decorators.csrf import csrf_protect
 @csrf_protect
 def signin(request):
     gnext = request.GET.get('next')
+    track(request, 'Sign in | TIMA')
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -38,6 +40,7 @@ def signin(request):
 
 @csrf_protect
 def signup(request):
+    track(request, 'Sign up | TIMA')
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():

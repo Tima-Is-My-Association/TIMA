@@ -1,3 +1,4 @@
+from app.functions.piwik import track
 from association.models import Word
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import get_object_or_404, render
@@ -14,8 +15,10 @@ def words(request):
     except EmptyPage:
         words = paginator.page(paginator.num_pages)
 
+    track(request, 'Words | TIMA')
     return render(request, 'tima/words/words.html', locals())
 
 def word(request, word_id):
     word = get_object_or_404(Word, id=word_id)
+    track(request, '%s | TIMA' % word)
     return render(request, 'tima/words/word.html', locals())

@@ -1,4 +1,5 @@
 from app.forms import UserChangeForm
+from app.functions.piwik import track
 from app.models import AssociationHistory, Profile
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -9,6 +10,7 @@ from django.views.decorators.csrf import csrf_protect
 @login_required(login_url='/signin/')
 def profile(request):
     profile = get_object_or_404(Profile, user=request.user)
+    track(request, 'Profile | TIMA')
     return render(request, 'tima/profile/profile.html', locals())
 
 @login_required(login_url='/signin/')
@@ -24,6 +26,7 @@ def association_history(request):
     except EmptyPage:
         association_histories = paginator.page(paginator.num_pages)
 
+    track(request, 'Association history | TIMA')
     return render(request, 'tima/profile/association_history.html', locals())
 
 @login_required(login_url='/signin/')
@@ -43,4 +46,5 @@ def edit(request):
     else:
         form = UserChangeForm(instance=request.user)
 
+    track(request, 'edit | TIMA')
     return render(request, 'tima/profile/form.html', locals())

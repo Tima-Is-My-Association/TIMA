@@ -1,3 +1,4 @@
+from app.functions.piwik import track
 from app.functions.score import calculate_points
 from association.forms import AssociationForm
 from association.functions.words import get_next_word
@@ -8,6 +9,7 @@ from django.views.decorators.csrf import csrf_protect
 
 def home(request):
     languages = Language.objects.all()
+    track(request, 'TIMA')
     return render(request, 'tima/association/home.html', locals())
 
 @csrf_protect
@@ -39,4 +41,5 @@ def association(request, slug):
 
     word = get_next_word(language=language, user=request.user, excludes=excludes)
     form = AssociationForm(initial={'word':word.name})
+    track(request, 'Association | TIMA')
     return render(request, 'tima/association/association.html', locals())

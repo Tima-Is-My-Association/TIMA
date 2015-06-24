@@ -1,3 +1,4 @@
+from app.functions.piwik import track
 from app.models import Profile
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render
@@ -14,4 +15,5 @@ def leaderboard(request):
     except EmptyPage:
         profiles = paginator.page(paginator.num_pages)
 
+    track(request, 'Leaderboard | TIMA')
     return render(request, 'tima/leaderboard/leaderboard.html', locals())

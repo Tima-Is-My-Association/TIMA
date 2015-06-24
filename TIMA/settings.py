@@ -129,3 +129,7 @@ STATICFILES_FINDERS = (
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+PIWIK_SITE_ID = config.get('piwik', 'id')
+PIWIK_URL = config.get('piwik', 'url')
+PIWIK_AUTH_TOKEN = config.get('piwik', 'auth_token')
