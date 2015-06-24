@@ -15,7 +15,7 @@
                 {% for association_history in association_histories %}
                     <tr>
                         <td>{{ association_history.updated_at|date:'l, d. F Y H:i:s T' }}</td>
-                        <td>{{ association_history.association }}</td>
+                        <td><a href="?word={{ association_history.association.word.id }}">{{ association_history.association.word }}</a> -> <a href="?word={{ association_history.association.association.id }}">{{ association_history.association.association }}</a></td>
                         <td>{{ association_history.points }}</td>
                     </tr>
                 {% endfor %}

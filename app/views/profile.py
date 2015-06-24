@@ -3,6 +3,7 @@ from app.functions.piwik import track
 from app.models import AssociationHistory, Profile
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import get_object_or_404, render
 from django.views.decorators.csrf import csrf_protect
@@ -15,7 +16,10 @@ def profile(request):
 
 @login_required(login_url='/signin/')
 def association_history(request):
+    word = request.GET.get('word')
     association_histories_list = AssociationHistory.objects.filter(user=request.user).order_by('-updated_at')
+    if word:
+        association_histories_list = association_histories_list.filter(Q(association__word__id=word) | Q(association__association__id=word))
 
     paginator = Paginator(association_histories_list, 50)
     page = request.GET.get('page')
