@@ -1,17 +1,14 @@
 from app.functions.piwik import track
 from association.models import Language, Word
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.db.models import Count
 from django.shortcuts import get_object_or_404, render
 
 def words(request):
     o = request.GET.get('o') if 'o' in request.GET else 'name'
     l = request.GET.get('l')
 
-    order_by = o
-    if o == 'c' or o == '-c':
-        order_by = '%sword__count' % ('-' if o.startswith('-') else '')
-
-    word_list = Word.objects.all().order_by(order_by)
+    word_list = Word.objects.all().annotate(c=Count('word')).order_by(o)
     if l:
         lang = get_object_or_404(Language, code=l)
         word_list = word_list.filter(languages=lang)

@@ -14,9 +14,9 @@
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
-                    <th><a href="?o={% if not o|startswith:'-' %}-{% endif %}name{% if l %}&amp;l={{ l }}{% endif %}">Word {% if o|endswith:'name' %}<span class="glyphicon glyphicon-chevron-{% if not o|startswith:'-' %}up{% else %}down{% endif %}"></span>{% endif %}</a></th>
-                    <th><a href="?o={% if not o|startswith:'-' %}-{% endif %}languages{% if l %}&amp;l={{ l }}{% endif %}">Languages {% if o|endswith:'languages' %}<span class="glyphicon glyphicon-chevron-{% if not o|startswith:'-' %}up{% else %}down{% endif %}"></span>{% endif %}</a></th>
-                    <th><a href="?o={% if not o|startswith:'-' %}-{% endif %}c{% if l %}&amp;l={{ l }}{% endif %}">Number of Associations {% if o|endswith:'c' %}<span class="glyphicon glyphicon-chevron-{% if not o|startswith:'-' %}up{% else %}down{% endif %}"></span>{% endif %}</a></th>
+                    <th><a href="?o={% if not o|startswith:'-' %}-{% endif %}name{% if l %}&amp;l={{ l }}{% endif %}">Word {% if o|endswith:'name' %}<span class="glyphicon glyphicon-chevron-{% if o|startswith:'-' %}up{% else %}down{% endif %}"></span>{% endif %}</a></th>
+                    <th><a href="?o={% if not o|startswith:'-' %}-{% endif %}languages{% if l %}&amp;l={{ l }}{% endif %}">Languages {% if o|endswith:'languages' %}<span class="glyphicon glyphicon-chevron-{% if o|startswith:'-' %}up{% else %}down{% endif %}"></span>{% endif %}</a></th>
+                    <th><a href="?o={% if not o|startswith:'-' %}-{% endif %}c{% if l %}&amp;l={{ l }}{% endif %}">Number of Associations {% if o|endswith:'c' %}<span class="glyphicon glyphicon-chevron-{% if o|startswith:'-' %}up{% else %}down{% endif %}"></span>{% endif %}</a></th>
                 </tr>
             </thead>
             <tbody>
@@ -28,7 +28,7 @@
                                 <a href="?l={{ language.code }}{% if o %}&amp;o={{ o }}{% endif %}">{{ language }}</a>{% if not forloop.last %}, {% endif %}
                             {% endfor %}
                         </td>
-                        <td>{{ word.word.count }}</td>
+                        <td>{{ word.c }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
