@@ -1,10 +1,20 @@
 from app.functions.piwik import track
-from association.models import Word
+from association.models import Language, Word
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import get_object_or_404, render
 
 def words(request):
-    word_list = Word.objects.all()
+    o = request.GET.get('o') if 'o' in request.GET else 'name'
+    l = request.GET.get('l')
+
+    order_by = o
+    if o == 'c' or o == '-c':
+        order_by = '%sword__count' % ('-' if o.startswith('-') else '')
+
+    word_list = Word.objects.all().order_by(order_by)
+    if l:
+        lang = get_object_or_404(Language, code=l)
+        word_list = word_list.filter(languages=lang)
 
     paginator = Paginator(word_list, 50)
     page = request.GET.get('page')
