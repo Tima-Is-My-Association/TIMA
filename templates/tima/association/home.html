@@ -3,29 +3,23 @@
 {% block content %}
 <div class="row">
     <div class="col-md-12">
-        <div class="page-header">
-            <h1 class="text-center">Welcome to TIMA</h1>
-        </div>
+        <h1 class="page-header text-center">Welcome to TIMA <small>TIMA is my association</small></h1>
+        <p class="text-center">We want to build a large database of associations and we need your help to do it. So choose a language and type give us your associations.</p>
     </div>
 </div>
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-2 col-md-offset-5 text-center">
+        <div class="btn-group">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                Select Language <span class="caret"></span>
+            </button>
 
-        <div class="text-center">
-            <p>Select a language you want to associate in.</p>
-            <div class="btn-group">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    Select Language <span class="caret"></span>
-                </button>
-
-                <ul class="dropdown-menu" role="menu">
-                    {% for language in languages %}
-                        <li><a href="{% url 'association' language.slug %}">{{ language }}</a></li>
-                    {% endfor %}
-                </ul>
-            </div>
+            <ul class="dropdown-menu" role="menu">
+                {% for language in languages %}
+                    <li><a href="{% url 'association' language.slug %}">{{ language }}</a></li>
+                {% endfor %}
+            </ul>
         </div>
-
     </div>
 </div>
 {% endblock %}
