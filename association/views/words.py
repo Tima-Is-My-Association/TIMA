@@ -8,7 +8,7 @@ def words(request):
     o = request.GET.get('o') if 'o' in request.GET else 'name'
     l = request.GET.get('l')
 
-    word_list = Word.objects.all().annotate(c=Count('word')).order_by(o)
+    word_list = Word.objects.all().annotate(c=Count('word')).order_by(o, 'name')
     if l:
         lang = get_object_or_404(Language, code=l)
         word_list = word_list.filter(languages=lang)
