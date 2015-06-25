@@ -20,10 +20,11 @@ def association(request, slug):
     if request.method == 'POST':
         form = AssociationForm(request.POST)
         if form.is_valid():
-            word, created = Word.objects.get_or_create(name=form.cleaned_data['word'])
-            if created:
-                word.languages.add(language)
-                word.save()
+            if form.cleaned_data['word'] == form.cleaned_data['association']:
+                word = Word.objects.get(name=form.cleaned_data['word'])
+                return render(request, 'tima/association/association.html', locals())
+
+            word = get_object_or_404(Word, name=form.cleaned_data['word'], languages=language)
             word1, created = Word.objects.get_or_create(name=form.cleaned_data['association'])
             if created:
                 word1.languages.add(language)
