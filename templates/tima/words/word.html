@@ -30,7 +30,6 @@
             value: 2,
             slide: function( event, ui ) {
                 $("#depth").val(ui.value);
-                d3.select("svg").remove();
                 render(url.replace(/(depth=)\d/,'$1' + ui.value));
             }
         });

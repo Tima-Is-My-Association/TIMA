@@ -9,6 +9,7 @@ var r = 10,
     drSub = r + 5;
 
 function render(url) {
+    d3.select("svg").remove();
     d3.json(url, function(data) {
         var linkedByIndex = {};
         for (i = 0; i < data.nodes.length; i++) { linkedByIndex[i + "," + i] = 1; };
