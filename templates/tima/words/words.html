@@ -5,18 +5,32 @@
 <div class="row">
     <div class="col-md-10 col-md-offset-1">
         <div class="page-header">
-            <h2>Words{% if l %} <small><a href="?l={% if o %}&amp;o={{ o }}{% endif %}">{{ lang }}</a></small>{% endif %}</h2>
+            <h2>Words{% if l %} <small><a href="?l={% if o %}&amp;o={{ o }}{% endif %}{% if search %}&amp;search={{ search }}{% endif %}">{{ lang }}</a></small>{% endif %}</h2>
         </div>
     </div>
 </div>
 <div class="row">
+    <div class="col-md-4 col-md-offset-4 text-center">
+        <form method="get" class="form-inline">
+            <div class="form-group">
+                <label for="search">Search:</label>
+                <input id="search" type="text" class="form-control" name="search" placeholder="Search" {% if search %}value="{{ search }}"{% endif %}>
+                {% if l %}<input type="hidden" name="l" value="{{ l }}">{% endif %}
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="row" style="margin-top: 10px;">
     <div class="col-md-10 col-md-offset-1">
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
-                    <th><a href="?o={% if not o|startswith:'-' %}-{% endif %}name{% if l %}&amp;l={{ l }}{% endif %}">Word {% if o|endswith:'name' %}<span class="glyphicon glyphicon-chevron-{% if o|startswith:'-' %}up{% else %}down{% endif %}"></span>{% endif %}</a></th>
-                    <th><a href="?o={% if not o|startswith:'-' %}-{% endif %}languages{% if l %}&amp;l={{ l }}{% endif %}">Languages {% if o|endswith:'languages' %}<span class="glyphicon glyphicon-chevron-{% if o|startswith:'-' %}up{% else %}down{% endif %}"></span>{% endif %}</a></th>
-                    <th><a href="?o={% if not o|startswith:'-' %}-{% endif %}c{% if l %}&amp;l={{ l }}{% endif %}">Number of Associations {% if o|endswith:'c' %}<span class="glyphicon glyphicon-chevron-{% if o|startswith:'-' %}up{% else %}down{% endif %}"></span>{% endif %}</a></th>
+                    <th><a href="?o={% if not o|startswith:'-' %}-{% endif %}name{% if l %}&amp;l={{ l }}{% endif %}{% if search %}&amp;search={{ search }}{% endif %}">Word {% if o|endswith:'name' %}<span class="glyphicon glyphicon-chevron-{% if o|startswith:'-' %}up{% else %}down{% endif %}"></span>{% endif %}</a></th>
+                    <th><a href="?o={% if not o|startswith:'-' %}-{% endif %}languages{% if l %}&amp;l={{ l }}{% endif %}{% if search %}&amp;search={{ search }}{% endif %}">Languages {% if o|endswith:'languages' %}<span class="glyphicon glyphicon-chevron-{% if o|startswith:'-' %}up{% else %}down{% endif %}"></span>{% endif %}</a></th>
+                    <th><a href="?o={% if not o|startswith:'-' %}-{% endif %}c{% if l %}&amp;l={{ l }}{% endif %}{% if search %}&amp;search={{ search }}{% endif %}">Number of Associations {% if o|endswith:'c' %}<span class="glyphicon glyphicon-chevron-{% if o|startswith:'-' %}up{% else %}down{% endif %}"></span>{% endif %}</a></th>
                 </tr>
             </thead>
             <tbody>
@@ -25,7 +39,7 @@
                         <td><a href="{% url 'word' word.id %}">{{ word }}</a></td>
                         <td>
                             {% for language in word.languages.all %}
-                                <a href="?l={{ language.code }}{% if o %}&amp;o={{ o }}{% endif %}">{{ language }}</a>{% if not forloop.last %}, {% endif %}
+                                <a href="?l={{ language.code }}{% if o %}&amp;o={{ o }}{% endif %}{% if search %}&amp;search={{ search }}{% endif %}">{{ language }}</a>{% if not forloop.last %}, {% endif %}
                             {% endfor %}
                         </td>
                         <td>{{ word.c }}</td>

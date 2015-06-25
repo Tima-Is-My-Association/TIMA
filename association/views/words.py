@@ -7,11 +7,14 @@ from django.shortcuts import get_object_or_404, render
 def words(request):
     o = request.GET.get('o') if 'o' in request.GET else 'name'
     l = request.GET.get('l')
+    search = request.GET.get('search')
 
     word_list = Word.objects.all().annotate(c=Count('word')).order_by(o, 'name')
     if l:
         lang = get_object_or_404(Language, code=l)
         word_list = word_list.filter(languages=lang)
+    if search:
+        word_list = word_list.filter(name__icontains=search)
 
     paginator = Paginator(word_list, 50)
     page = request.GET.get('page')
