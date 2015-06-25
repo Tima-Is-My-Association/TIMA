@@ -1,4 +1,4 @@
-var width = $("#graph").width(), height = window.innerHeight - 220;
+var width = $("#graph").width(), height = window.innerHeight - 320;
 var fill = d3.scale.category20();
 
 var r = 10,
@@ -9,8 +9,8 @@ var r = 10,
     drSub = r + 5;
 
 function render(url) {
-    d3.select("svg").remove();
     d3.json(url, function(data) {
+        $("#graph").empty();
         var linkedByIndex = {};
         for (i = 0; i < data.nodes.length; i++) { linkedByIndex[i + "," + i] = 1; };
         data.links.forEach(function (d) { linkedByIndex[d.source + "," + d.target] = 1; });
