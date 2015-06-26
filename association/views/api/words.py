@@ -10,9 +10,9 @@ from json import dumps
 def next(request):
     """Handels a POST/GET request for the next word.
 
-    POST parameters:
+    GET/POST parameters:
     language --- language of the word
-    username --- username of a user
+    username --- username of a user (optinal)
     excludes --- list of words that should be exclude from the result (optinal)
     """
 
