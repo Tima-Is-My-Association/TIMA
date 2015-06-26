@@ -17,6 +17,10 @@ def association(request, slug):
     language = get_object_or_404(Language, slug=slug)
 
     excludes = []
+    if 'excludes' in request.GET:
+        for exclude in request.GET.getlist('excludes'):
+            word = get_object_or_404(Word, name=exclude, languages=language)
+
     if request.method == 'POST':
         form = AssociationForm(request.POST)
         if form.is_valid():

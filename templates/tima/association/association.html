@@ -25,7 +25,7 @@
                 <span class="help-block">{{ form.association.errors }}</span>
             </div>
             <div class="form-group">
-                <a href="{% url 'association' language.slug %}" class="btn btn-primary" role="btn">Next word</a>
+                <a href="{% url 'association' language.slug %}?excludes={{ word.name }}" class="btn btn-primary" role="btn">Next word</a>
                 <button type="submit" class="btn btn-success">Save association</button>
             </div>
         </form>
