@@ -45,7 +45,6 @@ def edit(request):
                 profile = get_object_or_404(Profile, user=user)
                 profile.cultural_background = form.cleaned_data['cultural_background']
                 profile.save()
-            print(form.cleaned_data['cultural_background'])
             messages.success(request, 'Your profile has been successfully updated.')
     else:
         form = UserChangeForm(instance=request.user)

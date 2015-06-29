@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserChangeForm as AuthUserChangeForm, UserCreationForm as AuthUserCreationForm
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 
 class UserChangeForm(AuthUserChangeForm):
     cultural_background = forms.CharField(required=False, widget=forms.TextInput(attrs={'autocomplete':'off', 'class':'form-control'}))
@@ -13,7 +13,7 @@ class UserChangeForm(AuthUserChangeForm):
         self.fields['last_name'].widget = forms.TextInput(attrs={'autocomplete':'off', 'class':'form-control'})
 
     class Meta:
-        model = User
+        model = get_user_model()
         fields = ('username', 'password', 'email', 'first_name', 'last_name')
 
 class UserCreationForm(AuthUserCreationForm):
