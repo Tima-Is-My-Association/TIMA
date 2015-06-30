@@ -39,6 +39,19 @@ ALLOWED_HOSTS = config.get('host','ALLOWED_HOSTS').split()
 ADMINS = tuple(config.items('admins'))
 
 
+# Email settings
+
+EMAIL_USE_TLS = config.getboolean('host_email','EMAIL_USE_TLS')
+EMAIL_USE_SSL = config.getboolean('host_email','EMAIL_USE_SSL')
+DEFAULT_FROM_EMAIL = config.get('host_email','DEFAULT_FROM_EMAIL')
+SERVER_EMAIL = config.get('host_email','SERVER_EMAIL')
+EMAIL_HOST = config.get('host_email','EMAIL_HOST')
+EMAIL_PORT = config.getint('host_email','EMAIL_PORT')
+EMAIL_HOST_USER = config.get('host_email','EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config.get('host_email','EMAIL_HOST_PASSWORD')
+EMAIL_SUBJECT_PREFIX = '[TIMA] '
+
+
 # Application definition
 
 INSTALLED_APPS = (
