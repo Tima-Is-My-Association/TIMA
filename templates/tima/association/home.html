@@ -1,17 +1,18 @@
 {% extends 'tima/base.html' %}
+{% load i18n %}
 
 {% block content %}
 <div class="row">
     <div class="col-md-12">
-        <h1 class="page-header text-center">Welcome to TIMA <small>TIMA is my association</small></h1>
-        <p class="text-center">We want to build a large database of associations and we need your help to do it. So choose a language and type give us your associations.</p>
+        <h1 class="page-header text-center">{% trans 'Welcome to TIMA' %} <small>{% trans 'TIMA is my association' %}</small></h1>
+        <p class="text-center">{% trans 'We want to build a large database of associations and we need your help to do it. So choose a language and give us your associations.' %}</p>
     </div>
 </div>
 <div class="row">
     <div class="col-md-2 col-md-offset-5 text-center">
         <div class="btn-group">
             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                Select Language <span class="caret"></span>
+                {% trans 'Select Language' %} <span class="caret"></span>
             </button>
 
             <ul class="dropdown-menu" role="menu">

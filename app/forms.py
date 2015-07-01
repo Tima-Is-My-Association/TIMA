@@ -1,9 +1,10 @@
 from django import forms
 from django.contrib.auth.forms import UserChangeForm as AuthUserChangeForm, UserCreationForm as AuthUserCreationForm
 from django.contrib.auth import get_user_model
+from django.utils.translation import ugettext as _
 
 class UserChangeForm(AuthUserChangeForm):
-    cultural_background = forms.CharField(required=False, widget=forms.TextInput(attrs={'autocomplete':'off', 'class':'form-control'}))
+    cultural_background = forms.CharField(label=_('Cultural background'), required=False, widget=forms.TextInput(attrs={'autocomplete':'off', 'class':'form-control'}))
 
     def __init__(self, *args, **kwargs):
         super(UserChangeForm, self).__init__(*args, **kwargs)

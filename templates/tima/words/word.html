@@ -1,5 +1,5 @@
 {% extends 'tima/base.html' %}
-{% load static %}
+{% load i18n static %}
 
 {% block extrahead %}
 <script type="text/javascript" src="{% static 'js/d3.min.js' %}"></script>
@@ -16,14 +16,14 @@
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
         <ul class="list-unstyled">
-            <li><b>Times asked:</b> {{ word.count }}</li>
-            <li><b>Number of associations:</b> {{ word.word.count }}</li>
-            <li><b>Number of occurrences as association:</b> {{ word.association.count }}</li>
+            <li><b>{% trans 'Times asked' %}:</b> {{ word.count }}</li>
+            <li><b>{% trans 'Number of associations' %}:</b> {{ word.word.count }}</li>
+            <li><b>{% trans 'Number of occurrences as association' %}:</b> {{ word.association.count }}</li>
         </ul>
     </div>
 </div>
 <div style="margin-bottom: 10px; margin-left: auto; margin-right: auto; max-width: 50%;">
-    <label for="depth">Depth: </label><input type="text" id="depth" readonly style="border: 0;" value="2">
+    <label for="depth">{% trans 'Depth' %}: </label><input type="text" id="depth" readonly style="border: 0;" value="2">
     <div id="slider"></div>
 </div>
 <div id="graph" style="display: block; width: inherit; border: 1px solid black; padding: 5px;"></div>

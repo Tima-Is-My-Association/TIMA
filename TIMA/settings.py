@@ -68,6 +68,7 @@ INSTALLED_APPS = (
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -121,6 +122,13 @@ TIME_ZONE = config.get('i18n', 'TIME_ZONE')
 USE_I18N = config.getboolean('i18n', 'USE_I18N')
 USE_L10N = config.getboolean('i18n', 'USE_L10N')
 USE_TZ = config.getboolean('i18n', 'USE_TZ')
+
+# Locale messag files for translation
+# https://docs.djangoproject.com/en/1.8/topics/i18n/translation/
+
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'),
+)
 
 
 # Static files (CSS, JavaScript, Images)

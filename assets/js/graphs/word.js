@@ -1,4 +1,4 @@
-var width = $("#graph").width(), height = window.innerHeight - 320;
+var width = $("#graph").width(), height = window.innerHeight - 400;
 var fill = d3.scale.category20();
 
 var r = 10,

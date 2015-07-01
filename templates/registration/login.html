@@ -1,9 +1,5 @@
 {% extends 'tima/base.html' %}
-{% load tima %}
-
-{% block breadcrumbs %}
-<li class="active">Login</li>
-{% endblock %}
+{% load i18n tima %}
 
 {% block content %}
 <div class="row" style="margin-top: 5%;">
@@ -26,7 +22,7 @@
             {% endfor %}
 
             <div class="form-group">
-                <button type="submit" class="btn btn-primary">Log in</button>
+                <button type="submit" class="btn btn-primary">{% trans 'Log in' %}</button>
             </div>
         </form>
         <script type="text/javascript">

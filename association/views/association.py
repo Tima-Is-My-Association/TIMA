@@ -7,6 +7,7 @@ from association.models import Association, Language, Word
 from django.contrib import messages
 from django.shortcuts import get_object_or_404, render
 from django.views.decorators.csrf import csrf_protect
+from django.utils.translation import ugettext as _
 
 def home(request):
     languages = Language.objects.all()
@@ -41,7 +42,9 @@ def association(request, slug):
             excludes.append(word1)
             if not request.user.is_anonymous():
                 points = calculate_points(request.user, association)
-                messages.add_message(request, messages.INFO, 'You received %s points for your association of %s.' % (points, association))
+                messages.add_message(request, messages.INFO, _('You received %(points)s points for your association of %(association)s.') % {'points': points, 'association': association})
+            else:
+                messages.add_message(request, messages.INFO, _('Your association %(association)s has been saved.') % {'association': association})
         else:
             word = Word.objects.get(name=form.cleaned_data['word'], language=language)
             return render(request, 'tima/association/association.html', locals())

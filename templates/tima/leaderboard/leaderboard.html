@@ -1,10 +1,11 @@
 {% extends 'tima/base.html' %}
+{% load i18n %}
 
 {% block content %}
 <div class="row">
     <div class="col-md-10 col-md-offset-1">
         <div class="page-header">
-            <h2>Leaderboard</h2>
+            <h2>{% trans 'Leaderboard' %}</h2>
         </div>
     </div>
 </div>
@@ -13,9 +14,9 @@
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
-                    <th>User</th>
-                    <th>Points</th>
-                    <th>Languages</th>
+                    <th>{% trans 'User' %}</th>
+                    <th>{% trans 'Points' %}</th>
+                    <th>{% trans 'Languages' %}</th>
                 </tr>
             </thead>
             <tbody>
