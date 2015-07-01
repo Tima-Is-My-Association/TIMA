@@ -69,18 +69,16 @@ def isA(request):
     word --- word to check
     """
     if request.method == 'POST':
-        print(request.POST.get('language'))
-        print(request.POST.get('word'))
         language = get_object_or_404(Language,
             code=request.POST.get('language'))
         word = get_object_or_404(Word,
-            name=request.POST.get('word'))
+            name=request.POST.get('word'), language=language)
         return HttpResponse()
     elif request.method == 'GET':
         language = get_object_or_404(Language,
             code=request.GET.get('language'))
         word = get_object_or_404(Word,
-            name=request.GET.get('word'))
+            name=request.GET.get('word'), language=language)
         return HttpResponse()
     else:
          return HttpResponseBadRequest()

@@ -10,7 +10,7 @@ def get_next_word(language, user=None, excludes=[]):
     user --- user object (default None)
     excludes --- list of words that should be exclude from the result (default [])
     """
-    words = Word.objects.filter(languages=language)
+    words = Word.objects.filter(language=language)
     for exclude in excludes:
         words = words.exclude(id=exclude.id)
 

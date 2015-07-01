@@ -24,20 +24,17 @@ def association(request, slug):
     excludes = []
     if 'excludes' in request.GET:
         for exclude in request.GET.getlist('excludes'):
-            word = get_object_or_404(Word, name=exclude, languages=language)
+            word = get_object_or_404(Word, name=exclude, language=language)
 
     if request.method == 'POST':
         form = AssociationForm(request.POST)
         if form.is_valid():
             if form.cleaned_data['word'] == form.cleaned_data['association']:
-                word = Word.objects.get(name=form.cleaned_data['word'])
+                word = Word.objects.get(name=form.cleaned_data['word'], language=language)
                 return render(request, 'tima/association/association.html', locals())
 
-            word = get_object_or_404(Word, name=form.cleaned_data['word'], languages=language)
-            word1, created = Word.objects.get_or_create(name=form.cleaned_data['association'])
-            if created:
-                word1.languages.add(language)
-                word1.save()
+            word = get_object_or_404(Word, name=form.cleaned_data['word'], language=language)
+            word1, created = Word.objects.get_or_create(name=form.cleaned_data['association'], language=language)
 
             association, created = Association.objects.update_or_create(word=word, association=word1)
             excludes.append(word)
@@ -46,7 +43,7 @@ def association(request, slug):
                 points = calculate_points(request.user, association)
                 messages.add_message(request, messages.INFO, 'You received %s points for your association of %s.' % (points, association))
         else:
-            word = Word.objects.get(name=form.cleaned_data['word'])
+            word = Word.objects.get(name=form.cleaned_data['word'], language=language)
             return render(request, 'tima/association/association.html', locals())
 
     word = get_next_word(language=language, user=request.user, excludes=excludes)

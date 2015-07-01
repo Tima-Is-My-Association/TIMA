@@ -17,9 +17,13 @@ def profile(request):
 @login_required(login_url='/signin/')
 def association_history(request):
     word = request.GET.get('word')
+    l = request.GET.get('l')
     association_histories_list = AssociationHistory.objects.filter(user=request.user).order_by('-updated_at')
     if word:
+        word = int(word)
         association_histories_list = association_histories_list.filter(Q(association__word__id=word) | Q(association__association__id=word))
+    if l:
+        association_histories_list = association_histories_list.filter(association__word__language__code=l)
 
     paginator = Paginator(association_histories_list, 50)
     page = request.GET.get('page')

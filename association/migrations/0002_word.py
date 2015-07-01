@@ -15,15 +15,19 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Word',
             fields=[
-                ('id', models.AutoField(auto_created=True, verbose_name='ID', primary_key=True, serialize=False)),
+                ('id', models.AutoField(verbose_name='ID', primary_key=True, serialize=False, auto_created=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('name', association.models.TextFieldSingleLine(unique=True)),
+                ('name', association.models.TextFieldSingleLine()),
                 ('count', models.BigIntegerField(default=0)),
-                ('languages', models.ManyToManyField(to='association.Language', related_name='words')),
+                ('language', models.ForeignKey(related_name='words', to='association.Language')),
             ],
             options={
                 'ordering': ('name',),
             },
+        ),
+        migrations.AlterUniqueTogether(
+            name='word',
+            unique_together=set([('name', 'language')]),
         ),
     ]

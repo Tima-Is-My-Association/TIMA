@@ -10,10 +10,11 @@ def words(request):
     l = request.GET.get('l')
     search = request.GET.get('search')
 
-    word_list = Word.objects.all().annotate(c=Count('word')).order_by(o, Lower('name'))
+    word_list = Word.objects.all().annotate(c=Count('word', distinct=True),
+            a=Count('association', distinct=True)).order_by(o, Lower('name'))
     if l:
         lang = get_object_or_404(Language, code=l)
-        word_list = word_list.filter(languages=lang)
+        word_list = word_list.filter(language=lang)
     if search:
         word_list = word_list.filter(name__icontains=search)
 

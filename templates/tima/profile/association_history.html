@@ -8,6 +8,7 @@
                 <tr>
                     <th>Timestamp</th>
                     <th>Association</th>
+                    <th>Language</th>
                     <th>Points</th>
                 </tr>
             </thead>
@@ -15,7 +16,8 @@
                 {% for association_history in association_histories %}
                     <tr>
                         <td>{{ association_history.updated_at|date:'l, d. F Y H:i:s T' }}</td>
-                        <td><a href="?word={{ association_history.association.word.id }}">{{ association_history.association.word }}</a> -> <a href="?word={{ association_history.association.association.id }}">{{ association_history.association.association }}</a></td>
+                        <td><a href="?word={% if word != association_history.association.word.id %}{{ association_history.association.word.id }}{% endif %}">{{ association_history.association.word }}</a> -> <a href="?word={% if word != association_history.association.association.id %}{{ association_history.association.association.id }}{% endif %}">{{ association_history.association.association }}</a></td>
+                        <td><a href="?l={% if not l %}{{ association_history.association.word.language.code }}{% endif %}">{{ association_history.association.word.language }}</a></td>
                         <td>{{ association_history.points }}</td>
                     </tr>
                 {% endfor %}

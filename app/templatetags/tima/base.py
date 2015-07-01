@@ -52,4 +52,4 @@ def addcss(field, css):
 
 @register.filter(name='countassociations')
 def countassociations(language):
-    return Association.objects.filter(word__languages=language).count()
+    return Association.objects.filter(word__language=language).count()

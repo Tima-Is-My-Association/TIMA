@@ -16,7 +16,7 @@ class ProfileAdmin(admin.ModelAdmin):
 
 class AssociationHistoryAdmin(admin.ModelAdmin):
     list_display = ('user', 'association', 'points')
-    list_filter = ('user', 'association__word__languages', 'association__word', 'association__association')
+    list_filter = ('user', 'association__word__language', 'association__word', 'association__association')
     search_fields = ('user__username', 'association__word__name', 'association__association__name')
 
     formfield_overrides = {

@@ -17,8 +17,7 @@ class Command(BaseCommand):
 
         f = open(options['word_list'], 'r')
         for line in f:
-            word, created = Word.objects.get_or_create(name=line.strip())
-            word.languages.add(language)
-            word.save()
+            word, created = Word.objects.get_or_create(name=line.strip(), language=language)
+            self.stdout.write('%s: %s' % (word, 'created' if created else 'existing'))
         f.close()
         self.stdout.write('Successfully added new words.')

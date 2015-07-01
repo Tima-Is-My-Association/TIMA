@@ -9,8 +9,17 @@
 <div class="row">
     <div class="col-md-10 col-md-offset-1">
         <div class="page-header">
-            <h2>{{ word }}</h2>
+            <h2>{{ word }} <small>{{ word.language }}</small></h2>
         </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <ul class="list-unstyled">
+            <li><b>Times asked:</b> {{ word.count }}</li>
+            <li><b>Number of associations:</b> {{ word.word.count }}</li>
+            <li><b>Number of occurrences as association:</b> {{ word.association.count }}</li>
+        </ul>
     </div>
 </div>
 <div style="margin-bottom: 10px; margin-left: auto; margin-right: auto; max-width: 50%;">
@@ -26,7 +35,7 @@
     $(function() {
         $("#slider").slider({
             min: 1,
-            max: 10,
+            max: 3,
             value: 2,
             slide: function( event, ui ) {
                 $("#depth").val(ui.value);

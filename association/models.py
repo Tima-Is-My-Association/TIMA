@@ -31,15 +31,16 @@ class Word(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
-    name = TextFieldSingleLine(unique=True)
+    name = TextFieldSingleLine()
     count = models.BigIntegerField(default=0)
-    languages = models.ManyToManyField(Language, related_name='words')
+    language = models.ForeignKey(Language, related_name='words')
 
     def __str__(self):
         return self.name
 
     class Meta:
         ordering = ('name',)
+        unique_together = ('name', 'language')
 
 class Association(models.Model):
     updated_at = models.DateTimeField(auto_now=True)

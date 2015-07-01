@@ -25,35 +25,29 @@ class LanguageAdmin(admin.ModelAdmin):
     ]
 
 class WordAdmin(admin.ModelAdmin):
-    def get_languages(self, obj):
-        return ', '.join([str(language) for language in obj.languages.all()])
-
     def get_queryset(self, request):
         return Word.objects.annotate(association_count=Count('word'))
 
     def association_count(self, inst):
         return inst.association_count
 
-    list_display = ('name', 'count', 'get_languages', 'association_count')
-    list_filter = ('languages',)
+    list_display = ('name', 'count', 'language', 'association_count')
+    list_filter = ('language',)
     search_fields = ('name',)
     association_count.admin_order_field = 'association_count'
     association_count.short_description = 'Number of Associations'
-    get_languages.short_description = 'Languages'
 
     formfield_overrides = {
         TextFieldSingleLine: {'widget': TextInput(attrs={'autocomplete':'off'})},
     }
 
     fieldsets = [
-        (None, {'fields': ['name', 'count', 'languages']}),
+        (None, {'fields': ['name', 'count', 'language']}),
     ]
-
-    filter_horizontal = ('languages',)
 
 class AssociationAdmin(admin.ModelAdmin):
     list_display = ('word', 'association', 'count')
-    list_filter = ('word__languages', 'count')
+    list_filter = ('word__language', 'count')
     search_fields = ('word__name', 'association__name')
 
     formfield_overrides = {

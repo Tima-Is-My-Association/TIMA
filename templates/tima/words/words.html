@@ -29,20 +29,18 @@
             <thead>
                 <tr>
                     <th><a href="?o={% if not o|startswith:'-' %}-{% endif %}name{% if l %}&amp;l={{ l }}{% endif %}{% if search %}&amp;search={{ search }}{% endif %}">Word {% if o|endswith:'name' %}<span class="glyphicon glyphicon-chevron-{% if o|startswith:'-' %}up{% else %}down{% endif %}"></span>{% endif %}</a></th>
-                    <th><a href="?o={% if not o|startswith:'-' %}-{% endif %}languages{% if l %}&amp;l={{ l }}{% endif %}{% if search %}&amp;search={{ search }}{% endif %}">Languages {% if o|endswith:'languages' %}<span class="glyphicon glyphicon-chevron-{% if o|startswith:'-' %}up{% else %}down{% endif %}"></span>{% endif %}</a></th>
-                    <th><a href="?o={% if not o|startswith:'-' %}-{% endif %}c{% if l %}&amp;l={{ l }}{% endif %}{% if search %}&amp;search={{ search }}{% endif %}">Number of Associations {% if o|endswith:'c' %}<span class="glyphicon glyphicon-chevron-{% if o|startswith:'-' %}up{% else %}down{% endif %}"></span>{% endif %}</a></th>
+                    <th><a href="?o={% if not o|startswith:'-' %}-{% endif %}language{% if l %}&amp;l={{ l }}{% endif %}{% if search %}&amp;search={{ search }}{% endif %}">Language {% if o|endswith:'language' %}<span class="glyphicon glyphicon-chevron-{% if o|startswith:'-' %}up{% else %}down{% endif %}"></span>{% endif %}</a></th>
+                    <th><a href="?o={% if not o|startswith:'-' %}-{% endif %}c{% if l %}&amp;l={{ l }}{% endif %}{% if search %}&amp;search={{ search }}{% endif %}">Number of associations {% if o|endswith:'c' %}<span class="glyphicon glyphicon-chevron-{% if o|startswith:'-' %}up{% else %}down{% endif %}"></span>{% endif %}</a></th>
+                    <th><a href="?o={% if not o|startswith:'-' %}-{% endif %}a{% if l %}&amp;l={{ l }}{% endif %}{% if search %}&amp;search={{ search }}{% endif %}">Number of occurrences as association {% if o|endswith:'a' %}<span class="glyphicon glyphicon-chevron-{% if o|startswith:'-' %}up{% else %}down{% endif %}"></span>{% endif %}</a></th>
                 </tr>
             </thead>
             <tbody>
                 {% for word in words %}
                     <tr>
                         <td><a href="{% url 'word' word.id %}">{{ word }}</a></td>
-                        <td>
-                            {% for language in word.languages.all %}
-                                <a href="?l={{ language.code }}{% if o %}&amp;o={{ o }}{% endif %}{% if search %}&amp;search={{ search }}{% endif %}">{{ language }}</a>{% if not forloop.last %}, {% endif %}
-                            {% endfor %}
-                        </td>
+                        <td><a href="?l={% if l != word.language.code %}{{ word.language.code }}{% endif %}{% if o %}&amp;o={{ o }}{% endif %}{% if search %}&amp;search={{ search }}{% endif %}">{{ word.language }}</a></td>
                         <td>{{ word.c }}</td>
+                        <td>{{ word.a }}</td>
                     </tr>
                 {% endfor %}
             </tbody>

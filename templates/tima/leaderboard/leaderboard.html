@@ -15,6 +15,7 @@
                 <tr>
                     <th>User</th>
                     <th>Points</th>
+                    <th>Languages</th>
                 </tr>
             </thead>
             <tbody>
@@ -22,6 +23,7 @@
                     <tr>
                         <td>{{ profile.user }}</td>
                         <td>{{ profile.points }}</td>
+                        <td>{{ profile.languages.all|join:', ' }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
