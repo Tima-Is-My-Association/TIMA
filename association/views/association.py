@@ -1,5 +1,6 @@
 from app.functions.piwik import track
 from app.functions.score import calculate_points
+from app.models import Profile
 from association.forms import AssociationForm
 from association.functions.words import get_next_word
 from association.models import Association, Language, Word
@@ -15,6 +16,10 @@ def home(request):
 @csrf_protect
 def association(request, slug):
     language = get_object_or_404(Language, slug=slug)
+
+    if not request.user.is_anonymous():
+        language.users.add(get_object_or_404(Profile, user=request.user))
+        language.save()
 
     excludes = []
     if 'excludes' in request.GET:
