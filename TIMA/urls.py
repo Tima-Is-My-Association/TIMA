@@ -9,6 +9,7 @@ urlpatterns = [
     url(r'^words/(?P<word_id>\d+)/$', 'association.views.words.word', name='word'),
 
     url(r'^leaderboard/$', 'app.views.leaderboard.leaderboard', name='leaderboard'),
+    url(r'^statistics/$', 'app.views.statistics.statistics', name='statistics'),
 
     url(r'^profile/$', 'app.views.profile.profile', name='profile'),
     url(r'^profile/association_history/$', 'app.views.profile.association_history', name='association_history'),

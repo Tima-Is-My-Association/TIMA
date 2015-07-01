@@ -35,6 +35,8 @@
                         <li {% if words_url == request.path or request.path|startswith:words_url %}class="active"{% endif %}><a href="{% url 'words' %}">Words</a></li>
                         {% url 'leaderboard' as leaderboard_url %}
                         <li {% if leaderboard_url == request.path %} class="active"{% endif %}><a href="{% url 'leaderboard' %}">Leaderboard</a></li>
+                        {% url 'statistics' as statistics_url %}
+                        <li {% if statistics_url == request.path %} class="active"{% endif %}><a href="{% url 'statistics' %}">Statistics</a></li>
                     </ul>
 
                     {% if user.is_authenticated %}

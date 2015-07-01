@@ -1,4 +1,5 @@
 from app.templatetags.tima import register
+from association.models import Association
 from datetime import date
 from django.utils.numberformat import format
 from django.utils.safestring import mark_safe
@@ -48,3 +49,7 @@ def endswith(value, start):
 @register.filter(name='addcss')
 def addcss(field, css):
     return field.as_widget(attrs={"class":css})
+
+@register.filter(name='countassociations')
+def countassociations(language):
+    return Association.objects.filter(word__languages=language).count()

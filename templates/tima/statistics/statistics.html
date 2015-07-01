@@ -1,0 +1,37 @@
+{% extends 'tima/base.html' %}
+{% load tima %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+        <div class="page-header">
+            <h2>Statistics</h2>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+        <ul class="list-unstyled">
+            <li style="font-size: 14pt;"><b style="font-size: 15pt;">Number of Users:</b> {{ user_count }}</li>
+        </ul>
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Language</th>
+                    <th>Number of Words</th>
+                    <th>Number of Associations</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for language in languages %}
+                    <tr>
+                        <th>{{ language }}</th>
+                        <td>{{ language.words.count }}</td>
+                        <td>{{ language|countassociations }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
