@@ -10,6 +10,13 @@
   see [https://docs.djangoproject.com/en/1.8/ref/settings/](https://docs.djangoproject.com/en/1.8/ref/settings/)
 
   ```
+  [i18n]
+  LANGUAGE_CODE: str
+  TIME_ZONE: UTC
+  USE_I18N: bool
+  USE_L10N: bool
+  USE_TZ: bool
+
   [secrets]
   SECRET_KEY: str
   SESSION_COOKIE_SECURE: bool
@@ -43,6 +50,11 @@
 
   [host]
   ALLOWED_HOSTS: str,str
+
+  [piwik]
+  id: int
+  url: str
+  auth_token: str
   ```
 * Install requirements
 
@@ -59,4 +71,9 @@
 
   ```
   $ python manage.py collectstatic
+  ```
+* To create tranlations, for details see [https://docs.djangoproject.com/en/1.8/topics/i18n/translation/](https://docs.djangoproject.com/en/1.8/topics/i18n/translation/)
+  ```
+  $ python manage.py makemessages -l <language>
+  $ python manage.py compilemessages
   ```
