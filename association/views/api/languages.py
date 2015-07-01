@@ -1,3 +1,4 @@
+from app.functions.piwik import track
 from association.models import Language
 from django.http import HttpResponse, HttpResponseBadRequest
 from django.views.decorators.csrf import csrf_exempt
@@ -7,6 +8,7 @@ from json import dumps
 def list(request):
     """Handels a POST or GET request to list all languages.
     """
+    track(request, 'list | languages | API | TIMA')
     if request.method == 'POST' or request.method == 'GET':
         languages = Language.objects.all()
 

@@ -1,3 +1,4 @@
+from app.functions.piwik import track
 from association.functions.words import build_graph, get_next_word
 from association.models import Language, Word
 from django.contrib.auth import get_user_model
@@ -19,6 +20,7 @@ def next(request):
     language = None
     user = None
     excludes = []
+    track(request, 'next | words | API | TIMA')
     if request.method == 'POST':
         language = get_object_or_404(Language,
             code=request.POST.get('language'))
@@ -58,6 +60,7 @@ def graph(request, word_id):
     data = {'nodes':nodes, 'links':links}
 
     mimetype = 'application/json'
+    track(request, 'graph | words | API | TIMA')
     return HttpResponse(dumps(data), mimetype)
 
 @csrf_exempt
@@ -68,6 +71,7 @@ def isA(request):
     language --- language of the word
     word --- word to check
     """
+    track(request, 'isA | words | API | TIMA')
     if request.method == 'POST':
         language = get_object_or_404(Language,
             code=request.POST.get('language'))
