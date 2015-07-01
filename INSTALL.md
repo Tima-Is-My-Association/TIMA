@@ -73,6 +73,7 @@
   $ python manage.py collectstatic
   ```
 * To create tranlations, for details see [https://docs.djangoproject.com/en/1.8/topics/i18n/translation/](https://docs.djangoproject.com/en/1.8/topics/i18n/translation/)
+
   ```
   $ python manage.py makemessages -l <language>
   $ python manage.py compilemessages
