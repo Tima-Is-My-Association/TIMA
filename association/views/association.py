@@ -47,9 +47,11 @@ def association(request, slug):
                 messages.add_message(request, messages.INFO, _('Your association %(association)s has been saved.') % {'association': association})
         else:
             word = Word.objects.get(name=form.cleaned_data['word'], language=language)
+            association1 = form.cleaned_data['association1']
             return render(request, 'tima/association/association.html', locals())
 
     word = get_next_word(language=language, user=request.user, excludes=excludes)
-    form = AssociationForm(initial={'word':word.name})
+    association1 = ''
+    form = AssociationForm(initial={'word':word.name, 'language':language.code})
     track(request, 'Association | TIMA')
     return render(request, 'tima/association/association.html', locals())

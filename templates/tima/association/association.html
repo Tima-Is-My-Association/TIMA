@@ -17,6 +17,8 @@
         <form action="{% url 'association' language.slug %}" method="post" class="form-horizontal text-center">
             {% csrf_token %}
             {{ form.word }}
+            {{ form.language }}
+            <input type="hidden" id="{{ form.association1.auto_id }}" name="{{ form.association1.name }}" value="{{ association1 }}">
             <div class="form-group{% if form.errors %} {{ form.association.errors|yesno:'has-error,has-success' }}{% endif %}">
                 <label class="sr-only" for="association">{% trans 'Association' %}</label>
                 <div class="input-group">
