@@ -52,18 +52,18 @@
         <nav>
             <ul class="pagination">
                 <li {% if not words.has_previous %}class="disabled"{% endif %}>
-                    <a href="?page={% if words.has_previous %}{{ words.previous_page_number }}{% else %}#{% endif %}" aria-label="Previous">
+                    <a href="?page={% if words.has_previous %}{{ words.previous_page_number }}{% else %}{{ page }}{% endif %}{% if l %}&amp;l={{ l }}{% endif %}{% if search %}&amp;search={{ search }}{% endif %}{% if o %}&amp;o={{ o }}{% endif %}" aria-label="Previous">
                         <span aria-hidden="true">&laquo;</span>
                     </a>
                 </li>
 
                 {% for page in paginator.page_range %}
-                    <li {% if words.number == page %}class="active"{% endif %}><a href="?page={{ page }}">{{ page }}</a></li>
+                    <li {% if words.number == page %}class="active"{% endif %}><a href="?page={{ page }}{% if l %}&amp;l={{ l }}{% endif %}{% if search %}&amp;search={{ search }}{% endif %}{% if o %}&amp;o={{ o }}{% endif %}">{{ page }}</a></li>
                 {% endfor %}
 
                 
                 <li {% if not words.has_next %}class="disabled"{% endif %}>
-                    <a href="?page={% if words.has_next %}{{ words.next_page_number }}{% else %}#{% endif %}" aria-label="Next">
+                    <a href="?page={% if words.has_next %}{{ words.next_page_number }}{% else %}{{ page }}{% endif %}{% if l %}&amp;l={{ l }}{% endif %}{% if search %}&amp;search={{ search }}{% endif %}{% if o %}&amp;o={{ o }}{% endif %}" aria-label="Next">
                         <span aria-hidden="true">&raquo;</span>
                     </a>
                 </li>
