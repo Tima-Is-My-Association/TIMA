@@ -25,7 +25,7 @@ def build_graph(word, depth=2):
     links = []
     n = {}
     n[word.id] = len(nodes)
-    nodes.append({'id':word.id, 'name':word.name, 'group':0})
+    nodes.append({'id':word.id, 'name':word.name, 'group':depth})
     _build_graph_rec(word, n, nodes, links, depth - 1)
     return (nodes, links)
 
@@ -35,7 +35,7 @@ def _build_graph_rec(word, n, nodes, links, depth):
             n[a.association.id] = len(nodes)
             nodes.append({'id':a.association.id,
                 'name':a.association.name,
-                'group':a.count})
+                'group':depth})
         links.append({'source':n[word.id],
             'target':n[a.association.id],
             'value':a.count})
@@ -48,7 +48,7 @@ def _build_graph_rec(word, n, nodes, links, depth):
                 n[b.association.id] = len(nodes)
                 nodes.append({'id':b.association.id,
                     'name':b.association.name,
-                    'group':b.count})
+                    'group':depth - 1})
             links.append({'source':n[a.association.id],
                 'target':n[b.association.id],
                 'value':b.count})

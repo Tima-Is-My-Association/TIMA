@@ -1,5 +1,5 @@
 var width = $("#graph").width(), height = window.innerHeight - 400;
-var fill = d3.scale.category20();
+var fill = d3.scale.category10();
 
 var r = 10,
     markerWidth = 10,
