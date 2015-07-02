@@ -29,4 +29,6 @@ urlpatterns = [
     url(r'^api/words/next/$', 'association.views.api.words.next'),
     url(r'^api/words/isa/$', 'association.views.api.words.isA'),
     url(r'^api/words/word/(?P<word_id>\d+)/graph$', 'association.views.api.words.graph', name='word_graph'),
+
+    url(r'^oai2/$', 'oai_pmh.views.oai2', name='oai2'),
 ]
