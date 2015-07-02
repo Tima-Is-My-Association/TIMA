@@ -63,7 +63,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'app',
     'association',
-    'pages'
+    'pages',
+    'oai_pmh',
 )
 
 MIDDLEWARE_CLASSES = (
