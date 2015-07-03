@@ -1,5 +1,4 @@
 from oai_pmh.templatetags.oai_pmh import register
-from datetime import datetime, timedelta
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.utils import timezone
@@ -14,7 +13,7 @@ def list_request_params(request):
 @register.simple_tag
 def timestamp(format_string):
     if format_string == 'UTC':
-        return datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
+        return timezone.now().strftime('%Y-%m-%dT%H:%M:%SZ')
     return timezone.now().strftime(format_string)
 
 @register.simple_tag
@@ -28,7 +27,7 @@ def admin_emails():
 @register.simple_tag
 def resumption_token(paginator, page, metadata_prefix=None, set_spec=None, from_timestamp=None, until_timestamp=None):
     if paginator.num_pages > 0 and page.has_next():
-        expiration_date = datetime.utcnow() + timedelta(days=1)
+        expiration_date = timezone.now() + timezone.timedelta(days=1)
         token = ''.join('%02x' % i for i in urandom(16))
 
         metadata_format = MetadataFormat.objects.get(prefix=metadata_prefix) if metadata_prefix else None

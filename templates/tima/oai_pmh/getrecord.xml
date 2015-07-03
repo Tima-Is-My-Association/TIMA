@@ -1,0 +1,23 @@
+{% extends 'tima/oai_pmh/base.xml' %}
+{% load oai_pmh %}
+
+{% block content %}
+<GetRecord>
+    <record>
+        {% include 'tima/oai_pmh/partials/_header.xml' with header=header %}
+        <metadata>
+            <oai_dc:dc xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd">
+                <dc:title xml:lang="en">Grassmann's space analysis</dc:title>
+                <dc:creator>Hyde, E. W. (Edward Wyllys)</dc:creator>
+                <dc:subject>LCSH:Ausdehnungslehre; LCCN QA205.H99</dc:subject>
+                <dc:publisher>J. Wiley &amp; Sons</dc:publisher>
+                <dc:date>Created: 1906; Available: 1991</dc:date>
+                <dc:type>text</dc:type>
+                <dc:identifier>http://resolver.library.cornell.edu/math/1796949</dc:identifier>
+                <dc:language>english</dc:language>
+                <dc:rights xml:lang="en">Public Domain</dc:rights>
+            </oai_dc:dc>
+        </metadata>
+    </record>
+</GetRecord>
+{% endblock %}

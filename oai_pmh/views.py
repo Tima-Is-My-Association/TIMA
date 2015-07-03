@@ -23,7 +23,23 @@ def oai2(request):
 
     if 'verb' in params:
         verb = params.pop('verb')[-1]
-        if verb == 'Identify':
+        if verb == 'GetRecord':
+            template = 'tima/oai_pmh/getrecord.xml'
+
+            if 'metadataPrefix' in params:
+                metadata_prefix = params.pop('metadataPrefix')[-1]
+                if not MetadataFormat.objects.filter(prefix=metadata_prefix).exists():
+                    errors.append({'code':'cannotDisseminateFormat', 'msg':'The value of the metadataPrefix argument "%s" is not supported.' % metadata_prefix})
+                if 'identifier' in params:
+                    identifier = params.pop('identifier')[-1]
+                    try:
+                        header = Header.objects.get(identifier=identifier)
+                    except Header.DoesNotExist:
+                        errors.append({'code':'idDoesNotExist', 'msg':'A record with the identifier "%s" does not exist.' % identifier})
+            else:
+                errors.append({'code':'badArgument', 'msg':'The required argument "metadataPrefix" is missing in the request.'})
+            check_bad_arguments(params, errors)
+        elif verb == 'Identify':
             template = 'tima/oai_pmh/identify.xml'
             check_bad_arguments(params, errors)
         elif verb == 'ListIdentifiers':

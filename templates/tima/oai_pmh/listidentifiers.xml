@@ -2,10 +2,10 @@
 {% load oai_pmh %}
 
 {% block content %}
-    <ListIdentifiers>
+<ListIdentifiers>
     {% for header in headers %}
         {% include 'tima/oai_pmh/partials/_header.xml' with header=header %}
     {% endfor %}
-    </ListIdentifiers>
-    {% resumption_token paginator headers metadata_prefix set_spec from_timestamp until_timestamp %}
+</ListIdentifiers>
+{% resumption_token paginator headers metadata_prefix set_spec from_timestamp until_timestamp %}
 {% endblock %}
