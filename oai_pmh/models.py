@@ -31,3 +31,18 @@ class Header(models.Model):
 
     class Meta:
         ordering = ('identifier',)
+
+class Set(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    spec = TextFieldSingleLine(unique=True)
+    name = TextFieldSingleLine()
+    description = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ('name',)
+
