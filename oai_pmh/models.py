@@ -3,6 +3,20 @@ from django.db import models
 class TextFieldSingleLine(models.TextField):
     pass
 
+class MetadataFormat(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    prefix = TextFieldSingleLine(unique=True)
+    schema = models.URLField(max_length=2048)
+    namespace = models.URLField(max_length=2048)
+
+    def __str__(self):
+        return self.prefix
+
+    class Meta:
+        ordering = ('prefix',)
+
 class Header(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
