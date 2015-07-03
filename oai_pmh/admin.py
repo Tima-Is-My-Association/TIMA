@@ -14,7 +14,10 @@ class HeaderAdmin(admin.ModelAdmin):
 
     fieldsets = [
         (None, {'fields': ['identifier', 'timestamp', 'deleted']}),
+        ('Metadata formats', {'fields': ['metadata_formats']}),
     ]
+
+    filter_horizontal = ('metadata_formats',)
 
 class MetadataFormatAdmin(admin.ModelAdmin):
     list_display = ('prefix', 'schema', 'namespace')
