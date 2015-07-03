@@ -4,8 +4,11 @@ class TextFieldSingleLine(models.TextField):
     pass
 
 class Header(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
     identifier = TextFieldSingleLine()
-    timestamp = models.DateTimeField(auto_now_add=True)
+    timestamp = models.DateTimeField(auto_now=True)
     deleted = models.BooleanField(default=False)
 
     def __str__(self):
