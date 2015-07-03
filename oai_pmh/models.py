@@ -24,6 +24,7 @@ class Header(models.Model):
     identifier = TextFieldSingleLine(unique=True)
     timestamp = models.DateTimeField(auto_now=True)
     deleted = models.BooleanField(default=False)
+    metadata_formats = models.ManyToManyField(MetadataFormat, related_name='identifiers')
 
     def __str__(self):
         return self.identifier
