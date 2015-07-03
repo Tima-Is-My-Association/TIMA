@@ -13,5 +13,5 @@
         </set>
     {% endfor %}
 </ListSets>
-{% resumptionToken paginator sets %}
+{% resumption_token paginator sets %}
 {% endblock %}
