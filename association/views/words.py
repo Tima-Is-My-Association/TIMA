@@ -11,7 +11,7 @@ def words(request):
     search = request.GET.get('search')
 
     word_list = Word.objects.all().annotate(c=Count('word', distinct=True),
-            a=Count('association', distinct=True)).order_by(o, Lower('name'))
+            a=Count('association', distinct=True)).order_by(Lower(o) if o == 'name' else o, Lower('name'))
     if l:
         lang = get_object_or_404(Language, code=l)
         word_list = word_list.filter(language=lang)
