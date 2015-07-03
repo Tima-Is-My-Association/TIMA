@@ -12,17 +12,17 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Header',
+            name='MetadataFormat',
             fields=[
                 ('id', models.AutoField(primary_key=True, serialize=False, verbose_name='ID', auto_created=True)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
-                ('identifier', oai_pmh.models.TextFieldSingleLine(unique=True)),
-                ('timestamp', models.DateTimeField(auto_now=True)),
-                ('deleted', models.BooleanField(default=False)),
+                ('prefix', oai_pmh.models.TextFieldSingleLine(unique=True)),
+                ('schema', models.URLField(max_length=2048)),
+                ('namespace', models.URLField(max_length=2048)),
             ],
             options={
-                'ordering': ('identifier',),
+                'ordering': ('prefix',),
             },
         ),
     ]
