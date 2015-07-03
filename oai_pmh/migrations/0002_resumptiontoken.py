@@ -15,13 +15,13 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='ResumptionToken',
             fields=[
-                ('id', models.AutoField(primary_key=True, auto_created=True, verbose_name='ID', serialize=False)),
+                ('id', models.AutoField(verbose_name='ID', auto_created=True, serialize=False, primary_key=True)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
                 ('expiration_date', models.DateTimeField()),
                 ('complete_list_size', models.IntegerField(default=0)),
                 ('cursor', models.IntegerField(default=0)),
-                ('token', oai_pmh.models.TextFieldSingleLine()),
+                ('token', oai_pmh.models.TextFieldSingleLine(unique=True)),
             ],
             options={
                 'ordering': ('expiration_date',),

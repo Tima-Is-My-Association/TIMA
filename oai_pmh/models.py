@@ -7,7 +7,7 @@ class Header(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-    identifier = TextFieldSingleLine()
+    identifier = TextFieldSingleLine(unique=True)
     timestamp = models.DateTimeField(auto_now=True)
     deleted = models.BooleanField(default=False)
 
@@ -24,7 +24,7 @@ class ResumptionToken(models.Model):
     expiration_date = models.DateTimeField()
     complete_list_size = models.IntegerField(default=0)
     cursor = models.IntegerField(default=0)
-    token = TextFieldSingleLine()
+    token = TextFieldSingleLine(unique=True)
 
     def __str__(self):
         return self.token
