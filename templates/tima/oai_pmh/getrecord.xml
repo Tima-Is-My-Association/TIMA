@@ -3,29 +3,6 @@
 
 {% block content %}
 <GetRecord>
-    <record>
-        {% include 'tima/oai_pmh/partials/_header.xml' with header=header %}
-        <metadata>
-            <oai_dc:dc xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd">
-                {% if header.dcrecord %}
-                    {% if header.dcrecord.dc_title %}<dc:title>{{ header.dcrecord.dc_title }}</dc:title>{% endif %}
-                    {% if header.dcrecord.dc_creator %}<dc:creator>{{ header.dcrecord.dc_creator }}</dc:creator>{% endif %}
-                    {% if header.dcrecord.dc_subject %}<dc:subject>{{ header.dcrecord.dc_subject }}</dc:subject>{% endif %}
-                    {% if header.dcrecord.dc_description %}<dc:description>{{ header.dcrecord.dc_description }}</dc:description>{% endif %}
-                    {% if header.dcrecord.dc_publisher %}<dc:publisher>{{ header.dcrecord.dc_publisher }}</dc:publisher>{% endif %}
-                    {% if header.dcrecord.dc_contributor %}<dc:contributor>{{ header.dcrecord.dc_contributor }}</dc:contributor>{% endif %}
-                    {% if header.dcrecord.dc_date %}<dc:date>{{ header.dcrecord.dc_date }}</dc:date>{% endif %}
-                    {% if header.dcrecord.dc_type %}<dc:type>{{ header.dcrecord.dc_type }}</dc:type>{% endif %}
-                    {% if header.dcrecord.dc_format %}<dc:format>{{ header.dcrecord.dc_format }}</dc:format>{% endif %}
-                    {% if header.dcrecord.dc_identifier %}<dc:identifier>{{ header.dcrecord.dc_identifier }}</dc:identifier>{% endif %}
-                    {% if header.dcrecord.dc_source %}<dc:source>{{ header.dcrecord.dc_source }}</dc:source>{% endif %}
-                    {% if header.dcrecord.dc_language %}<dc:language>{{ header.dcrecord.dc_language }}</dc:language>{% endif %}
-                    {% if header.dcrecord.dc_relation %}<dc:relation>{{ header.dcrecord.dc_relation }}</dc:relation>{% endif %}
-                    {% if header.dcrecord.dc_coverage %}<dc:coverage>{{ header.dcrecord.dc_coverage }}</dc:coverage>{% endif %}
-                    {% if header.dcrecord.dc_rights %}<dc:rights>{{ header.dcrecord.dc_rights }}</dc:rights>{% endif %}
-                {% endif %}
-            </oai_dc:dc>
-        </metadata>
-    </record>
+    {% include 'tima/oai_pmh/partials/_record.xml' with header=header metadata_prefix=metadata_prefix %}
 </GetRecord>
 {% endblock %}
