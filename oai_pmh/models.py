@@ -67,3 +67,31 @@ class ResumptionToken(models.Model):
 
     class Meta:
         ordering = ('expiration_date',)
+
+class DCRecord(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    header = models.OneToOneField(Header, primary_key=True)
+    dc_title = TextFieldSingleLine(blank=True, null=True, verbose_name=' dc:title')
+    dc_creator = TextFieldSingleLine(blank=True, null=True, verbose_name=' dc:creator')
+    dc_subject = TextFieldSingleLine(blank=True, null=True, verbose_name=' dc:subject')
+    dc_description = TextFieldSingleLine(blank=True, null=True, verbose_name=' dc:description')
+    dc_publisher = TextFieldSingleLine(blank=True, null=True, verbose_name=' dc:publisher')
+    dc_contributor = TextFieldSingleLine(blank=True, null=True, verbose_name=' dc:contributor')
+    dc_date = models.DateTimeField(auto_now=True, verbose_name=' dc:date')
+    dc_type = TextFieldSingleLine(blank=True, null=True, verbose_name=' dc:type')
+    dc_format = TextFieldSingleLine(blank=True, null=True, verbose_name=' dc:format')
+    dc_identifier = TextFieldSingleLine(verbose_name=' dc:identifier')
+    dc_source = TextFieldSingleLine(blank=True, null=True, verbose_name=' dc:source')
+    dc_language = TextFieldSingleLine(blank=True, null=True, verbose_name=' dc:language')
+    dc_relation = TextFieldSingleLine(blank=True, null=True, verbose_name=' dc:relation')
+    dc_coverage = TextFieldSingleLine(blank=True, null=True, verbose_name=' dc:coverage')
+    dc_rights = TextFieldSingleLine(blank=True, null=True, verbose_name=' dc:rights')
+
+    def __str__(self):
+        return str(self.header)
+
+    class Meta:
+        ordering = ('header',)
+        verbose_name = 'Dublin Core record'
