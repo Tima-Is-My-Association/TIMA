@@ -1,0 +1,11 @@
+{% extends 'tima/oai_pmh/base.xml' %}
+{% load oai_pmh %}
+
+{% block content %}
+<ListRecords>
+    {% for header in headers %}
+        {% include 'tima/oai_pmh/partials/_record.xml' with header=header metadata_prefix=metadata_prefix %}
+    {% endfor %}
+</ListRecords>
+{% resumption_token paginator headers metadata_prefix set_spec from_timestamp until_timestamp %}
+{% endblock %}
