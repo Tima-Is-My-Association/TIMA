@@ -6,7 +6,7 @@ from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
 from oai_pmh.models import Header, MetadataFormat, Set, ResumptionToken
 
-PER_PAGE = 1
+PER_PAGE = 100
 
 @csrf_exempt
 def oai2(request):

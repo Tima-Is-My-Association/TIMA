@@ -37,3 +37,7 @@ def resumption_token(paginator, page, metadata_prefix=None, set_spec=None, from_
         return '<resumptionToken expirationDate="%s" completeListSize="%s" cursor="%s">%s</resumptionToken>' % (expiration_date.strftime('%Y-%m-%dT%H:%M:%SZ'), paginator.count, page.end_index(), token)
     else:
         return ''
+
+@register.simple_tag
+def multiple_tags(string, tag, delimiter=';'):
+    return '\n'.join(['<%s>%s</%s>' % (tag, s, tag) for s in string.split(delimiter)])
