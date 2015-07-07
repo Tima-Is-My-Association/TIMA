@@ -24,5 +24,6 @@ class AssociationForm(forms.Form):
         if not Word.objects.filter(name=a).filter(language__code=cleaned_data.get('language')).exists() and (not cleaned_data.get('association1') or cleaned_data.get('association1') != a):
                 self.add_error('association',
                     _('We have not recognized your input as word.' +
-                            'Are you sure you have no spelling mistakes.'))
+                            ' Are you sure you have no spelling mistakes,' + 
+                            ' in order to confirm your input press "Save".'))
         cleaned_data['association1'] = a

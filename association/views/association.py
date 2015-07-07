@@ -25,7 +25,7 @@ def association(request, slug):
     excludes = []
     if 'excludes' in request.GET:
         for exclude in request.GET.getlist('excludes'):
-            word = get_object_or_404(Word, name=exclude, language=language)
+            excludes.append(get_object_or_404(Word, name=exclude, language=language))
 
     if request.method == 'POST':
         form = AssociationForm(request.POST)
