@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1.0Report-Msgid-Bugs-To: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-01 18:13+0000\n"
+"POT-Creation-Date: 2015-07-07 06:52+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Nathanael Philipp <me@jnphilipp.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,15 +22,23 @@ msgstr ""
 msgid "Cultural background"
 msgstr "Kultureller Hintergrund"
 
-#: association/forms.py:10 templates/tima/association/association.html:8
-#: templates/tima/association/association.html:21
+#: association/forms.py:12 templates/tima/association/association.html:8
+#: templates/tima/association/association.html:23
 #: templates/tima/profile/association_history.html:11
 msgid "Association"
 msgstr "Assoziation"
 
-#: association/forms.py:18
+#: association/forms.py:21
 msgid "The word and the association may not match."
 msgstr "Das Wort und die Assoziation dürfen nicht übereinstimmen."
+
+#: association/forms.py:26
+msgid ""
+"We have not recognized your input as word. Are you sure you have no spelling "
+"mistakes, in order to confirm your input press \"Save\"."
+msgstr "Wir haben deine Eingabe nicht als Wort erkannt. Bist du sicher, dass "
+"du keine Schreibfehler hast, um deine Eingabe zu bestätigen drücke "
+"\"Speichern\"."
 
 #: association/views/association.py:45
 #, python-format
@@ -78,11 +86,11 @@ msgstr "Registrieren"
 msgid "Type your association for"
 msgstr "Schreibe deine Assoziation für"
 
-#: templates/tima/association/association.html:29
+#: templates/tima/association/association.html:31
 msgid "Next word"
 msgstr "Nächstes Wort"
 
-#: templates/tima/association/association.html:30
+#: templates/tima/association/association.html:32
 msgid "Save association"
 msgstr "Assoziation speichern"
 
@@ -131,7 +139,7 @@ msgstr "Abmelden"
 msgid "Sign in"
 msgstr "Anmelden"
 
-#: templates/tima/base.html:78
+#: templates/tima/base.html:80
 msgid "Imprint"
 msgstr "Impressum"
 
