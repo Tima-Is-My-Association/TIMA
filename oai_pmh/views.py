@@ -1,3 +1,4 @@
+from app.functions.piwik import track
 from datetime import datetime
 from django.http import HttpResponse, HttpResponseBadRequest
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -155,6 +156,7 @@ def oai2(request):
             errors.append({'code':'badVerb', 'msg':'The verb "%s" provided in the request is illegal.' % verb})
     else:
         errors.append({'code':'badVerb', 'msg':'The request does not provide any verb.'})
+    track(request, 'OAI-PMH')
     return render(request, template if not errors else 'tima/oai_pmh/error.xml', locals(), content_type='text/xml')
 
 def check_bad_arguments(params, errors, msg=None):
