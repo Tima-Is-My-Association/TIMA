@@ -5,9 +5,8 @@ from django_cron import CronJobBase, Schedule
 class UpdateMetadataCronJob(CronJobBase):
     RUN_AT_TIMES = ['0:00']
     MIN_NUM_FAILURES = 3
-    RUN_EVERY_MINS = 5
 
-    schedule = Schedule(run_at_times=RUN_AT_TIMES, run_every_mins=RUN_EVERY_MINS)
+    schedule = Schedule(run_at_times=RUN_AT_TIMES)
     code = 'association.update_metadata_cron_job'
 
     def do(self):
