@@ -5,11 +5,14 @@ from django.db.models.functions import Concat
 from oai_pmh.models import DCRecord, Header, MetadataFormat, Set
 
 def generate_metadata():
+    statistic = {'sets':{'new': 0, 'all': 0}, 'headers':{'all': 0, 'new': 0, 'deleted': 0}}
     for language in Language.objects.all():
         set_spec, created = Set.objects.get_or_create(spec='languages:%s' % language.code.lower())
         if created:
             set_spec.name=language.name
             set_spec.save()
+            statistic['sets']['new'] += 1
+    statistic['sets']['all'] = Set.objects.all().count()
 
     oai_dc = MetadataFormat.objects.get(prefix='oai_dc')
     for word in Word.objects.all():
@@ -18,6 +21,7 @@ def generate_metadata():
             header.metadata_formats.add(oai_dc)
             header.sets.add(Set.objects.get(spec='languages:%s' % word.language.code.lower()))
             header.save()
+            statistic['headers']['new'] += 1
 
         record, created = DCRecord.objects.get_or_create(header=header)
         record.dc_title = word.name
@@ -40,3 +44,9 @@ def generate_metadata():
         if not header.deleted:
             header.deleted = True
             header.metadata_formats.clear()
+            header.dcrecord.delete()
+            header.save()
+    statistic['headers']['deleted'] = Header.objects.filter(deleted=True).count()
+    statistic['headers']['all'] = Header.objects.all().count()
+
+    return statistic

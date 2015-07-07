@@ -65,6 +65,7 @@ INSTALLED_APPS = (
     'association',
     'pages',
     'oai_pmh',
+    'django_cron',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -151,3 +152,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 PIWIK_SITE_ID = config.get('piwik', 'id')
 PIWIK_URL = config.get('piwik', 'url')
 PIWIK_AUTH_TOKEN = config.get('piwik', 'auth_token')
+
+
+# django-cron
+# http://django-cron.readthedocs.org/en/latest/index.html
+
+CRON_CLASSES = [
+    'association.crons.UpdateMetadataCronJob',
+    'django_cron.cron.FailedRunsNotificationCronJob',
+]
+
+FAILED_RUNS_CRONJOB_EMAIL_PREFIX = '[TIMA server check]: '
