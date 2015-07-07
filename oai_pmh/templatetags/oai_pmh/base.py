@@ -2,13 +2,20 @@ from oai_pmh.templatetags.oai_pmh import register
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.utils import timezone
+from html import escape
 from oai_pmh.models import MetadataFormat, ResumptionToken, Set
 from os import urandom
 
 @register.simple_tag
-def list_request_params(request):
-    params = request.POST if request.method == 'POST' else request.GET
-    return ' '.join(['%s="%s"' % (param, params.get(param)) for param in params])
+def list_request_attributes(verb=None, identifier=None, metadata_prefix=None, from_timestamp=None, until_timestamp=None, set_spec=None, resumption_token=None):
+    attributes = ('verb="%s"' % verb) if verb and verb in ['Identify', 'ListMetadataFormats', 'ListSets', 'GetRecord', 'ListIdentifiers', 'ListRecords'] else ''
+    attributes += (' identifier="%s"' % escape(identifier)) if identifier else ''
+    attributes += (' metadataPrefix="%s"' % escape(metadata_prefix)) if metadata_prefix else ''
+    attributes += (' from="%s"' % from_timestamp.strftime('%Y-%m-%dT%H:%M:%SZ')) if from_timestamp else ''
+    attributes += (' until="%s"' % until_timestamp.strftime('%Y-%m-%dT%H:%M:%SZ')) if until_timestamp else ''
+    attributes += (' set="%s"' % escape(set_spec)) if set_spec else ''
+    attributes += (' resumptionToken="%s"' % escape(resumption_token)) if resumption_token else ''
+    return attributes
 
 @register.simple_tag
 def timestamp(format_string):
