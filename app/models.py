@@ -1,4 +1,4 @@
-from association.models import Association, Language
+from association.models import Association, Language, Word
 from django.conf import settings
 from django.db import models
 
@@ -30,6 +30,19 @@ class AssociationHistory(models.Model):
 
     def __str__(self):
         return '%s - %s' % (self.user, self.association)
+
+    class Meta:
+        ordering = ('user',)
+
+class Newsletter(models.Model):
+    updated_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    user = models.OneToOneField(settings.AUTH_USER_MODEL)
+    words = models.ManyToManyField(Word, related_name='newsletters')
+
+    def __str__(self):
+        return 'newsletter %s' % self.user
 
     class Meta:
         ordering = ('user',)
