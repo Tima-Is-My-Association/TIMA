@@ -3,7 +3,7 @@
 
 {% block tab_content %}
 <div class="row" style="margin-top: 10px;">
-    <div class="col-md-10 col-xs-offset-2">
+    <div class="col-md-8 col-md-offset-2">
         <p><b>{% trans 'Full name' %}:</b> {{ profile.user.first_name }} {{ profile.user.last_name }}</p>
         <p><b>{% trans 'Email' %}:</b> {{ profile.user.email }}</p>
         <p><b>{% trans 'Cultural background' %}:</b> {{ profile.cultural_background|default_if_none:'' }}</p>

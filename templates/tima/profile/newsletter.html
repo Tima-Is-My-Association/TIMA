@@ -1,0 +1,27 @@
+{% extends 'tima/profile/base.html' %}
+{% load association i18n %}
+
+{% block extrahead %}
+<script type="text/javascript" src="/admin/jsi18n/"></script>
+{% endblock %}
+
+{% block tab_content %}
+<div class="row" style="margin-top: 10px;">
+    <div class="col-md-8 col-md-offset-2">
+        <p>Get a weekly newsletter of words you're interrested in. Select a word by cliking it.</p>
+        {% for language in languages %}
+            <h3 class="page-header">{{ language }}</h3>
+            <p><b>Words: </b>
+                {% for word in language|words:newsletter.words.all %}
+                    <a href="?add={{ word.id }}">{{ word }}</a>{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </p>
+            <p><b>Selected words: </b>
+                {% for word in newsletter.words.all|language:language %}
+                    <a href="?remove={{ word.id }}">{{ word }}</a>{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
