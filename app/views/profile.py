@@ -53,7 +53,8 @@ def edit(request):
                 profile.save()
             messages.success(request, _('Your profile has been successfully updated.'))
     else:
-        form = UserChangeForm(instance=request.user)
+        profile = get_object_or_404(Profile, user=request.user)
+        form = UserChangeForm(instance=request.user, initial={'cultural_background': profile.cultural_background})
 
     track(request, 'edit | Profile | TIMA')
     return render(request, 'tima/profile/form.html', locals())

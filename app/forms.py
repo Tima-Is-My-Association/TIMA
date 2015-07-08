@@ -12,6 +12,8 @@ class UserChangeForm(AuthUserChangeForm):
         self.fields['email'].widget = forms.EmailInput(attrs={'autocomplete':'off', 'class':'form-control'})
         self.fields['first_name'].widget = forms.TextInput(attrs={'autocomplete':'off', 'class':'form-control'})
         self.fields['last_name'].widget = forms.TextInput(attrs={'autocomplete':'off', 'class':'form-control'})
+        if 'cultural_background' in kwargs:
+            self.fields['cultural_background'].value = kwargs['cultural_background']
 
     class Meta:
         model = get_user_model()
