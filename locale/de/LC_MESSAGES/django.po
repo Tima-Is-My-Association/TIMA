@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1.0Report-Msgid-Bugs-To: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-08 09:27+0000\n"
+"POT-Creation-Date: 2015-07-08 12:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Nathanael Philipp <me@jnphilipp.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,9 +18,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/forms.py:10 templates/tima/profile/profile.html:9
+#: app/forms.py:7 templates/tima/profile/profile.html:9
 msgid "Cultural background"
 msgstr "Kultureller Hintergrund"
+
+#: app/views/profile.py:54
+msgid "Your profile has been successfully updated."
+msgstr "Dein Profil wurde erfolgreich aktualisiert."
+
+#: app/views/profile.py:71
+msgid "Without specifying an email-address, you can not receive a newsletter."
+msgstr "Ohne Angabe einer E-Mail-Adresse kannst du keine Newsletter empfangen."
 
 #: association/forms.py:12 templates/tima/association/association.html:8
 #: templates/tima/association/association.html:23
@@ -79,7 +87,6 @@ msgstr ""
 
 #: templates/registration/password_change_form.html:24
 #: templates/tima/profile/form.html:24
-#: templates/tima/profile/newsletter.html:28
 msgid "Save"
 msgstr "Speichern"
 
@@ -181,6 +188,13 @@ msgstr "Profil bearbeiten"
 #: templates/tima/profile/base.html:23
 msgid "Newsletter"
 msgstr "Newsletter"
+
+#: templates/tima/profile/newsletter.html:11
+msgid ""
+"Get a weekly newsletter of words you're interrested in. Select a word by "
+"cliking it."
+msgstr "Bekomme wöchentliche Newsletter über Wörter in du intressiert bist. "
+" Wähle ein Wort aus durch anklicken."
 
 #: templates/tima/profile/profile.html:7
 msgid "Full name"
