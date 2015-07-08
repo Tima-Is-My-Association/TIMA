@@ -36,7 +36,8 @@ def _build_graph_rec(word, n, nodes, links, depth):
             nodes.append({'id':a.association.id,
                 'name':a.association.name,
                 'group':depth})
-        links.append({'source':n[word.id],
+        if n[word.id] != n[a.association.id]:
+            links.append({'source':n[word.id],
             'target':n[a.association.id],
             'value':a.count})
 
@@ -49,8 +50,36 @@ def _build_graph_rec(word, n, nodes, links, depth):
                 nodes.append({'id':b.association.id,
                     'name':b.association.name,
                     'group':depth - 1})
-            links.append({'source':n[a.association.id],
+            if n[a.association.id] != n[b.association.id]:
+                links.append({'source':n[a.association.id],
                 'target':n[b.association.id],
                 'value':b.count})
             if depth > 1:
                 _build_graph_rec(b.association, n, nodes, links, depth - 2)
+
+    for a in word.association.all():
+        if not a.word.id in n.keys():
+            n[a.word.id] = len(nodes)
+            nodes.append({'id':a.word.id,
+                'name':a.word.name,
+                'group':depth})
+        if n[a.word.id] != n[word.id]:
+            links.append({'source':n[a.word.id],
+            'target':n[word.id],
+            'value':a.count})
+
+        if depth == 0:
+            continue;
+
+        for b in a.word.word.all():
+            if not b.word.id in n:
+                n[b.word.id] = len(nodes)
+                nodes.append({'id':b.word.id,
+                    'name':b.word.name,
+                    'group':depth - 1})
+            if n[b.word.id] != n[a.word.id]:
+                links.append({'source':n[b.word.id],
+                'target':n[a.word.id],
+                'value':b.count})
+            if depth > 1:
+                _build_graph_rec(b.word, n, nodes, links, depth - 2)
