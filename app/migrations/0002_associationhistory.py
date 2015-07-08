@@ -22,7 +22,7 @@ class Migration(migrations.Migration):
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('points', models.FloatField(default=0)),
                 ('association', models.ForeignKey(to='association.Association')),
-                ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
+                ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL, blank=True, null=True)),
             ],
             options={
                 'ordering': ('user',),

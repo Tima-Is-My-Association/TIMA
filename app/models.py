@@ -24,7 +24,7 @@ class AssociationHistory(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
-    user = models.ForeignKey(settings.AUTH_USER_MODEL)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True)
     association = models.ForeignKey(Association)
     points = models.FloatField(default=0)
 

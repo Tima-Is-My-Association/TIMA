@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1.0Report-Msgid-Bugs-To: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-07 06:52+0000\n"
+"POT-Creation-Date: 2015-07-08 09:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Nathanael Philipp <me@jnphilipp.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/forms.py:7 templates/tima/profile/profile.html:9
+#: app/forms.py:10 templates/tima/profile/profile.html:9
 msgid "Cultural background"
 msgstr "Kultureller Hintergrund"
 
@@ -36,9 +36,10 @@ msgstr "Das Wort und die Assoziation dürfen nicht übereinstimmen."
 msgid ""
 "We have not recognized your input as word. Are you sure you have no spelling "
 "mistakes, in order to confirm your input press \"Save\"."
-msgstr "Wir haben deine Eingabe nicht als Wort erkannt. Bist du sicher, dass "
-"du keine Schreibfehler hast, um deine Eingabe zu bestätigen drücke "
-"\"Speichern\"."
+msgstr ""
+"Wir haben deine Eingabe nicht als Wort erkannt. Bist du sicher, dass du "
+"keine Schreibfehler hast, um deine Eingabe zu bestätigen drücke \"Speichern"
+"\"."
 
 #: association/views/association.py:45
 #, python-format
@@ -48,16 +49,20 @@ msgstr ""
 
 #: association/views/association.py:47
 #, python-format
-msgid "Your association %(association)s has been saved."
-msgstr "Deine Assoziation %(association)s wurde gespeichert."
+msgid ""
+"Your association %(association)s has been saved. If you had been signed in "
+"you would have received %(points)s points."
+msgstr ""
+"Deine Assoziation %(association)s wurde gespeicher. Wenn du angemeldet "
+"gewesen wärst hättest du %(points)s Punkte bekommen."
 
 #: templates/registration/logged_out.html:11
 msgid "Thanks for spending some quality time with TIMA today."
 msgstr "Vielen Dank für deinen Besuch bei TIMA."
 
-#: templates/registration/login.html:25
-msgid "Log in"
-msgstr ""
+#: templates/registration/login.html:25 templates/tima/base.html:61
+msgid "Sign in"
+msgstr "Anmelden"
 
 #: templates/registration/password_change_done.html:7
 msgid "Your password has been successfully changed."
@@ -74,6 +79,7 @@ msgstr ""
 
 #: templates/registration/password_change_form.html:24
 #: templates/tima/profile/form.html:24
+#: templates/tima/profile/newsletter.html:28
 msgid "Save"
 msgstr "Speichern"
 
@@ -127,7 +133,7 @@ msgid "Statistics"
 msgstr "Statistik"
 
 #: templates/tima/base.html:50 templates/tima/profile/base.html:8
-#: templates/tima/profile/base.html:19
+#: templates/tima/profile/base.html:20
 msgid "Profile"
 msgstr "Profil"
 
@@ -135,11 +141,7 @@ msgstr "Profil"
 msgid "Sign out"
 msgstr "Abmelden"
 
-#: templates/tima/base.html:61
-msgid "Sign in"
-msgstr "Anmelden"
-
-#: templates/tima/base.html:80
+#: templates/tima/base.html:81
 msgid "Imprint"
 msgstr "Impressum"
 
@@ -168,13 +170,17 @@ msgstr "Zeitstempel"
 msgid "Language"
 msgstr "Sprache"
 
-#: templates/tima/profile/base.html:20
+#: templates/tima/profile/base.html:21
 msgid "Association History"
 msgstr "Assoziationsgeschichte"
 
-#: templates/tima/profile/base.html:21
+#: templates/tima/profile/base.html:22
 msgid "Edit Profile"
 msgstr "Profil bearbeiten"
+
+#: templates/tima/profile/base.html:23
+msgid "Newsletter"
+msgstr "Newsletter"
 
 #: templates/tima/profile/profile.html:7
 msgid "Full name"

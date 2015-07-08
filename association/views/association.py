@@ -40,11 +40,11 @@ def association(request, slug):
             association, created = Association.objects.update_or_create(word=word, association=word1)
             excludes.append(word)
             excludes.append(word1)
+            points = calculate_points(request.user if not request.user.is_anonymous() else None, association)
             if not request.user.is_anonymous():
-                points = calculate_points(request.user, association)
                 messages.add_message(request, messages.INFO, _('You received %(points)s points for your association of %(association)s.') % {'points': points, 'association': association})
             else:
-                messages.add_message(request, messages.INFO, _('Your association %(association)s has been saved.') % {'association': association})
+                messages.add_message(request, messages.INFO, _('Your association %(association)s has been saved. If you had been signed in you would have received %(points)s points.') % {'association': association, 'points':points})
         else:
             word = Word.objects.get(name=form.cleaned_data['word'], language=language)
             association1 = form.cleaned_data['association1']
