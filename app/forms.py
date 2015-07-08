@@ -28,4 +28,4 @@ class UserCreationForm(AuthUserCreationForm):
         self.fields['password2'].widget = forms.PasswordInput(attrs={'autocomplete':'off', 'class':'form-control'})
 
 class NewsletterForm(forms.Form):
-    words = autocomplete_light.ModelMultipleChoiceField(label=_('Words'), 'WordAutocomplete')
+    words = autocomplete_light.ModelMultipleChoiceField('WordAutocomplete', label=_('Words'))
