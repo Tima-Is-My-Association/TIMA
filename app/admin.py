@@ -1,5 +1,6 @@
-from app.models import AssociationHistory, Profile, TextFieldSingleLine
+from app.models import AssociationHistory, Profile, Newsletter, TextFieldSingleLine
 from django.contrib import admin
+from django.db.models import Count
 from django.forms import TextInput
 
 class ProfileAdmin(admin.ModelAdmin):
@@ -27,5 +28,29 @@ class AssociationHistoryAdmin(admin.ModelAdmin):
         (None, {'fields': ['user', 'association', 'points']}),
     ]
 
+class NewsletterAdmin(admin.ModelAdmin):
+    def get_queryset(self, request):
+        return Newsletter.objects.annotate(word_count=Count('words'))
+
+    def word_count(self, inst):
+        return inst.word_count
+
+    list_display = ('user', 'word_count', 'updated_at')
+    list_filter = ('user', 'words__language', 'words')
+    search_fields = ('user__username', 'word__name')
+    word_count.admin_order_field = 'word_count'
+    word_count.short_description = 'Number of Words'
+
+    formfield_overrides = {
+        TextFieldSingleLine: {'widget': TextInput(attrs={'autocomplete':'off'})},
+    }
+
+    fieldsets = [
+        (None, {'fields': ['user', 'words']}),
+    ]
+
+    filter_horizontal = ('words',)
+
 admin.site.register(AssociationHistory, AssociationHistoryAdmin)
 admin.site.register(Profile, ProfileAdmin)
+admin.site.register(Newsletter, NewsletterAdmin)
