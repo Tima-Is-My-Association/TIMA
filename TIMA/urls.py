@@ -32,4 +32,5 @@ urlpatterns = [
     url(r'^api/words/word/(?P<word_id>\d+)/graph$', 'association.views.api.words.graph', name='word_graph'),
 
     url(r'^oai2/$', 'oai_pmh.views.oai2', name='oai2'),
+    url(r'^autocomplete/', include('autocomplete_light.urls')),
 ]

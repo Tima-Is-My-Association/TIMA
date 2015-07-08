@@ -66,6 +66,7 @@ INSTALLED_APPS = (
     'pages',
     'oai_pmh',
     'django_cron',
+    'autocomplete_light',
 )
 
 MIDDLEWARE_CLASSES = (

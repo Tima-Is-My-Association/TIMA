@@ -1,5 +1,7 @@
 Django==1.8.2
+django-autocomplete-light==2.2.3
 django-common-helpers==0.7.0
 django-cron==0.4.1
 piwikapi==0.3
 psycopg2==2.6
+six==1.9.0

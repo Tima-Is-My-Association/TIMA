@@ -8,20 +8,42 @@
 {% block tab_content %}
 <div class="row" style="margin-top: 10px;">
     <div class="col-md-8 col-md-offset-2">
-        <p>{% trans "Get a weekly newsletter of words you're interrested in. Select a word by cliking it." %}</p>
-        {% for language in languages %}
-            <h3 class="page-header">{{ language }}</h3>
-            <p><b>Words: </b>
-                {% for word in language|words:newsletter.words.all %}
-                    <a href="?add={{ word.id }}">{{ word }}</a>{% if not forloop.last %}, {% endif %}
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 text-center">
+                <p>{% trans "Get a weekly newsletter of words you're interrested in. Select a word by cliking it." %}</p>
+                <form action="{% url 'newsletter' %}" method="post" class="form-inline" style="margin-top: 10px;">
+                    {% csrf_token %}
+
+                    {% for field in form %}
+                        <div class="form-group{% if form.errors %} {{ field.errors|yesno:'has-error,has-success' }}{% endif %}">
+                            <label class="control-label{% if field.field.required %} required{% endif %}" for="{{ field.auto_id }}">{{ field.label }}:</label>
+                            {{ field }}
+                            <span class="help-block">{% autoescape off %}{{ field.help_text }}{% endautoescape %}</span>
+                            <span class="help-block">{{ field.errors }}</span>
+                        </div>
+                    {% endfor %}
+
+                    <div class="form-group">
+                        <button class="btn btn-primary" type="submit" style="margin-top: -10px;">{% trans 'Add words' %}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                {% for language in languages %}
+                    <h3 class="page-header">{{ language }}</h3>
+                    <p><b>Words: </b>
+                    </p>
+                    <p><b>Selected words: </b>
+                        {% for word in newsletter.words.all|language:language %}
+                            <a href="?remove={{ word.id }}">{{ word }}</a>{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                    </p>
                 {% endfor %}
-            </p>
-            <p><b>Selected words: </b>
-                {% for word in newsletter.words.all|language:language %}
-                    <a href="?remove={{ word.id }}">{{ word }}</a>{% if not forloop.last %}, {% endif %}
-                {% endfor %}
-            </p>
-        {% endfor %}
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}

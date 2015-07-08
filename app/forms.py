@@ -1,3 +1,4 @@
+import autocomplete_light
 from django import forms
 from django.contrib.auth.forms import UserChangeForm as AuthUserChangeForm, UserCreationForm as AuthUserCreationForm
 from django.contrib.auth import get_user_model
@@ -25,3 +26,6 @@ class UserCreationForm(AuthUserCreationForm):
         self.fields['username'].widget = forms.TextInput(attrs={'autocomplete':'off', 'class':'form-control'})
         self.fields['password1'].widget = forms.PasswordInput(attrs={'autocomplete':'off', 'class':'form-control'})
         self.fields['password2'].widget = forms.PasswordInput(attrs={'autocomplete':'off', 'class':'form-control'})
+
+class NewsletterForm(forms.Form):
+    words = autocomplete_light.ModelMultipleChoiceField(label=_('Words'), 'WordAutocomplete')

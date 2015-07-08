@@ -1,4 +1,4 @@
-from app.forms import UserChangeForm
+from app.forms import NewsletterForm, UserChangeForm
 from app.functions.piwik import track
 from app.models import AssociationHistory, Newsletter, Profile
 from association.models import Language, Word
@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import get_object_or_404, render
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext as _, ungettext
 from django.views.decorators.csrf import csrf_protect
 
 @login_required(login_url='/signin/')
@@ -62,7 +62,6 @@ def edit(request):
 @login_required(login_url='/signin/')
 @csrf_protect
 def newsletter(request):
-    add = request.GET.get('add')
     remove = request.GET.get('remove')
 
     languages = Language.objects.all()
@@ -70,12 +69,20 @@ def newsletter(request):
     if not newsletter.user.email:
         messages.error(request, _('Without specifying an email-address, you can not receive a newsletter.'))
 
-    if add:
-        newsletter.words.add(get_object_or_404(Word, id=add))
-        newsletter.save()
     if remove:
         newsletter.words.remove(get_object_or_404(Word, id=remove))
         newsletter.save()
+
+    if request.method == 'POST':
+        form = NewsletterForm(request.POST)
+        if form.is_valid():
+            for word in form.cleaned_data['words']:
+                newsletter.words.add(word)
+            newsletter.save()
+            messages.success(request, ungettext('Added %(words)s to your newsletter.', 'Added %(words)s to your newsletter.', len(form.cleaned_data['words'])) % {'words': ', '.join(['%s (%s)' % (word, word.language) for word in form.cleaned_data['words']])})
+            form = NewsletterForm()
+    else:
+        form = NewsletterForm()
 
     track(request, 'Newsletter | Profile | TIMA')
     return render(request, 'tima/profile/newsletter.html', locals())
