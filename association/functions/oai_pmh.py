@@ -29,7 +29,7 @@ def generate_metadata():
         record.dc_subject = 'Word'
         record.dc_description = None
         record.dc_publisher = 'TIMA'
-        record.dc_contributor = ';'.join(['%s' % history.user for history in AssociationHistory.objects.filter(association__word=word)])
+        record.dc_contributor = ';'.join([user for user in AssociationHistory.objects.filter(association__word=word).values_list('user__username', flat=True) if user])
         record.dc_type = 'Dataset'
         record.dc_format = None
         record.dc_identifier = 'tima:word:%s' % word.id
@@ -44,7 +44,10 @@ def generate_metadata():
         if not header.deleted:
             header.deleted = True
             header.metadata_formats.clear()
-            header.dcrecord.delete()
+            try:
+                header.dcrecord.delete()
+            except DCRecord.DoesNotExist:
+                pass
             header.save()
     statistic['headers']['deleted'] = Header.objects.filter(deleted=True).count()
     statistic['headers']['all'] = Header.objects.all().count()
