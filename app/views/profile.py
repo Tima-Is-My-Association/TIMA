@@ -1,4 +1,4 @@
-from app.forms import NewsletterForm, UserChangeForm
+from app.forms import UserChangeForm
 from app.functions.piwik import track
 from app.models import AssociationHistory, Newsletter, Profile
 from association.models import Language, Word
