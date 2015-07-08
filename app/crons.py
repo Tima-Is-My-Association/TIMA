@@ -7,14 +7,13 @@ from django_cron import CronJobBase, Schedule
 
 class NewsletterCronJob(CronJobBase):
     RUN_AT_TIMES = ['0:00']
-    RUN_EVERY_MINS = 1
     MIN_NUM_FAILURES = 3
 
-    schedule = Schedule(run_at_times=RUN_AT_TIMES, run_every_mins=RUN_EVERY_MINS)
+    schedule = Schedule(run_at_times=RUN_AT_TIMES)
     code = 'app.newsletter_cron_job'
 
     def do(self):
-        if not timezone.now().weekday() == 2:
+        if not timezone.now().weekday() == 5:
             return
 
         messages = []
