@@ -15,3 +15,7 @@
 * Parameters
   * `language` language of the word
   * `word` word to check
+
+##OAI-PMH
+[http://www.openarchives.org/pmh/](http://www.openarchives.org/pmh/)
+* **Path:** `/oai2/`
