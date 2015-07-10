@@ -11,7 +11,6 @@ class LanguageAdmin(admin.ModelAdmin):
         return inst.word_count
 
     list_display = ('name', 'code', 'word_count')
-    readonly_fields = ('slug',)
     search_fields = ('name', 'code')
     word_count.admin_order_field = 'word_count'
     word_count.short_description = 'Number of Words'

@@ -16,10 +16,14 @@ class Language(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.name)
+            if not self.slug:
+                self.slug = slugify(self.code)
         else:
             orig = Language.objects.get(pk=self.id)
             if orig.name != self.name:
                 self.slug = slugify(self.name)
+                if not self.slug:
+                    self.slug = slugify(self.code)
         super(Language, self).save(*args, **kwargs)
 
     def __str__(self):
