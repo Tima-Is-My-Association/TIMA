@@ -1,4 +1,4 @@
-# SOME DESCRIPTIVE TITLE.
+A# SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
@@ -20,12 +20,12 @@ msgstr ""
 
 #: app/forms.py:8 templates/tima/profile/profile.html:9
 msgid "Cultural background"
-msgstr ""
+msgstr "پيشينه فرهنگي"
 
 #: app/forms.py:31 templates/tima/base.html:39
 #: templates/tima/words/words.html:8
 msgid "Words"
-msgstr ""
+msgstr "واژه"
 
 #: app/views/profile.py:54
 msgid "Your profile has been successfully updated."
