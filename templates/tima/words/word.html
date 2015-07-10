@@ -19,6 +19,7 @@
             <li><b>{% trans 'Times asked' %}:</b> {{ word.count }}</li>
             <li><b>{% trans 'Number of associations' %}:</b> {{ word.word.count }}</li>
             <li><b>{% trans 'Number of occurrences as association' %}:</b> {{ word.association.count }}</li>
+            <li><b>{% trans 'Export' %}:</b> <a href="{% url 'words_export' %}?word={{ word.id }}" target="_blank">{% trans 'download' %}</a></li>
         </ul>
     </div>
 </div>
