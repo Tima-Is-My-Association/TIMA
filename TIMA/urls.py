@@ -3,7 +3,7 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^$', 'association.views.association.home', name='home'),
-    url(r'^languages/(?P<slug>[\w-]+)/association$', 'association.views.association.association', name='association'),
+    url(r'^languages/(?P<slug>[\w-]+)/association/$', 'association.views.association.association', name='association'),
 
     url(r'^words/$', 'association.views.words.words', name='words'),
     url(r'^words/(?P<word_id>\d+)/$', 'association.views.words.word', name='word'),
@@ -27,9 +27,11 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
 
     url(r'^api/languages/$', 'association.views.api.languages.list'),
+    url(r'^api/words/$', 'association.views.api.words.export'),
     url(r'^api/words/next/$', 'association.views.api.words.next'),
     url(r'^api/words/isa/$', 'association.views.api.words.isA'),
-    url(r'^api/words/word/(?P<word_id>\d+)/graph$', 'association.views.api.words.graph', name='word_graph'),
+    url(r'^api/words/word/(?P<word_id>\d+)/$', 'association.views.api.words.export', name='word_export'),
+    url(r'^api/words/word/(?P<word_id>\d+)/graph/$', 'association.views.api.words.graph', name='word_graph'),
 
     url(r'^oai2/$', 'oai_pmh.views.oai2', name='oai2'),
     url(r'^autocomplete/', include('autocomplete_light.urls')),

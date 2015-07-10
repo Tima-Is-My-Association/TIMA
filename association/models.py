@@ -1,3 +1,4 @@
+from django.core.urlresolvers import reverse
 from django.db import models
 from django.template.defaultfilters import slugify
 
@@ -34,6 +35,25 @@ class Word(models.Model):
     name = TextFieldSingleLine()
     count = models.BigIntegerField(default=0)
     language = models.ForeignKey(Language, related_name='words')
+
+    def get_absolute_url(self):
+        return reverse('word', args=[self.id])
+
+    def to_json(self, request, limit=None):
+        associations = self.word.all().order_by('-count')
+        if limit:
+            associations = associations[:int(limit)]
+        return {'word': self.name,
+                'language': self.language.name,
+                'dc:identifier': 'tima:word:%s' % self.id,
+                'url': request.build_absolute_uri(self.get_absolute_url()),
+                'associations': [{'word': a.association.name,
+                        'language': a.association.language.name,
+                        'dc:identifier': 'tima:word:%s' % a.association.id,
+                        'url': request.build_absolute_uri(a.association.get_absolute_url()),
+                        'json_url': request.build_absolute_uri(reverse('word_export', args=[a.association.id])),
+                        'count': a.count
+                        } for a in associations]}
 
     def __str__(self):
         return self.name
