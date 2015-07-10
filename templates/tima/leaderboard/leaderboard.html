@@ -24,7 +24,7 @@
                     <tr>
                         <td>{{ profile.user }}</td>
                         <td>{{ profile.points }}</td>
-                        <td>{{ profile.languages.all|join:', ' }}</td>
+                        <td>{% for language in profile.languages.all %}<a href="{% url 'words' %}?l={{ language.code}}">{{ language }}</a>{% if not forloop.last %}, {% endif%}{% endfor %}</td>
                     </tr>
                 {% endfor %}
             </tbody>
