@@ -12,4 +12,4 @@ class UpdateMetadataCronJob(CronJobBase):
     def do(self):
         statistics = generate_metadata()
         message = 'Hi.\n\nThe OAI PMH deliviers:\n\n * sets: %s of which %s where just added\n * headers: %s of which %s where just added and %s are deleted\n\nTIMA' % (statistics['sets']['all'], statistics['sets']['new'], statistics['headers']['all'], statistics['headers']['new'], statistics['headers']['deleted'])
-        mail_admins('Update Metadata', message)
+        mail_admins('Update association Metadata', message)

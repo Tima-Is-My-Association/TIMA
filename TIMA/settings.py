@@ -160,6 +160,7 @@ PIWIK_AUTH_TOKEN = config.get('piwik', 'auth_token')
 
 CRON_CLASSES = [
     'app.crons.NewsletterCronJob',
+    'app.crons.UpdateMetadataCronJob',
     'association.crons.UpdateMetadataCronJob',
     'django_cron.cron.FailedRunsNotificationCronJob',
 ]
