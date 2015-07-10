@@ -17,6 +17,7 @@
                     <th>{% trans 'User' %}</th>
                     <th>{% trans 'Points' %}</th>
                     <th>{% trans 'Languages' %}</th>
+                    <th>{% trans 'Cultural background' %}</th>
                 </tr>
             </thead>
             <tbody>
@@ -25,6 +26,7 @@
                         <td>{{ profile.user }}</td>
                         <td>{{ profile.points }}</td>
                         <td>{% for language in profile.languages.all %}<a href="{% url 'words' %}?l={{ language.code}}">{{ language }}</a>{% if not forloop.last %}, {% endif%}{% endfor %}</td>
+                        <td>{{ profile.cultural_background|default_if_none:'' }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
