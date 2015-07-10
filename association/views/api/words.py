@@ -65,20 +65,22 @@ def graph(request, word_id):
     track(request, 'graph | words | API | TIMA')
     return HttpResponse(dumps(data), mimetype)
 
-def export(request, word_id=None):
+def export(request):
+    """Handels GET/POST request to export word(s) with their associations.
+
+    GET/POST parameters:
+    language --- language of the word(s) (optinal)
+    word --- list of word ids to include (optinal)
+    limit --- limit the number of associations per word (optinal)
+    """
     params = request.POST.copy() if request.method == 'POST' else request.GET.copy()
-    if word_id:
-        word = get_object_or_404(Word, id=word_id)
-        data = {'response_date':timezone.now().strftime('%Y-%m-%dT%H:%M:%SZ'),
-            'words': [word.to_json(request, limit=params.get('limit'))]}
-    else:
-        words = Word.objects.all().order_by(Lower('name'))
-        if 'word' in params:
-            words = words.filter(id__in=params.pop('word'))
-        if 'language' in params:
-            words = words.filter(language__code=params.pop('language')[-1])
-        data = {'response_date':timezone.now().strftime('%Y-%m-%dT%H:%M:%SZ'),
-                'words': [word.to_json(request, limit=params.get('limit')) for word in words]}
+    words = Word.objects.all().order_by(Lower('name'))
+    if 'word' in params:
+        words = words.filter(id__in=params.pop('word'))
+    if 'language' in params:
+        words = words.filter(language__code=params.pop('language')[-1])
+    data = {'response_date':timezone.now().strftime('%Y-%m-%dT%H:%M:%SZ'),
+            'words': [word.to_json(request, limit=params.get('limit')) for word in words]}
     return HttpResponse(dumps(data), 'application/json')
 
 @csrf_exempt

@@ -3,6 +3,13 @@
 ##Get a list of all available languages
 * **Path:** `/api/languages/`
 
+##Export words with their associations
+* **Path:** `/api/words/`
+* Parameters
+  * `language` language of the word (optional)
+  * `word` list of word ids to include (optional)
+  * `limit` limit the number of associations per word
+
 ##Get the next word to associate
 * **Path:** `/api/words/next/`
 * Parameters

@@ -51,7 +51,7 @@ class Word(models.Model):
                         'language': a.association.language.name,
                         'dc:identifier': 'tima:word:%s' % a.association.id,
                         'url': request.build_absolute_uri(a.association.get_absolute_url()),
-                        'json_url': request.build_absolute_uri(reverse('word_export', args=[a.association.id])),
+                        'json_url': '%s?word=%s' % (request.build_absolute_uri(reverse('words_export')), a.association.id),
                         'count': a.count
                         } for a in associations]}
 
