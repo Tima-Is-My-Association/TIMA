@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1.0Report-Msgid-Bugs-To: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-08 14:37+0000\n"
+"POT-Creation-Date: 2015-07-10 12:28+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Nathanael Philipp <me@jnphilipp.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,7 +35,12 @@ msgstr "Dein Profil wurde erfolgreich aktualisiert."
 msgid "Without specifying an email-address, you can not receive a newsletter."
 msgstr "Ohne Angabe einer E-Mail-Adresse kann keine Newsletter empfangen."
 
-#: app/views/profile.py:82
+#: app/views/profile.py:75 association/views/words.py:23
+#, python-format
+msgid "You removed %(word)s successfully from your newsletter."
+msgstr "%(word)s wurde vom Newsletter entfernt."
+
+#: app/views/profile.py:83
 #, python-format
 msgid "Added %(words)s to your newsletter."
 msgid_plural "Added %(words)s to your newsletter."
@@ -79,6 +84,11 @@ msgid ""
 msgstr ""
 "Deine Assoziation %(association)s wurde gespeicher. Wenn du angemeldet "
 "gewesen wärst hättest du %(points)s Punkte bekommen."
+
+#: association/views/words.py:27
+#, python-format
+msgid "You added %(word)s successfully to your newsletter."
+msgstr "%(word)s wurde zum Newsletter hinzugefügt."
 
 #: templates/registration/logged_out.html:11
 msgid "Thanks for spending some quality time with TIMA today."
@@ -197,17 +207,13 @@ msgstr "Assoziationsgeschichte"
 msgid "Edit Profile"
 msgstr "Profil bearbeiten"
 
-#: templates/tima/profile/base.html:23
+#: templates/tima/profile/base.html:23 templates/tima/words/words.html:36
 msgid "Newsletter"
 msgstr "Newsletter"
 
 #: templates/tima/profile/newsletter.html:13
-msgid ""
-"Get a weekly newsletter of words you're interrested in. Select a word by "
-"cliking it."
-msgstr ""
-"Bekomme wöchentliche Newsletter über Wörter in du intressiert bist.  Wähle "
-"ein Wort aus durch anklicken."
+msgid "Get a weekly newsletter of words you're interrested in."
+msgstr "Bekomme wöchentliche Newsletter über Wörter in du intressiert bist."
 
 #: templates/tima/profile/newsletter.html:27
 msgid "Add words"
@@ -242,7 +248,15 @@ msgstr "Male gefragt"
 msgid "Number of occurrences as association"
 msgstr "Anzahl des Auftretens als Assoziations"
 
-#: templates/tima/words/word.html:26
+#: templates/tima/words/word.html:22
+msgid "Export"
+msgstr "Exportierung"
+
+#: templates/tima/words/word.html:22
+msgid "download"
+msgstr "herunterladen"
+
+#: templates/tima/words/word.html:27
 msgid "Depth"
 msgstr "Tiefe"
 
@@ -254,3 +268,11 @@ msgstr "Suche"
 #: templates/tima/words/words.html:31
 msgid "Word"
 msgstr "Wort"
+
+#: templates/tima/words/words.html:50
+msgid "remove"
+msgstr "entfernen"
+
+#: templates/tima/words/words.html:52
+msgid "add"
+msgstr "hinzufügen"
