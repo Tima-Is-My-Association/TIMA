@@ -72,6 +72,7 @@ def newsletter(request):
     if remove:
         newsletter.words.remove(get_object_or_404(Word, id=remove))
         newsletter.save()
+        messages.success(request, _('You removed %(word)s successfully from your newsletter.') % {'word': get_object_or_404(Word, id=remove)})
 
     if request.method == 'POST':
         form = NewsletterForm(request.POST)

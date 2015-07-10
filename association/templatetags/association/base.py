@@ -8,3 +8,7 @@ def words(language, exclude=[]):
 @register.filter
 def language(words, language):
     return words.filter(language=language)
+
+@register.filter
+def isInNewsletter(word, user):
+    return word.newsletters.filter(user=user).exists()

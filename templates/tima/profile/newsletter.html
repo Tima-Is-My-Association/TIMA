@@ -10,7 +10,7 @@
     <div class="col-md-8 col-md-offset-2">
         <div class="row">
             <div class="col-md-6 col-md-offset-3 text-center">
-                <p>{% trans "Get a weekly newsletter of words you're interrested in. Select a word by cliking it." %}</p>
+                <p>{% trans "Get a weekly newsletter of words you're interrested in." %}</p>
                 <form action="{% url 'newsletter' %}" method="post" class="form-inline" style="margin-top: 10px;">
                     {% csrf_token %}
 
@@ -34,8 +34,6 @@
             <div class="col-md-12">
                 {% for language in languages %}
                     <h3 class="page-header">{{ language }}</h3>
-                    <p><b>Words: </b>
-                    </p>
                     <p><b>Selected words: </b>
                         {% for word in newsletter.words.all|language:language %}
                             <a href="?remove={{ word.id }}">{{ word }}</a>{% if not forloop.last %}, {% endif %}
