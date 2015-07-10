@@ -9,12 +9,7 @@ def list(request):
     """Handels a POST or GET request to list all languages.
     """
     track(request, 'list | languages | API | TIMA')
-    if request.method == 'POST' or request.method == 'GET':
-        languages = Language.objects.all()
-
-        data = {'languages': [{'name':language.name, 'code':language.code} for language in languages]}
-        mimetype = 'application/json'
-
-        return HttpResponse(dumps(data), mimetype)
-    else:
-         return HttpResponseBadRequest()
+    data = {'languages': [{
+            'name':language.name,
+            'code':language.code} for language in Language.objects.all()]}
+    return HttpResponse(dumps(data), 'application/json')

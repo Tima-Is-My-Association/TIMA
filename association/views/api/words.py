@@ -19,40 +19,21 @@ def next(request):
     excludes --- list of words that should be exclude from the result (optinal)
     """
 
-    language = None
-    user = None
-    excludes = []
     track(request, 'next | words | API | TIMA')
-    if request.method == 'POST':
-        language = get_object_or_404(Language,
-            code=request.POST.get('language'))
+    params = request.POST.copy() if request.method == 'POST' else request.GET.copy()
+    language = get_object_or_404(Language, code=params.pop('language')[-1])
 
-        if 'username' in request.POST:
-            user = get_object_or_404(get_user_model(),
-                username=request.POST.get('username'))
-
-        if 'excludes' in request.POST:
-            excludes = Word.objects.filter(name__in=
-                request.POST.getlist('excludes'))
-    elif request.method == 'GET':
-        language = get_object_or_404(Language,
-            code=request.GET.get('language'))
-
-        if 'username' in request.GET:
-            user = get_object_or_404(get_user_model(),
-                username=request.GET.get('username'))
-
-        if 'excludes' in request.GET:
-            excludes = Word.objects.filter(name__in=
-                request.GET.getlist('excludes'))
-    else:
-         return HttpResponseBadRequest()
+    user = None
+    if 'username' in params:
+        user = get_object_or_404(get_user_model(),
+                username=params.pop('username')[-1])
+    excludes = []
+    if 'excludes' in params:
+        excludes = Word.objects.filter(name__in=params.pop('excludes'))
 
     word = get_next_word(language, user, excludes)
     data = {'word': word.name}
-    mimetype = 'application/json'
-
-    return HttpResponse(dumps(data), mimetype)
+    return HttpResponse(dumps(data), 'application/json')
 
 def graph(request, word_id):
     word = get_object_or_404(Word, id=word_id)
@@ -73,6 +54,7 @@ def export(request):
     word --- list of word ids to include (optinal)
     limit --- limit the number of associations per word (optinal)
     """
+    track(request, 'words | API | TIMA')
     params = request.POST.copy() if request.method == 'POST' else request.GET.copy()
     words = Word.objects.all().order_by(Lower('name'))
     if 'word' in params:
@@ -92,17 +74,7 @@ def isA(request):
     word --- word to check
     """
     track(request, 'isA | words | API | TIMA')
-    if request.method == 'POST':
-        language = get_object_or_404(Language,
-            code=request.POST.get('language'))
-        word = get_object_or_404(Word,
-            name=request.POST.get('word'), language=language)
-        return HttpResponse()
-    elif request.method == 'GET':
-        language = get_object_or_404(Language,
-            code=request.GET.get('language'))
-        word = get_object_or_404(Word,
-            name=request.GET.get('word'), language=language)
-        return HttpResponse()
-    else:
-         return HttpResponseBadRequest()
+    params = request.POST.copy() if request.method == 'POST' else request.GET.copy()
+    language = get_object_or_404(Language, code=params.pop('language')[-1])
+    word = get_object_or_404(Word, name=params.pop('word')[-1], language=language)
+    return HttpResponse()
