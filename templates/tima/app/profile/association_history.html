@@ -1,5 +1,5 @@
 {% extends 'tima/app/profile/base.html' %}
-{% load i18n %}
+{% load i18n tima %}
 
 {% block tab_content %}
 <div class="row" style="margin-top: 10px;">
@@ -28,26 +28,7 @@
 </div>
 <div class="row">
     <div class="col-md-8 col-md-offset-2 text-center">
-        <nav>
-            <ul class="pagination">
-                <li {% if not association_histories.has_previous %}class="disabled"{% endif %}>
-                    <a href="?page={% if association_histories.has_previous %}{{ association_histories.previous_page_number }}{% else %}#{% endif %}" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
-
-                {% for page in paginator.page_range %}
-                    <li {% if association_histories.number == page %}class="active"{% endif %}><a href="?page={{ page }}">{{ page }}</a></li>
-                {% endfor %}
-
-                
-                <li {% if not association_histories.has_next %}class="disabled"{% endif %}>
-                    <a href="?page={% if association_histories.has_next %}{{ association_histories.next_page_number }}{% else %}#{% endif %}" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
+        {% pagination paginator association_histories l=l word=word %}
     </div>
 </div>
 {% endblock %}

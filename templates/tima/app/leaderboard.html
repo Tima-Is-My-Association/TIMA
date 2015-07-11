@@ -1,5 +1,5 @@
 {% extends 'tima/base.html' %}
-{% load i18n %}
+{% load i18n tima %}
 
 {% block content %}
 <div class="row">
@@ -35,26 +35,7 @@
 </div>
 <div class="row">
     <div class="col-md-8 col-md-offset-2 text-center">
-        <nav>
-            <ul class="pagination">
-                <li {% if not profiles.has_previous %}class="disabled"{% endif %}>
-                    <a href="?page={% if profiles.has_previous %}{{ profiles.previous_page_number }}{% else %}#{% endif %}" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
-
-                {% for page in paginator.page_range %}
-                    <li {% if profiles.number == page %}class="active"{% endif %}><a href="?page={{ page }}">{{ page }}</a></li>
-                {% endfor %}
-
-                
-                <li {% if not profiles.has_next %}class="disabled"{% endif %}>
-                    <a href="?page={% if profiles.has_next %}{{ profiles.next_page_number }}{% else %}#{% endif %}" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
+        {% pagination paginator profiles %}
     </div>
 </div>
 {% endblock %}

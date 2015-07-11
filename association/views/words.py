@@ -38,14 +38,10 @@ def words(request):
     page = request.GET.get('page')
     try:
         words = paginator.page(page)
-        prange = paginator.page_range[max(int(page) - 4, 0):min(int(page) + 3, paginator.num_pages)]
-        print(prange)
     except PageNotAnInteger:
         words = paginator.page(1)
-        prange = [1, 2, 3, 4]
     except EmptyPage:
         words = paginator.page(paginator.num_pages)
-        prange = [paginator.num_pages - 3, paginator.num_pages - 2, paginator.num_pages - 1, paginator.num_pages]
 
     track(request, 'Words | TIMA')
     return render(request, 'tima/association/word/words.html', locals())
