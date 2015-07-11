@@ -9,4 +9,4 @@ def statistics(request):
     languages = Language.objects.all();
     user_count = get_user_model().objects.all().count()
     track(request, 'Statistics | TIMA')
-    return render(request, 'tima/statistics/statistics.html', locals())
+    return render(request, 'tima/app/statistics.html', locals())

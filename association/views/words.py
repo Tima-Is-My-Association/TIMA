@@ -48,9 +48,9 @@ def words(request):
         prange = [paginator.num_pages - 3, paginator.num_pages - 2, paginator.num_pages - 1, paginator.num_pages]
 
     track(request, 'Words | TIMA')
-    return render(request, 'tima/words/words.html', locals())
+    return render(request, 'tima/association/word/words.html', locals())
 
 def word(request, word_id):
     word = get_object_or_404(Word, id=word_id)
     track(request, '%s | TIMA' % word)
-    return render(request, 'tima/words/word.html', locals())
+    return render(request, 'tima/association/word/word.html', locals())

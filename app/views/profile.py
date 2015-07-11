@@ -14,7 +14,7 @@ from django.views.decorators.csrf import csrf_protect
 def profile(request):
     profile = get_object_or_404(Profile, user=request.user)
     track(request, 'Profile | TIMA')
-    return render(request, 'tima/profile/profile.html', locals())
+    return render(request, 'tima/app/profile/profile.html', locals())
 
 @login_required(login_url='/signin/')
 def association_history(request):
@@ -37,7 +37,7 @@ def association_history(request):
         association_histories = paginator.page(paginator.num_pages)
 
     track(request, 'Association history | Profile | TIMA')
-    return render(request, 'tima/profile/association_history.html', locals())
+    return render(request, 'tima/app/profile/association_history.html', locals())
 
 @login_required(login_url='/signin/')
 @csrf_protect
@@ -57,7 +57,7 @@ def edit(request):
         form = UserChangeForm(instance=request.user, initial={'cultural_background': profile.cultural_background})
 
     track(request, 'edit | Profile | TIMA')
-    return render(request, 'tima/profile/form.html', locals())
+    return render(request, 'tima/app/profile/form.html', locals())
 
 @login_required(login_url='/signin/')
 @csrf_protect
@@ -86,4 +86,4 @@ def newsletter(request):
         form = NewsletterForm()
 
     track(request, 'Newsletter | Profile | TIMA')
-    return render(request, 'tima/profile/newsletter.html', locals())
+    return render(request, 'tima/app/profile/newsletter.html', locals())

@@ -16,4 +16,4 @@ def leaderboard(request):
         profiles = paginator.page(paginator.num_pages)
 
     track(request, 'Leaderboard | TIMA')
-    return render(request, 'tima/leaderboard/leaderboard.html', locals())
+    return render(request, 'tima/app/leaderboard.html', locals())
