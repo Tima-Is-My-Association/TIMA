@@ -18,10 +18,6 @@ def home(request):
 def association(request, slug):
     language = get_object_or_404(Language, slug=slug)
 
-    if not request.user.is_anonymous():
-        language.users.add(get_object_or_404(Profile, user=request.user))
-        language.save()
-
     excludes = []
     if 'excludes' in request.GET:
         for exclude in request.GET.getlist('excludes'):
@@ -30,6 +26,10 @@ def association(request, slug):
     if request.method == 'POST':
         form = AssociationForm(request.POST)
         if form.is_valid():
+            if not request.user.is_anonymous():
+                language.users.add(get_object_or_404(Profile, user=request.user))
+                language.save()
+
             if form.cleaned_data['word'] == form.cleaned_data['association']:
                 word = Word.objects.get(name=form.cleaned_data['word'], language=language)
                 return render(request, 'tima/association/association.html', locals())
