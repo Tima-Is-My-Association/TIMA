@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1.0Report-Msgid-Bugs-To: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-10 12:28+0000\n"
+"POT-Creation-Date: 2015-07-12 20:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Nathanael Philipp <me@jnphilipp.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,12 +18,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/forms.py:8 templates/tima/profile/profile.html:9
+#: app/forms.py:8 templates/tima/app/leaderboard.html:20
+#: templates/tima/app/profile/profile.html:9
 msgid "Cultural background"
 msgstr "Kultureller Hintergrund"
 
-#: app/forms.py:31 templates/tima/base.html:39
-#: templates/tima/words/words.html:8
+#: app/forms.py:31 templates/tima/association/word/words.html:8
+#: templates/tima/base.html:39
 msgid "Words"
 msgstr "Worte"
 
@@ -51,9 +52,10 @@ msgstr[1] "%(words)s wurden zum Newsletter hinzugefügt."
 msgid "Filter"
 msgstr "Filter"
 
-#: association/forms.py:12 templates/tima/association/association.html:8
+#: association/forms.py:12
+#: templates/tima/app/profile/association_history.html:11
+#: templates/tima/association/association.html:8
 #: templates/tima/association/association.html:23
-#: templates/tima/profile/association_history.html:11
 msgid "Association"
 msgstr "Assoziation"
 
@@ -112,7 +114,7 @@ msgstr ""
 "eingegeben hast."
 
 #: templates/registration/password_change_form.html:24
-#: templates/tima/profile/form.html:24
+#: templates/tima/app/profile/form.html:24
 msgid "Save"
 msgstr "Speichern"
 
@@ -120,6 +122,87 @@ msgstr "Speichern"
 #: templates/tima/base.html:61
 msgid "Sign up"
 msgstr "Registrieren"
+
+#: templates/tima/app/leaderboard.html:8 templates/tima/base.html:41
+msgid "Leaderboard"
+msgstr "Rangliste"
+
+#: templates/tima/app/leaderboard.html:17
+msgid "Citizen scientist"
+msgstr "Bürgerwissenschaftler"
+
+#: templates/tima/app/leaderboard.html:18
+#: templates/tima/app/profile/association_history.html:13
+#: templates/tima/app/profile/profile.html:10
+msgid "Points"
+msgstr "Punkte"
+
+#: templates/tima/app/leaderboard.html:19
+#: templates/tima/app/profile/profile.html:11
+msgid "Languages"
+msgstr "Sprachen"
+
+#: templates/tima/app/profile/association_history.html:10
+msgid "Timestamp"
+msgstr "Zeitstempel"
+
+#: templates/tima/app/profile/association_history.html:12
+#: templates/tima/app/statistics.html:20
+#: templates/tima/association/word/words.html:32
+msgid "Language"
+msgstr "Sprache"
+
+#: templates/tima/app/profile/base.html:8
+#: templates/tima/app/profile/base.html:20 templates/tima/base.html:51
+msgid "Profile"
+msgstr "Profil"
+
+#: templates/tima/app/profile/base.html:21
+msgid "Association History"
+msgstr "Assoziationsgeschichte"
+
+#: templates/tima/app/profile/base.html:22
+msgid "Edit Profile"
+msgstr "Profil bearbeiten"
+
+#: templates/tima/app/profile/base.html:23
+#: templates/tima/association/word/words.html:36
+msgid "Newsletter"
+msgstr "Newsletter"
+
+#: templates/tima/app/profile/newsletter.html:13
+msgid "Get a weekly newsletter of words you're interrested in."
+msgstr "Bekomme wöchentliche Newsletter über Wörter in du intressiert bist."
+
+#: templates/tima/app/profile/newsletter.html:27
+msgid "Add words"
+msgstr "Worte hinzufügen"
+
+#: templates/tima/app/profile/profile.html:7
+msgid "Full name"
+msgstr "Name"
+
+#: templates/tima/app/profile/profile.html:8
+msgid "Email"
+msgstr "Email"
+
+#: templates/tima/app/statistics.html:8 templates/tima/base.html:43
+msgid "Statistics"
+msgstr "Statistik"
+
+#: templates/tima/app/statistics.html:15
+msgid "Number of users"
+msgstr "Anzahl der Benutzer"
+
+#: templates/tima/app/statistics.html:21
+msgid "Number of words"
+msgstr "Anzahl der Wörter"
+
+#: templates/tima/app/statistics.html:22
+#: templates/tima/association/word/word.html:20
+#: templates/tima/association/word/words.html:33
+msgid "Number of associations"
+msgstr "Anzahl der Assoziationen"
 
 #: templates/tima/association/association.html:14
 msgid "Type your association for"
@@ -153,18 +236,44 @@ msgstr ""
 msgid "Select Language"
 msgstr "Sprache auswählen"
 
-#: templates/tima/base.html:41 templates/tima/leaderboard/leaderboard.html:8
-msgid "Leaderboard"
-msgstr "Rangliste"
+#: templates/tima/association/word/word.html:19
+msgid "Times asked"
+msgstr "Male gefragt"
 
-#: templates/tima/base.html:43 templates/tima/statistics/statistics.html:8
-msgid "Statistics"
-msgstr "Statistik"
+#: templates/tima/association/word/word.html:21
+#: templates/tima/association/word/words.html:34
+msgid "Number of occurrences as association"
+msgstr "Anzahl des Auftretens als Assoziations"
 
-#: templates/tima/base.html:51 templates/tima/profile/base.html:8
-#: templates/tima/profile/base.html:20
-msgid "Profile"
-msgstr "Profil"
+#: templates/tima/association/word/word.html:22
+msgid "Export"
+msgstr "Exportierung"
+
+#: templates/tima/association/word/word.html:22
+msgid "download"
+msgstr "herunterladen"
+
+#: templates/tima/association/word/word.html:27
+msgid "Depth"
+msgstr "Tiefe"
+
+#: templates/tima/association/word/words.html:16
+#: templates/tima/association/word/words.html:17
+#: templates/tima/association/word/words.html:21
+msgid "Search"
+msgstr "Suche"
+
+#: templates/tima/association/word/words.html:31
+msgid "Word"
+msgstr "Wort"
+
+#: templates/tima/association/word/words.html:50
+msgid "remove"
+msgstr "entfernen"
+
+#: templates/tima/association/word/words.html:52
+msgid "add"
+msgstr "hinzufügen"
 
 #: templates/tima/base.html:55
 msgid "Sign out"
@@ -173,106 +282,3 @@ msgstr "Abmelden"
 #: templates/tima/base.html:82
 msgid "Imprint"
 msgstr "Impressum"
-
-#: templates/tima/leaderboard/leaderboard.html:17
-msgid "User"
-msgstr "Benutzer"
-
-#: templates/tima/leaderboard/leaderboard.html:18
-#: templates/tima/profile/association_history.html:13
-#: templates/tima/profile/profile.html:10
-msgid "Points"
-msgstr "Punkte"
-
-#: templates/tima/leaderboard/leaderboard.html:19
-#: templates/tima/profile/profile.html:11
-msgid "Languages"
-msgstr "Sprachen"
-
-#: templates/tima/profile/association_history.html:10
-msgid "Timestamp"
-msgstr "Zeitstempel"
-
-#: templates/tima/profile/association_history.html:12
-#: templates/tima/statistics/statistics.html:20
-#: templates/tima/words/words.html:32
-msgid "Language"
-msgstr "Sprache"
-
-#: templates/tima/profile/base.html:21
-msgid "Association History"
-msgstr "Assoziationsgeschichte"
-
-#: templates/tima/profile/base.html:22
-msgid "Edit Profile"
-msgstr "Profil bearbeiten"
-
-#: templates/tima/profile/base.html:23 templates/tima/words/words.html:36
-msgid "Newsletter"
-msgstr "Newsletter"
-
-#: templates/tima/profile/newsletter.html:13
-msgid "Get a weekly newsletter of words you're interrested in."
-msgstr "Bekomme wöchentliche Newsletter über Wörter in du intressiert bist."
-
-#: templates/tima/profile/newsletter.html:27
-msgid "Add words"
-msgstr "Worte hinzufügen"
-
-#: templates/tima/profile/profile.html:7
-msgid "Full name"
-msgstr "Name"
-
-#: templates/tima/profile/profile.html:8
-msgid "Email"
-msgstr "Email"
-
-#: templates/tima/statistics/statistics.html:15
-msgid "Number of users"
-msgstr "Anzahl der Benutzer"
-
-#: templates/tima/statistics/statistics.html:21
-msgid "Number of words"
-msgstr "Anzahl der Wörter"
-
-#: templates/tima/statistics/statistics.html:22
-#: templates/tima/words/word.html:20 templates/tima/words/words.html:33
-msgid "Number of associations"
-msgstr "Anzahl der Assoziationen"
-
-#: templates/tima/words/word.html:19
-msgid "Times asked"
-msgstr "Male gefragt"
-
-#: templates/tima/words/word.html:21 templates/tima/words/words.html:34
-msgid "Number of occurrences as association"
-msgstr "Anzahl des Auftretens als Assoziations"
-
-#: templates/tima/words/word.html:22
-msgid "Export"
-msgstr "Exportierung"
-
-#: templates/tima/words/word.html:22
-msgid "download"
-msgstr "herunterladen"
-
-#: templates/tima/words/word.html:27
-msgid "Depth"
-msgstr "Tiefe"
-
-#: templates/tima/words/words.html:16 templates/tima/words/words.html.py:17
-#: templates/tima/words/words.html:21
-msgid "Search"
-msgstr "Suche"
-
-#: templates/tima/words/words.html:31
-msgid "Word"
-msgstr "Wort"
-
-#: templates/tima/words/words.html:50
-msgid "remove"
-msgstr "entfernen"
-
-#: templates/tima/words/words.html:52
-msgid "add"
-msgstr "hinzufügen"

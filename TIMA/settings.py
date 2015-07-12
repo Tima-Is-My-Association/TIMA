@@ -147,8 +147,14 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
 
+
+# Media files
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+# Piwik settings
 
 PIWIK_SITE_ID = config.get('piwik', 'id')
 PIWIK_URL = config.get('piwik', 'url')
