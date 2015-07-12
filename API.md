@@ -6,6 +6,9 @@
 ##Get the leaderboard
 * **Path:** `/api/leaderboard/`
 
+##Get the statistics
+* **Path:** `/api/statistics/`
+
 ##Export words with their associations
 * **Path:** `/api/words/`
 * Parameters

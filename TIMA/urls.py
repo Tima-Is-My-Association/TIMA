@@ -43,6 +43,7 @@ urlpatterns = [
 
     url(r'^api/languages/$', 'association.views.api.languages.list'),
     url(r'^api/leaderboard/$', 'app.views.api.leaderboard.leaderboard'),
+    url(r'^api/statistics/$', 'app.views.api.statistics.statistics'),
     url(r'^api/words/$', 'association.views.api.words.export', name='words_export'),
     url(r'^api/words/next/$', 'association.views.api.words.next'),
     url(r'^api/words/isa/$', 'association.views.api.words.isA'),

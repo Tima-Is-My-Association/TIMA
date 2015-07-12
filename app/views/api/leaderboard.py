@@ -5,7 +5,7 @@ from django.utils import timezone
 from json import dumps
 
 def leaderboard(request):
-    """Handels GET/POST request to export word(s) with their associations.
+    """Handels GET/POST request to export the leaderboard.
     """
     track(request, 'leaderboard | API | TIMA')
     profiles = Profile.objects.all().order_by('-points')
