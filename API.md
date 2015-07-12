@@ -3,6 +3,9 @@
 ##Get a list of all available languages
 * **Path:** `/api/languages/`
 
+##Get the leaderboard
+* **Path:** `/api/leaderboard/`
+
 ##Export words with their associations
 * **Path:** `/api/words/`
 * Parameters
