@@ -21,13 +21,13 @@ class Command(BaseCommand):
                 return
 
             try:
-                word1 = Word.objects.get(name=options['w'][1].strip())
+                word1 = Word.objects.get(name=options['w'][1].strip(), language=language)
             except Word.DoesNotExist:
                 self.stdout.write('Word1 does not exist. Abborting...')
                 return
 
             try:
-                word2 = Word.objects.get(name=options['w'][2].strip())
+                word2 = Word.objects.get(name=options['w'][2].strip(), language=language)
             except Word.DoesNotExist:
                 self.stdout.write('Word2 does not exist. Abborting...')
                 return
@@ -48,13 +48,13 @@ class Command(BaseCommand):
                         continue
 
                     try:
-                        word1 = Word.objects.get(name=line[1].strip())
+                        word1 = Word.objects.get(name=line[1].strip(), language=language)
                     except Word.DoesNotExist:
                         self.stdout.write('Word1 does not exist. Continuing...')
                         continue
 
                     try:
-                        word2 = Word.objects.get(name=line[2].strip())
+                        word2 = Word.objects.get(name=line[2].strip(), language=language)
                     except Word.DoesNotExist:
                         self.stdout.write('Word2 does not exist. Continuing...')
                         continue
