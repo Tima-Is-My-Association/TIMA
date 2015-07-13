@@ -2,7 +2,7 @@
 
 ##Authentication requests
 
-###Request a user for auth
+####Request a user for auth
 * **Path:** `api/applications/auth/request/`
 * Parameters
   * `username` username
@@ -10,10 +10,9 @@
 * Responses
   * `400` if parameter is missing
   * `404` if username or client_id was not found
-  * `200` if reuqest succeeded with json data
-    * `{'n':<UTC timestamp>}`
+  * `200` if reuqest succeeded with json data `{'n':<UTC timestamp>}`
 
-###Request to auth a user
+####Request to auth a user
 * **Path:** `api/applications/auth/user/`
 * Parameters
   * `username` username
@@ -25,10 +24,9 @@
   * `400` if parameter is missing
   * `404` if client_id or n was not found
   * `405` if username and password or hash is wrong
-  * `200` if reuqest succeeded with json data
-    * `{'n':<64Bit Ineger>, 'token':<Hash token>}`
+  * `200` if reuqest succeeded with json data `{'n':<64Bit Ineger>, 'token':<Hash token>}`
 
-###Request to revoke a user auth
+####Request to revoke a user auth
 * **Path:** `api/applications/auth/revoke/`
 * Parameters
   * `username` username
