@@ -12,7 +12,7 @@ def generate_metadata():
             set_spec.name=language.name
             set_spec.save()
             statistic['sets']['new'] += 1
-    statistic['sets']['all'] = Set.objects.all().count()
+        statistic['sets']['all'] += 1
 
     oai_dc = MetadataFormat.objects.get(prefix='oai_dc')
     for profile in Profile.objects.all():
@@ -57,7 +57,7 @@ def generate_metadata():
             except DCRecord.DoesNotExist:
                 pass
             header.save()
-    statistic['headers']['deleted'] = Header.objects.filter(deleted=True).count()
-    statistic['headers']['all'] = Header.objects.all().count()
+    statistic['headers']['deleted'] = Header.objects.filter(identifier__startswith='tima:citizen_scientists:').filter(deleted=True).count()
+    statistic['headers']['all'] = Header.objects.filter(identifier__startswith='tima:citizen_scientists:').count()
 
     return statistic
