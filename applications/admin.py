@@ -1,4 +1,4 @@
-from applications.models import Application, AuthRequest, TextFieldSingleLine
+from applications.models import Application, AuthedUser, AuthRequest, TextFieldSingleLine
 from django.contrib import admin
 from django.forms import TextInput
 
@@ -24,5 +24,15 @@ class AuthRequestAdmin(admin.ModelAdmin):
         (None, {'fields': ['user', 'timestamp']}),
     ]
 
+class AuthedUserAdmin(admin.ModelAdmin):
+    list_display = ('user', 'token', 'updated_at')
+    readonly_fields = ('n', 'token')
+    search_fields = ('name',)
+
+    fieldsets = [
+        (None, {'fields': ['user', 'token', 'n']}),
+    ]
+
 admin.site.register(Application, ApplicationAdmin)
+admin.site.register(AuthedUser, AuthedUserAdmin)
 admin.site.register(AuthRequest, AuthRequestAdmin)
