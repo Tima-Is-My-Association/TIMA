@@ -7,6 +7,11 @@
 * Parameters
   * `username` username
   * `client_id` client_id of the application
+* Responses
+  * `400` if parameter is missing
+  * `404` if username or client_id was not found
+  * `200` if reuqest succeeded with json data
+    * `{'n':<UTC timestamp>}`
 
 ###Request to auth a user
 * **Path:** `api/applications/auth/user/`
