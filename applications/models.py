@@ -48,6 +48,11 @@ class AuthedUser(models.Model):
     token = TextFieldSingleLine(unique=True)
     n = models.BigIntegerField(default=get_random_64bit)
 
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.token = ''.join('%02x' % i for i in urandom(32))
+        super(AuthedUser, self).save(*args, **kwargs)
+
     def __str__(self):
         return self.user.username
 

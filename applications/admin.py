@@ -25,7 +25,7 @@ class AuthRequestAdmin(admin.ModelAdmin):
     ]
 
 class AuthedUserAdmin(admin.ModelAdmin):
-    list_display = ('user', 'token', 'updated_at')
+    list_display = ('user', 'token', 'n', 'updated_at')
     readonly_fields = ('n', 'token')
     search_fields = ('name',)
 
