@@ -1,4 +1,5 @@
 from django.db import models
+from os import urandom
 
 class TextFieldSingleLine(models.TextField):
     pass
