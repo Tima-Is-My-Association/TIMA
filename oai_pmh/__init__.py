@@ -1,1 +1,1 @@
-default_app_config = 'oai_pmh.apps.OAIPMHConfig'
+default_app_config = 'oai_pmh.app.OAIPMHConfig'
