@@ -41,6 +41,7 @@ urlpatterns = [
 
     url(r'^admin/', include(admin.site.urls)),
 
+    url(r'^api/applications/auth/request/$', 'applications.views.api.auth.request'),
     url(r'^api/languages/$', 'association.views.api.languages.list'),
     url(r'^api/leaderboard/$', 'app.views.api.leaderboard.leaderboard'),
     url(r'^api/statistics/$', 'app.views.api.statistics.statistics'),

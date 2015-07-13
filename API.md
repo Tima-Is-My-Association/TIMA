@@ -1,5 +1,11 @@
 #API request
 
+##Request a user for auth
+* **Path:** `api/applications/auth/request/`
+* Parameters
+  * `username` username
+  * `client_id` client_id of the application
+
 ##Get a list of all available languages
 * **Path:** `/api/languages/`
 
