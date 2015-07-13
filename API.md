@@ -6,6 +6,20 @@
   * `username` username
   * `client_id` client_id of the application
 
+##Request to auth a user
+* **Path:** `api/applications/auth/user/`
+* Parameters
+  * `username` username
+  * `password` password
+  * `client_id` client_id of the application
+  * `n` timestamp from auth request
+  * `hash` hash of n and application secret
+* Responses
+  * `400` if parameter is missing
+  * `405` if username and password or hash is wrong
+  * `200` if reuqest succeeded with json data
+    * `{'n':<64Bit Ineger>, 'token':<Hash token>}`
+
 ##Get a list of all available languages
 * **Path:** `/api/languages/`
 
