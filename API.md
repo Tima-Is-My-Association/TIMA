@@ -1,12 +1,14 @@
 #API request
 
-##Request a user for auth
+##Authentication requests
+
+###Request a user for auth
 * **Path:** `api/applications/auth/request/`
 * Parameters
   * `username` username
   * `client_id` client_id of the application
 
-##Request to auth a user
+###Request to auth a user
 * **Path:** `api/applications/auth/user/`
 * Parameters
   * `username` username
@@ -16,9 +18,21 @@
   * `hash` hash of n and application secret
 * Responses
   * `400` if parameter is missing
+  * `404` if client_id or n was not found
   * `405` if username and password or hash is wrong
   * `200` if reuqest succeeded with json data
     * `{'n':<64Bit Ineger>, 'token':<Hash token>}`
+
+###Request to revoke a user auth
+* **Path:** `api/applications/auth/revoke/`
+* Parameters
+  * `username` username
+  * `hash` hash of n and token
+* Responses
+  * `400` if parameter is missing
+  * `404` if username was not found
+  * `405` if hash was wrong
+  * `200` if reuqest succeeded
 
 ##Get a list of all available languages
 * **Path:** `/api/languages/`

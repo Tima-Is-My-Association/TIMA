@@ -45,7 +45,7 @@ def user(request):
     client_id --- client_id of the application
     hash --- hash of application secret and n
     """
-    track(request, 'request | auth | applications | API | TIMA')
+    track(request, 'user | auth | applications | API | TIMA')
     params = request.POST.copy() if request.method == 'POST' else request.GET.copy()
 
     user = None
@@ -77,3 +77,23 @@ def user(request):
     authrequest.delete()
     data = {'n':autheduser.n, 'token':autheduser.token}
     return HttpResponse(dumps(data), 'application/json')
+
+@csrf_exempt
+def revoke(request):
+    """Handels a POST/GET request to auth a user.
+
+    GET/POST parameters:
+    username --- username
+    hash --- hash of user token and n
+    """
+    track(request, 'revoke | auth | applications | API | TIMA')
+    params = request.POST.copy() if request.method == 'POST' else request.GET.copy()
+
+    if 'username' in params and 'hash' in params:
+        autheduser = get_object_or_404(AuthedUser, user__username=params.pop('username')[-1])
+        if sha512(('%s%s' % (autheduser.token, autheduser.n + 1)).encode('utf-8')).hexdigest() != params.pop('hash')[-1]:
+            return HttpResponseForbidden()
+        autheduser.delete()
+        return HttpResponse()
+    else:
+        return HttpResponseBadRequest
