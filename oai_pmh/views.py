@@ -227,4 +227,4 @@ def do_resumption_token(params, errors, objs):
     else:
         paginator = Paginator(objs, PER_PAGE)
         page = paginator.page(1)
-    return (paginator, page, resumptionToken, set_spec, metadata_prefix, from_timestamp, until_timestamp)
+    return (paginator, page, resumption_token, set_spec, metadata_prefix, from_timestamp, until_timestamp)

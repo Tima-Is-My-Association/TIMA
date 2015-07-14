@@ -25,7 +25,7 @@ def generate_metadata():
             statistic['headers']['new'] += 1
         else:
             if header.deleted:
-                header.deleted = False;
+                header.deleted = False
                 header.metadata_formats.add(oai_dc)
                 header.save()
 
@@ -48,7 +48,7 @@ def generate_metadata():
         record.dc_rights = 'http://creativecommons.org/licenses/by/4.0/'
         record.save()
 
-    for header in Header.objects.filter(identifier__startswith='tima:citizen_scientists:').exclude(identifier__in=Profile.objects.annotate(identifier=Concat(V('tima:user:'), 'user__username')).values_list('identifier', flat=True)):
+    for header in Header.objects.filter(identifier__startswith='tima:citizen_scientists:').exclude(identifier__in=Profile.objects.annotate(identifier=Concat(V('tima:citizen_scientists:'), 'user__username')).values_list('identifier', flat=True)):
         if not header.deleted:
             header.deleted = True
             header.metadata_formats.clear()
