@@ -19,49 +19,55 @@
   * `password` password
   * `client_id` client_id of the application
   * `n` timestamp from auth request
-  * `hash` hash of n and application secret
+  * `token` hash of n and application secret
 * Responses
   * `400` if parameter is missing
-  * `404` if client_id or n was not found
-  * `405` if username and password or hash is wrong
-  * `200` if reuqest succeeded with json data `{'n':<64Bit Ineger>, 'token':<Hash token>}`
+  * `403` if username, password or token is wrong
+  * `404` if client_id or n is not found
+  * `200` if reuqest succeeded with json data `{'n':<64Bit Ineger>, 'u':<int>, 'token':<Hash token>}`
 
 ####Request to revoke a user auth
 * **Path:** `api/applications/auth/revoke/`
 * Parameters
-  * `username` username
-  * `hash` hash of n and token
+  * `u` int
+  * `token` hash of n and token
 * Responses
   * `400` if parameter is missing
+  * `403` if token is wrong
   * `404` if username was not found
-  * `405` if hash was wrong
   * `200` if reuqest succeeded
 
-##Get a list of all available languages
-* **Path:** `/api/languages/`
-* Responses
-  * `200` if reuqest succeeded with json data `{'response_date':<UTC timestamp>, 'languages': [{'name':<Name>, 'code':<Code>}]}`
+##General requests
 
-##Get the leaderboard
+###Get the leaderboard
 * **Path:** `/api/leaderboard/`
 * Responses
   * `200` if reuqest succeeded with json data `{'response_date':<UTC timestamp>, 'leaderboard':[{'citizen_scientist':<Username>, 'points':<Points>, 'languages': [{'language':<Code>}], 'cultural_background':<Cultural background>}]}`
 
-##Get the statistics
+###Get the statistics
 * **Path:** `/api/statistics/`
 * Responses
   * `200` if reuqest succeeded with json data `{'response_date':<UTC timestamp>, 'statistics': [{'citizen_scientists':<Number of citizen scientists>, 'languages':[{'language':<Code>, 'words':<Number of words>, 'associations':<Number of associations>}]}]}`
 
-##Export words with their associations
-* **Path:** `/api/words/`
+###Get the association history of a user
+* **Path:** `/api/profile/associationhistory/`
 * Parameters
-  * `language` language of the word (optional)
-  * `word` list of word ids to include (optional)
-  * `limit` limit the number of associations per word
+  * `u` username
+  * `token` hash of n and token
 * Responses
-  * `200` if reuqest succeeded with json data `{'response_date':<UTC timestamp>, 'words':[{'word':<Word>, 'language':<Code>, 'identifier':<OAI-PMH identifier>, 'url':<Website URL>, 'associations': [{'word':<Word>, 'language':<Code>, 'identifier':<OAI-PMH identifier>, 'url':<Website URL>, 'json_url':<JSON export URL>, 'count':<Count of the associations>}]}]}`
+  * `400` if parameter is missing
+  * `403` if token is wrong
+  * `404` if username was not found
+  * `200` if reuqest succeeded with json data `{'response_date':<UTC timestamp>}`
 
-##Get the next word to associate
+##Association request
+
+###Get a list of all available languages
+* **Path:** `/api/languages/`
+* Responses
+  * `200` if reuqest succeeded with json data `{'response_date':<UTC timestamp>, 'languages': [{'name':<Name>, 'code':<Code>}]}`
+
+###Get the next word to associate
 * **Path:** `/api/words/next/`
 * Parameters
   * `language` language of the word
@@ -72,7 +78,7 @@
   * `404` if language or username was not found
   * `200` if reuqest succeeded with json data `{'word':<Word>}`
 
-##Check if a word is a word
+###Check if a word is a word
 * **Path:** `/api/words/isa/`
 * Parameters
   * `language` language of the word
@@ -81,6 +87,15 @@
   * `400` if parameter is missing
   * `404` if language or word was not found
   * `200` if reuqest succeeded
+
+##Export words with their associations
+* **Path:** `/api/words/`
+* Parameters
+  * `language` language of the word (optional)
+  * `word` list of word ids to include (optional)
+  * `limit` limit the number of associations per word
+* Responses
+  * `200` if reuqest succeeded with json data `{'response_date':<UTC timestamp>, 'words':[{'word':<Word>, 'language':<Code>, 'identifier':<OAI-PMH identifier>, 'url':<Website URL>, 'associations': [{'word':<Word>, 'language':<Code>, 'identifier':<OAI-PMH identifier>, 'url':<Website URL>, 'json_url':<JSON export URL>, 'count':<Count of the associations>}]}]}`
 
 ##OAI-PMH
 * **Path:** `/oai2/`

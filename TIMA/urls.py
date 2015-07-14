@@ -27,7 +27,7 @@ urlpatterns = [
     url(r'^statistics/$', 'app.views.statistics.statistics', name='statistics'),
 
     url(r'^profile/$', 'app.views.profile.profile', name='profile'),
-    url(r'^profile/association_history/$', 'app.views.profile.association_history', name='association_history'),
+    url(r'^profile/associationhistory/$', 'app.views.profile.association_history', name='association_history'),
     url(r'^profile/edit/$', 'app.views.profile.edit', name='profile_edit'),
     url(r'^profile/edit/password/$', 'django.contrib.auth.views.password_change', name='password_change'),
     url(r'^profile/edit/password/done/$', 'django.contrib.auth.views.password_change_done', name='password_change_done'),
@@ -46,6 +46,7 @@ urlpatterns = [
     url(r'^api/applications/auth/revoke/$', 'applications.views.api.auth.revoke'),
     url(r'^api/languages/$', 'association.views.api.languages.list'),
     url(r'^api/leaderboard/$', 'app.views.api.leaderboard.leaderboard'),
+    url(r'^api/profile/associationhistory/$', 'app.views.api.profile.associationhistory'),
     url(r'^api/statistics/$', 'app.views.api.statistics.statistics'),
     url(r'^api/words/$', 'association.views.api.words.export', name='words_export'),
     url(r'^api/words/next/$', 'association.views.api.words.next'),
