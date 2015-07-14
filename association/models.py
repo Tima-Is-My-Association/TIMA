@@ -48,12 +48,12 @@ class Word(models.Model):
         if limit:
             associations = associations[:int(limit)]
         return {'word': self.name,
-                'language': self.language.name,
-                'dc:identifier': 'tima:word:%s' % self.id,
+                'language': self.language.code,
+                'identifier': 'tima:word:%s' % self.id,
                 'url': request.build_absolute_uri(self.get_absolute_url()),
                 'associations': [{'word': a.association.name,
-                        'language': a.association.language.name,
-                        'dc:identifier': 'tima:word:%s' % a.association.id,
+                        'language': a.association.language.code,
+                        'identifier': 'tima:word:%s' % a.association.id,
                         'url': request.build_absolute_uri(a.association.get_absolute_url()),
                         'json_url': '%s?word=%s' % (request.build_absolute_uri(reverse('words_export')), a.association.id),
                         'count': a.count

@@ -39,12 +39,18 @@
 
 ##Get a list of all available languages
 * **Path:** `/api/languages/`
+* Responses
+  * `200` if reuqest succeeded with json data `{'response_date':<UTC timestamp>, 'languages': [{'name':<Name>, 'code':<Code>}]}`
 
 ##Get the leaderboard
 * **Path:** `/api/leaderboard/`
+* Responses
+  * `200` if reuqest succeeded with json data `{'response_date':<UTC timestamp>, 'leaderboard':[{'citizen_scientist':<Username>, 'points':<Points>, 'languages': [{'language':<Code>}], 'cultural_background':<Cultural background>}]}`
 
 ##Get the statistics
 * **Path:** `/api/statistics/`
+* Responses
+  * `200` if reuqest succeeded with json data `{'response_date':<UTC timestamp>, 'statistics': [{'citizen_scientists':<Number of citizen scientists>, 'languages':[{'language':<Code>, 'words':<Number of words>, 'associations':<Number of associations>}]}]}`
 
 ##Export words with their associations
 * **Path:** `/api/words/`
@@ -52,6 +58,8 @@
   * `language` language of the word (optional)
   * `word` list of word ids to include (optional)
   * `limit` limit the number of associations per word
+* Responses
+  * `200` if reuqest succeeded with json data `{'response_date':<UTC timestamp>, 'words':[{'word':<Word>, 'language':<Code>, 'identifier':<OAI-PMH identifier>, 'url':<Website URL>, 'associations': [{'word':<Word>, 'language':<Code>, 'identifier':<OAI-PMH identifier>, 'url':<Website URL>, 'json_url':<JSON export URL>, 'count':<Count of the associations>}]}]}`
 
 ##Get the next word to associate
 * **Path:** `/api/words/next/`

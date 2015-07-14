@@ -9,7 +9,7 @@ def statistics(request):
     """Handels GET/POST request to export statistics.
     """
     track(request, 'statistics | API | TIMA')
-    languages = Language.objects.all();
+    languages = Language.objects.all()
     user_count = Profile.objects.all().count()
     data = {'response_date':timezone.now().strftime('%Y-%m-%dT%H:%M:%SZ'),
             'statistics': [{'citizen_scientists': user_count,

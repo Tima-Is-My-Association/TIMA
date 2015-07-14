@@ -12,7 +12,7 @@ def leaderboard(request):
     data = {'response_date':timezone.now().strftime('%Y-%m-%dT%H:%M:%SZ'),
             'leaderboard': [{'citizen_scientist':profile.user.username,
                     'points': profile.points,
-                    'languages': [language.code for language in profile.languages.all()],
+                    'languages': [{'language':language.code} for language in profile.languages.all()],
                     'cultural_background': profile.cultural_background}
                 for profile in profiles]}
     return HttpResponse(dumps(data), 'application/json')
