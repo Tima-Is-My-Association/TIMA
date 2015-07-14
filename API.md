@@ -67,13 +67,21 @@
   * `language` language of the word
   * `username` username of a user (optinal)
   * `excludes` list of words that should be exclude from the result (optinal)
+* Responses
+  * `400` if parameter is missing
+  * `404` if language or username was not found
+  * `200` if reuqest succeeded with json data `{'word':<Word>}`
 
 ##Check if a word is a word
 * **Path:** `/api/words/isa/`
 * Parameters
   * `language` language of the word
   * `word` word to check
+* Responses
+  * `400` if parameter is missing
+  * `404` if language or word was not found
+  * `200` if reuqest succeeded
 
 ##OAI-PMH
-[http://www.openarchives.org/pmh/](http://www.openarchives.org/pmh/)
 * **Path:** `/oai2/`
+* [http://www.openarchives.org/pmh/](http://www.openarchives.org/pmh/)

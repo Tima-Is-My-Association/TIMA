@@ -21,7 +21,12 @@ def next(request):
 
     track(request, 'next | words | API | TIMA')
     params = request.POST.copy() if request.method == 'POST' else request.GET.copy()
-    language = get_object_or_404(Language, code=params.pop('language')[-1])
+
+    language = None
+    if 'language' in params:
+        language = get_object_or_404(Language, code=params.pop('language')[-1])
+    else:
+        return HttpResponseBadRequest()
 
     user = None
     if 'username' in params:
@@ -75,6 +80,15 @@ def isA(request):
     """
     track(request, 'isA | words | API | TIMA')
     params = request.POST.copy() if request.method == 'POST' else request.GET.copy()
-    language = get_object_or_404(Language, code=params.pop('language')[-1])
-    word = get_object_or_404(Word, name=params.pop('word')[-1], language=language)
+
+    language = None
+    if 'language' in params:
+        language = get_object_or_404(Language, code=params.pop('language')[-1])
+    else:
+        return HttpResponseBadRequest()
+
+    if 'language' in params:
+        get_object_or_404(Word, name=params.pop('word')[-1], language=language)
+    else:
+        return HttpResponseBadRequest()
     return HttpResponse()
