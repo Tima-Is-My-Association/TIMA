@@ -80,7 +80,7 @@ class Association(models.Model):
         self.count += 1
         super(Association, self).save(*args, **kwargs)
 
-    def to_json(self, request, limit=None):
+    def to_json(self, request):
         return {'word': {'word': self.word.name,
                         'language': self.word.language.code,
                         'identifier': 'tima:word:%s' % self.word.id,
