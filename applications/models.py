@@ -1,4 +1,4 @@
-from applications.functions.math import get_random_64bit
+from applications.functions.random import u32
 from django.conf import settings
 from django.db import models
 from os import urandom
@@ -46,7 +46,7 @@ class AuthedUser(models.Model):
 
     user = models.OneToOneField(settings.AUTH_USER_MODEL)
     token = TextFieldSingleLine(unique=True)
-    n = models.BigIntegerField(default=get_random_64bit)
+    n = models.PositiveIntegerField(default=u32)
 
     def save(self, *args, **kwargs):
         if not self.id:

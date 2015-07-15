@@ -19,7 +19,7 @@
   * `password` password
   * `client_id` client_id of the application
   * `timestamp` timestamp from auth request
-  * `token` hash of n and application secret
+  * `token` hash of application secret and timestamp
 * Responses
   * `400` if parameter is missing
   * `403` if username, password or token is wrong
@@ -30,7 +30,7 @@
 * **Path:** `api/applications/auth/revoke/`
 * Parameters
   * `u` int
-  * `token` hash of n and token
+  * `token` hash of user token and n
 * Responses
   * `400` if parameter is missing
   * `403` if token is wrong

@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from django.db import models, migrations
 import applications.models
-import applications.functions.math
+import applications.functions.random
 from django.conf import settings
 
 
@@ -22,7 +22,7 @@ class Migration(migrations.Migration):
                 ('updated_at', models.DateTimeField(auto_now=True)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('token', applications.models.TextFieldSingleLine(unique=True)),
-                ('n', models.BigIntegerField(default=applications.functions.math.get_random_64bit)),
+                ('n', models.PositiveIntegerField(default=applications.functions.random.u32)),
                 ('user', models.OneToOneField(to=settings.AUTH_USER_MODEL)),
             ],
             options={
