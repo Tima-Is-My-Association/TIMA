@@ -1,9 +1,10 @@
 from app.functions.piwik import track
+from association.functions.wiktionary import exists
 from association.functions.words import build_graph, get_next_word
 from association.models import Language, Word
 from django.contrib.auth import get_user_model
 from django.db.models.functions import Lower
-from django.http import HttpResponse, HttpResponseBadRequest
+from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseNotFound
 from django.shortcuts import get_object_or_404
 from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
@@ -82,13 +83,19 @@ def isA(request):
     params = request.POST.copy() if request.method == 'POST' else request.GET.copy()
 
     language = None
-    if 'language' in params:
-        language = get_object_or_404(Language, code=params.pop('language')[-1])
-    else:
-        return HttpResponseBadRequest()
+    if 'language' in params and 'word' in params:
+        l = params.pop('language')[-1]
+        try:
+            language = Language.objects.get(code=l)
+        except Language.DoesNotExist:
+            return HttpResponseNotFound('Language with "%s" not found.' % l)
 
-    if 'language' in params:
-        get_object_or_404(Word, name=params.pop('word')[-1], language=language)
+        w = params.pop('word')[-1]
+        try:
+            word = Word.objects.get(name=w, language=language)
+        except Word.DoesNotExist:
+            if not exists(language.code.lower(), w):
+                return HttpResponseNotFound('Word with "%s" not found.' % w)
     else:
-        return HttpResponseBadRequest()
+        return HttpResponseBadRequest('Required parameter "language" of "word" is missing.')
     return HttpResponse()
