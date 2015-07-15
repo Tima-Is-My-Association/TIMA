@@ -10,7 +10,7 @@
 * Responses
   * `400` if parameter is missing
   * `404` if username or client_id was not found
-  * `200` if reuqest succeeded with json data `{'n':<UTC timestamp>}`
+  * `200` if reuqest succeeded with json data `{'timestamp':<UTC timestamp>}`
 
 ####Request to auth a user
 * **Path:** `api/applications/auth/user/`
@@ -18,7 +18,7 @@
   * `username` username
   * `password` password
   * `client_id` client_id of the application
-  * `n` timestamp from auth request
+  * `timestamp` timestamp from auth request
   * `token` hash of n and application secret
 * Responses
   * `400` if parameter is missing

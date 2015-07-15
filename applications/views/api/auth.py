@@ -39,7 +39,7 @@ def request(request):
         return HttpResponseBadRequest('Required parameter "client_id" is missing.')
 
     authrequest, created = AuthRequest.objects.update_or_create(user=user, defaults={'timestamp':timezone.now()})
-    data = {'n': authrequest.timestamp.strftime('%Y-%m-%dT%H:%M:%S:%fZ')}
+    data = {'timestamp': authrequest.timestamp.strftime('%Y-%m-%dT%H:%M:%S:%f%z')}
     return HttpResponse(dumps(data), 'application/json')
 
 @csrf_exempt
@@ -49,7 +49,7 @@ def user(request):
     GET/POST parameters:
     username --- username
     password --- password
-    n --- timestamp send by auth/request request
+    timestamp --- timestamp send by auth/request request
     client_id --- client_id of the application
     token --- hash of application secret and n
     """
@@ -74,20 +74,20 @@ def user(request):
         return HttpResponseBadRequest('Required parameter "client_id" is missing.')
 
     authrequest = None
-    if 'n' in params and user:
+    if 'timestamp' in params and user:
         try:
-            d = datetime.strptime(params.pop('n')[-1] + ' +0000', '%Y-%m-%dT%H:%M:%S:%fZ %z')
+            timestamp = datetime.strptime(params.pop('timestamp')[-1], '%Y-%m-%dT%H:%M:%S:%f%z')
             try:
-                authrequest = AuthRequest.objects.get(user=user, timestamp=d)
+                authrequest = AuthRequest.objects.get(user=user, timestamp=timestamp)
             except AuthRequest.DoesNotExist:
-                return HttpResponseNotFound('AuthRequest with "n" not found.')
+                return HttpResponseNotFound('AuthRequest with "timestamp" not found.')
         except Exception as e:
-            return HttpResponseBadRequest('Required parameter "n" has wrong format.')
+            return HttpResponseBadRequest('Required parameter "timestamp" has wrong format.')
     else:
-        return HttpResponseBadRequest('Required parameter "n" is missing.')
+        return HttpResponseBadRequest('Required parameter "timestamp" is missing.')
 
     if 'token' in params and application and authrequest:
-        if sha512(('%s%s' % (application.secret, authrequest.timestamp.strftime('%Y-%m-%dT%H:%M:%S:%fZ'))).encode('utf-8')).hexdigest() != params.pop('token')[-1]:
+        if sha512(('%s%s' % (application.secret, authrequest.timestamp.strftime('%Y-%m-%dT%H:%M:%S:%f%z'))).encode('utf-8')).hexdigest() != params.pop('token')[-1]:
             return HttpResponseForbidden('Wrong "token" given.')
     else:
         return HttpResponseBadRequest('Required parameter "token" is missing.')
