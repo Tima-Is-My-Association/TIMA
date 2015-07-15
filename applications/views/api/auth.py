@@ -56,7 +56,6 @@ def user(request):
     track(request, 'user | auth | applications | API | TIMA')
     params = request.POST.copy() if request.method == 'POST' else request.GET.copy()
 
-    print(params)
     user = None
     if 'username' in params and 'password' in params:
         user = authenticate(username=params.pop('username')[-1], password=params.pop('password')[-1])
