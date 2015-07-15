@@ -21,5 +21,5 @@ def associationhistory(request):
 
     association_histories = AssociationHistory.objects.filter(user=autheduser.user)
     data = {'response_date':timezone.now().strftime('%Y-%m-%dT%H:%M:%SZ'),
-        'association_history':[{'association':association_history.association, 'points':association_history.points} for association_history in association_histories]}
+        'association_history':[{'association':association_history.association.to_json(), 'points':association_history.points} for association_history in association_histories]}
     return HttpResponse(dumps(data), 'application/json')

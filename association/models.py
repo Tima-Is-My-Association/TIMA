@@ -80,6 +80,19 @@ class Association(models.Model):
         self.count += 1
         super(Association, self).save(*args, **kwargs)
 
+    def to_json(self, request, limit=None):
+        return {'word': {'word': self.word.name,
+                        'language': self.word.language.code,
+                        'identifier': 'tima:word:%s' % self.word.id,
+                        'url': request.build_absolute_uri(self.word.get_absolute_url()),
+                        'json_url': '%s?word=%s' % (request.build_absolute_uri(reverse('words_export')), self.word.id)},
+                'association': {'word': self.association.name,
+                        'language': self.association.language.code,
+                        'identifier': 'tima:word:%s' % self.association.id,
+                        'url': request.build_absolute_uri(self.association.get_absolute_url()),
+                        'json_url': '%s?word=%s' % (request.build_absolute_uri(reverse('words_export')), self.association.id)},
+                'count': self.count}
+
     def __str__(self):
         return '%s -> %s' % (self.word, self.association)
 
