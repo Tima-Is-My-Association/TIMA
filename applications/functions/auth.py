@@ -5,7 +5,7 @@ from hashlib import sha512
 def check_authed_user(params):
     if 'u' in params and 'token' in params:
         try:
-            autheduser = AuthedUser.objects.get(user__username=params.pop('u')[-1])
+            autheduser = AuthedUser.objects.get(user__id=params.pop('u')[-1])
             if sha512(('%s%s' % (autheduser.token, autheduser.n + 1)).encode('utf-8')).hexdigest() != params.pop('token')[-1]:
                 return HttpResponseForbidden('Wrong "token" given.')
             return autheduser

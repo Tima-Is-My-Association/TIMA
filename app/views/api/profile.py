@@ -1,5 +1,6 @@
 from app.functions.piwik import track
 from app.models import AssociationHistory
+from applications.functions.auth import check_authed_user
 from applications.models import AuthedUser
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseForbidden
 from django.shortcuts import get_object_or_404
