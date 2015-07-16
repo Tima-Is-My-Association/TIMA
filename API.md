@@ -1,6 +1,19 @@
 #API request
 
 ##Authentication requests
+Each request that requires a user to be authenticated check first if the provided
+u and token are correct. If during an error occurs during this one of the
+following responses will be send:
+* **400**: Required parameter "u" or "token" is missing.
+* **403**: Wrong "token" given.
+* **404**: AuthedUser with "u" not found.
+
+The u is the int value received in the response of a successful authentication.
+The token is a sha512 of the token and n received in the response of a successful
+authentication. For each request the n that will be hashed needs to be n+1 unless
+the request fails with one of the three above listed errors. In any other
+response even if it is an error response need to generate a new token with n+1
+if a new request.
 
 ####Request a user for auth
 * **Path:** `api/applications/auth/request/`
