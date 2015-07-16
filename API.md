@@ -71,7 +71,23 @@ if a new request.
   * `400` if parameter is missing
   * `403` if token is wrong
   * `404` if username was not found
-  * `200` if reuqest succeeded with json data `{'response_date':<UTC timestamp>}`
+  * `200` if reuqest succeeded with json data
+  ```
+  {"response_date":<UTC timestamp>,
+   "association_history":[{"points":<Points>,
+                           "association":{"count":<Count>,
+                                          "word":{"word":<Word>,
+                                                  "language":<Code>,
+                                                  "identifier":<OAI-PMH identifier>,
+                                                  "url":<Website URL>,
+                                                  "json_url":<JSON export URL>},
+                                          "association":{"word":<Word>,
+                                                  "language":<Code>,
+                                                  "identifier":<OAI-PMH identifier>,
+                                                  "url":<Website URL>,
+                                                  "json_url":<JSON export URL>}}}
+                         ]}
+  ```
 
 ##Association request
 
@@ -87,7 +103,23 @@ if a new request.
   * `word` list of word ids to include (optional)
   * `limit` limit the number of associations per word (optinal)
 * Responses
-  * `200` if reuqest succeeded with json data `{'response_date':<UTC timestamp>, 'words':[{'word':<Word>, 'language':<Code>, 'identifier':<OAI-PMH identifier>, 'url':<Website URL>, 'associations': [{'word':<Word>, 'language':<Code>, 'identifier':<OAI-PMH identifier>, 'url':<Website URL>, 'json_url':<JSON export URL>, 'count':<Count of the associations>}]}]}`
+  * `200` if reuqest succeeded with json data
+ ```
+ {"response_date":<UTC timestamp>,
+  "words":[{"word":<Word>,
+            "language":<Code>,
+            "identifier":<OAI-PMH identifier>,
+            "url":<Website URL>,
+            "json_url":<JSON export URL>,
+            "associations': [{"word":<Word>,
+                              "language":<Code>,
+                              "identifier":<OAI-PMH identifier>,
+                              "url':<Website URL>,
+                              "json_url":<JSON export URL>,
+                              "count":<Count of the associations>}
+            ]}
+  ]}
+ ```
 
 ###Check if a word is a word
 * **Path:** `/api/words/graph/`
