@@ -99,9 +99,17 @@ if a new request.
   * `400` if parameter is missing
   * `404` if word not found
   * `200` if reuqest succeeded with json data
-    ```
-    {"nodes":[{"group":<Group>, "name":<Word>, "id":<ID>}], "links":[{"value":<Count of association>, "target":<Target node ID>, "source":<Source node ID>}], "response_date":<UTC timestamp>}
-    ```
+ ```
+ {"nodes":[{"group":<Group>,
+            "name":<Word>,
+            "id":<ID>}
+  ],
+  "links":[{"value":<Count of association>,
+            "target":<Target node ID>,
+            "source":<Source node ID>}
+  ],
+  "response_date":<UTC timestamp>}
+ ```
 
 ###Check if a word is a word
 * **Path:** `/api/words/isa/`
