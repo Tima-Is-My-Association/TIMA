@@ -49,9 +49,9 @@ urlpatterns = [
     url(r'^api/profile/associationhistory/$', 'app.views.api.profile.associationhistory'),
     url(r'^api/statistics/$', 'app.views.api.statistics.statistics'),
     url(r'^api/words/$', 'association.views.api.words.export', name='words_export'),
-    url(r'^api/words/next/$', 'association.views.api.words.next'),
+    url(r'^api/words/graph/$', 'association.views.api.words.graph', name='word_graph'),
     url(r'^api/words/isa/$', 'association.views.api.words.isA'),
-    url(r'^api/words/word/(?P<word_id>\d+)/graph/$', 'association.views.api.words.graph', name='word_graph'),
+    url(r'^api/words/next/$', 'association.views.api.words.next'),
 
     url(r'^oai2/$', 'oai_pmh.views.oai2', name='oai2'),
     url(r'^autocomplete/', include('autocomplete_light.urls')),

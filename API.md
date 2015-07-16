@@ -80,16 +80,28 @@ if a new request.
 * Responses
   * `200` if reuqest succeeded with json data `{'response_date':<UTC timestamp>, 'languages': [{'name':<Name>, 'code':<Code>}]}`
 
-###Get the next word to associate
-* **Path:** `/api/words/next/`
+##Export words with their associations
+* **Path:** `/api/words/`
+* Parameters
+  * `language` language of the word (optional)
+  * `word` list of word ids to include (optional)
+  * `limit` limit the number of associations per word (optinal)
+* Responses
+  * `200` if reuqest succeeded with json data `{'response_date':<UTC timestamp>, 'words':[{'word':<Word>, 'language':<Code>, 'identifier':<OAI-PMH identifier>, 'url':<Website URL>, 'associations': [{'word':<Word>, 'language':<Code>, 'identifier':<OAI-PMH identifier>, 'url':<Website URL>, 'json_url':<JSON export URL>, 'count':<Count of the associations>}]}]}`
+
+###Check if a word is a word
+* **Path:** `/api/words/graph/`
 * Parameters
   * `language` language of the word
-  * `username` username of a user (optinal)
-  * `excludes` list of words that should be exclude from the result (optinal)
+  * `word` word to check
+  * `depth` depth of the associations (default 2)
 * Responses
   * `400` if parameter is missing
-  * `404` if language or username was not found
-  * `200` if reuqest succeeded with json data `{'word':<Word>}`
+  * `404` if word not found
+  * `200` if reuqest succeeded with json data
+    ```
+    {"nodes":[{"group":<Group>, "name":<Word>, "id":<ID>}], "links":[{"value":<Count of association>, "target":<Target node ID>, "source":<Source node ID>}], "response_date":<UTC timestamp>}
+    ```
 
 ###Check if a word is a word
 * **Path:** `/api/words/isa/`
@@ -101,14 +113,16 @@ if a new request.
   * `404` if language or word was not found
   * `200` if reuqest succeeded
 
-##Export words with their associations
-* **Path:** `/api/words/`
+###Get the next word to associate
+* **Path:** `/api/words/next/`
 * Parameters
-  * `language` language of the word (optional)
-  * `word` list of word ids to include (optional)
-  * `limit` limit the number of associations per word
+  * `language` language of the word
+  * `username` username of a user (optinal)
+  * `excludes` list of words that should be exclude from the result (optinal)
 * Responses
-  * `200` if reuqest succeeded with json data `{'response_date':<UTC timestamp>, 'words':[{'word':<Word>, 'language':<Code>, 'identifier':<OAI-PMH identifier>, 'url':<Website URL>, 'associations': [{'word':<Word>, 'language':<Code>, 'identifier':<OAI-PMH identifier>, 'url':<Website URL>, 'json_url':<JSON export URL>, 'count':<Count of the associations>}]}]}`
+  * `400` if parameter is missing
+  * `404` if language or username was not found
+  * `200` if reuqest succeeded with json data `{'word':<Word>}`
 
 ##OAI-PMH
 * **Path:** `/oai2/`

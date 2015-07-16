@@ -5,52 +5,9 @@ from association.models import Language, Word
 from django.contrib.auth import get_user_model
 from django.db.models.functions import Lower
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseNotFound
-from django.shortcuts import get_object_or_404
 from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
 from json import dumps
-
-@csrf_exempt
-def next(request):
-    """Handels a POST/GET request for the next word.
-
-    GET/POST parameters:
-    language --- language of the word
-    username --- username of a user (optinal)
-    excludes --- list of words that should be exclude from the result (optinal)
-    """
-
-    track(request, 'next | words | API | TIMA')
-    params = request.POST.copy() if request.method == 'POST' else request.GET.copy()
-
-    language = None
-    if 'language' in params:
-        language = get_object_or_404(Language, code=params.pop('language')[-1])
-    else:
-        return HttpResponseBadRequest()
-
-    user = None
-    if 'username' in params:
-        user = get_object_or_404(get_user_model(),
-                username=params.pop('username')[-1])
-    excludes = []
-    if 'excludes' in params:
-        excludes = Word.objects.filter(name__in=params.pop('excludes'))
-
-    word = get_next_word(language, user, excludes)
-    data = {'word': word.name}
-    return HttpResponse(dumps(data), 'application/json')
-
-def graph(request, word_id):
-    word = get_object_or_404(Word, id=word_id)
-    depth = int(request.GET.get('depth')) if request.GET.get('depth') else 2
-
-    nodes, links = build_graph(word, depth)
-    data = {'nodes':nodes, 'links':links}
-
-    mimetype = 'application/json'
-    track(request, 'graph | words | API | TIMA')
-    return HttpResponse(dumps(data), mimetype)
 
 def export(request):
     """Handels GET/POST request to export word(s) with their associations.
@@ -67,8 +24,37 @@ def export(request):
         words = words.filter(id__in=params.pop('word'))
     if 'language' in params:
         words = words.filter(language__code=params.pop('language')[-1])
-    data = {'response_date':timezone.now().strftime('%Y-%m-%dT%H:%M:%SZ'),
+    data = {'response_date':timezone.now().strftime('%Y-%m-%dT%H:%M:%S:%f%z'),
             'words': [word.to_json(request, limit=params.get('limit')) for word in words]}
+    return HttpResponse(dumps(data), 'application/json')
+
+@csrf_exempt
+def graph(request):
+    """Handels GET/POST request to get graph data for the given word.
+
+    GET/POST parameters:
+    word --- word
+    language --- language of the word
+    depth --- depth of associations (defailt 2)
+    """
+    track(request, 'graph | words | API | TIMA')
+    params = request.POST.copy() if request.method == 'POST' else request.GET.copy()
+
+    word = None
+    if 'word' in params and 'language' in params:
+        try:
+            word = Word.objects.get(name=params.pop('word')[-1], language__code=params.pop('language')[-1])
+        except Word.DoesNotExist:
+            return HttpResponseNotFound('Word with "word" and "language" not found.')
+    else:
+        return HttpResponseBadRequest('Required parameter "language" or "word" is missing.')
+
+    depth = 2
+    if 'depth' in params:
+        depth = int(params.pop('depth')[-1])
+
+    nodes, links = build_graph(word, depth)
+    data = {'response_date':timezone.now().strftime('%Y-%m-%dT%H:%M:%S:%f%z'), 'nodes':nodes, 'links':links}
     return HttpResponse(dumps(data), 'application/json')
 
 @csrf_exempt
@@ -97,5 +83,41 @@ def isA(request):
             if not exists(language.code.lower(), w):
                 return HttpResponseNotFound('Word with "%s" not found.' % w)
     else:
-        return HttpResponseBadRequest('Required parameter "language" of "word" is missing.')
+        return HttpResponseBadRequest('Required parameter "language" or "word" is missing.')
     return HttpResponse()
+
+@csrf_exempt
+def next(request):
+    """Handels a POST/GET request for the next word.
+
+    GET/POST parameters:
+    language --- language of the word
+    username --- username of a user (optinal)
+    excludes --- list of words that should be exclude from the result (optinal)
+    """
+
+    track(request, 'next | words | API | TIMA')
+    params = request.POST.copy() if request.method == 'POST' else request.GET.copy()
+
+    language = None
+    if 'language' in params:
+        try:
+            language = Language.objects.get(code=params.pop('language')[-1])
+        except Language.DoesNotExist:
+            return HttpResponseNotFound('Language with "language" not found.')
+    else:
+        return HttpResponseBadRequest('Required parameter "language" is missing.')
+
+    user = None
+    if 'username' in params:
+        try:
+            user = get_user_model().objects.get(username=params.pop('username')[-1])
+        except get_user_model().DoesNotExist:
+            return HttpResponseNotFound('User with "username" not found.')
+    excludes = []
+    if 'excludes' in params:
+        excludes = Word.objects.filter(name__in=params.pop('excludes'))
+
+    word = get_next_word(language, user, excludes)
+    data = {'word': word.name}
+    return HttpResponse(dumps(data), 'application/json')

@@ -29,7 +29,7 @@
 </div>
 <div id="graph" style="display: block; width: inherit; border: 1px solid black; padding: 5px;"></div>
 <script type="text/javascript">
-    var url = "{% url 'word_graph' word.id %}?depth=2"
+    var url = "{% url 'word_graph' %}?word={{ word.name }}&language={{ word.language.code }}&depth=2"
 </script>
 <script type="text/javascript" src="{% static 'js/graphs/word.js' %}"></script>
 <script type="text/javascript">
