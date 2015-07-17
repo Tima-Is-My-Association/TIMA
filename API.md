@@ -37,7 +37,7 @@ if a new request.
   * `400` if parameter is missing
   * `403` if username, password or token is wrong
   * `404` if client_id or n is not found
-  * `200` if reuqest succeeded with json data `{'n':<64Bit Ineger>, 'u':<int>, 'token':<Hash token>}`
+  * `200` if reuqest succeeded with json data `{'n':<unit>, 'u':<int>, 'token':<Hash token>}`
 
 ####Request to revoke a user auth
 * **Path:** `api/applications/auth/revoke/`
