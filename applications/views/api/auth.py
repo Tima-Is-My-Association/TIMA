@@ -112,4 +112,4 @@ def revoke(request):
         return autheduser
     else:
         autheduser.delete()
-        return HttpResponse()
+        return HttpResponse(dumps({'response_date':timezone.now().strftime('%Y-%m-%dT%H:%M:%S:%f%z')}), 'application/json')

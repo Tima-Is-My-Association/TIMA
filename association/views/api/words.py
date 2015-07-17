@@ -84,7 +84,7 @@ def isA(request):
                 return HttpResponseNotFound('Word with "%s" not found.' % w)
     else:
         return HttpResponseBadRequest('Required parameter "language" or "word" is missing.')
-    return HttpResponse()
+    return HttpResponse(dumps({'response_date':timezone.now().strftime('%Y-%m-%dT%H:%M:%S:%f%z')}), 'application/json')
 
 @csrf_exempt
 def next(request):
@@ -119,5 +119,5 @@ def next(request):
         excludes = Word.objects.filter(name__in=params.pop('excludes'))
 
     word = get_next_word(language, user, excludes)
-    data = {'word': word.name}
+    data = {'response_date':timezone.now().strftime('%Y-%m-%dT%H:%M:%S:%f%z'), 'word': word.name}
     return HttpResponse(dumps(data), 'application/json')

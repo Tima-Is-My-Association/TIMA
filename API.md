@@ -48,7 +48,7 @@ if a new request.
   * `400` if parameter is missing
   * `403` if token is wrong
   * `404` if username was not found
-  * `200` if reuqest succeeded
+  * `200` if reuqest succeeded ```{"response_date":<UTC timestamp>}```
 
 ##General requests
 
@@ -168,7 +168,7 @@ if a new request.
 * Responses
   * `400` if parameter is missing
   * `404` if language or word was not found
-  * `200` if reuqest succeeded
+  * `200` if reuqest succeeded ```{"response_date":<UTC timestamp>}```
 
 ###Get the next word to associate
 * **Path:** `/api/words/next/`
@@ -179,7 +179,7 @@ if a new request.
 * Responses
   * `400` if parameter is missing
   * `404` if language or username was not found
-  * `200` if reuqest succeeded with json data `{'word':<Word>}`
+  * `200` if reuqest succeeded with json data `{"response_date":<UTC timestamp>, "word":<Word>}`
 
 ##OAI-PMH
 * **Path:** `/oai2/`
