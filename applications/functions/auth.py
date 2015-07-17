@@ -8,7 +8,7 @@ def check_authed_user(params):
             autheduser = AuthedUser.objects.get(user__id=params.pop('u')[-1])
             if sha512(('%s%s' % (autheduser.token, autheduser.n + 1)).encode('utf-8')).hexdigest() != params.pop('token')[-1]:
                 return HttpResponseForbidden('Wrong "token" given.')
-            autheduser.n += 1
+            autheduser.n = (autheduser.n + 1) % 2147483647
             autheduser.save()
             return autheduser
         except AuthedUser.DoesNotExist:

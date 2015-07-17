@@ -10,7 +10,11 @@ from json import dumps
 
 @csrf_exempt
 def associationhistory(request):
-    """Handels GET/POST request to export the leaderboard.
+    """Handels GET/POST request to export the association history of the authed user.
+
+    GET/POST parameters:
+    u --- int
+    token --- hash of user token and n
     """
     track(request, 'associationhistory | profile | API | TIMA')
     params = request.POST.copy() if request.method == 'POST' else request.GET.copy()
