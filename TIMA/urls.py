@@ -48,6 +48,7 @@ urlpatterns = [
     url(r'^api/leaderboard/$', 'app.views.api.leaderboard.leaderboard'),
     url(r'^api/profile/associationhistory/$', 'app.views.api.profile.associationhistory'),
     url(r'^api/statistics/$', 'app.views.api.statistics.statistics'),
+    url(r'^api/association/$', 'association.views.api.associations.association'),
     url(r'^api/words/$', 'association.views.api.words.export', name='words_export'),
     url(r'^api/words/graph/$', 'association.views.api.words.graph', name='word_graph'),
     url(r'^api/words/isa/$', 'association.views.api.words.isA'),

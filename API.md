@@ -96,6 +96,23 @@ if a new request.
 * Responses
   * `200` if reuqest succeeded with json data `{'response_date':<UTC timestamp>, 'languages': [{'name':<Name>, 'code':<Code>}]}`
 
+###Save a association
+* **Path:** `/api/association/`
+* Parameters
+  * `language` language code of the word and association
+  * `word` the word
+  * `association` the association
+  * `u` username
+  * `token` hash of n and token
+* Responses
+  * `400` if parameter is missing
+  * `403` if token is wrong
+  * `404` if username, language, word was not found
+  * `200` if reuqest succeeded with json data
+  ```
+  {"response_date":<UTC timestamp>, "points":<Points>}
+  ```
+
 ##Export words with their associations
 * **Path:** `/api/words/`
 * Parameters
