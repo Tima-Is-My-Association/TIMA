@@ -16,9 +16,12 @@ class Application(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.id:
-            self.client_id = ''.join('%02x' % i for i in urandom(32))
-            self.secret = ''.join('%02x' % i for i in urandom(32))
+            self.generate_tokens()
         super(Application, self).save(*args, **kwargs)
+
+    def generate_tokens(self):
+        self.client_id = ''.join('%02x' % i for i in urandom(32))
+        self.secret = ''.join('%02x' % i for i in urandom(32))
 
     def __str__(self):
         return self.name
