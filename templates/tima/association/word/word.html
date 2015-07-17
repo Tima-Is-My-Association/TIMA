@@ -24,12 +24,12 @@
     </div>
 </div>
 <div style="margin-bottom: 10px; margin-left: auto; margin-right: auto; max-width: 50%;">
-    <label for="depth">{% trans 'Depth' %}: </label><input type="text" id="depth" readonly style="border: 0;" value="2">
+    <label for="depth">{% trans 'Depth' %}: </label><input type="text" id="depth" readonly style="border: 0;" value="1">
     <div id="slider"></div>
 </div>
 <div id="graph" style="display: block; width: inherit; border: 1px solid black; padding: 5px;"></div>
 <script type="text/javascript">
-    var url = "{% url 'word_graph' %}?word={{ word.name }}&language={{ word.language.code }}&depth=2"
+    var url = "{% url 'word_graph' %}?word={{ word.name }}&language={{ word.language.code }}&depth=1"
 </script>
 <script type="text/javascript" src="{% static 'js/graphs/word.js' %}"></script>
 <script type="text/javascript">
