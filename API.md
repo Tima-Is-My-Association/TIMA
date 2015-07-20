@@ -47,7 +47,7 @@ if a new request.
 * Responses
   * `400` if parameter is missing
   * `403` if token is wrong
-  * `404` if username was not found
+  * `404` if u was not found
   * `200` if reuqest succeeded ```{"response_date":<UTC timestamp>}```
 
 ##General requests
@@ -62,15 +62,17 @@ if a new request.
 * Responses
   * `200` if reuqest succeeded with json data `{'response_date':<UTC timestamp>, 'statistics': [{'citizen_scientists':<Number of citizen scientists>, 'languages':[{'language':<Code>, 'words':<Number of words>, 'associations':<Number of associations>}]}]}`
 
-###Get the association history of a user
-* **Path:** `/api/profile/associationhistory/`
+##Profile requests
+
+###Get the profile of a user
+* **Path:** `/api/profile/`
 * Parameters
-  * `u` username
+  * `u` int
   * `token` hash of n and token
 * Responses
   * `400` if parameter is missing
   * `403` if token is wrong
-  * `404` if username was not found
+  * `404` if u was not found
   * `200` if reuqest succeeded with json data
   ```
   {"response_date":<UTC timestamp>,
@@ -89,6 +91,26 @@ if a new request.
                          ]}
   ```
 
+###Get the association history of a user
+* **Path:** `/api/profile/associationhistory/`
+* Parameters
+  * `u` int
+  * `token` hash of n and token
+* Responses
+  * `400` if parameter is missing
+  * `403` if token is wrong
+  * `404` if u was not found
+  * `200` if reuqest succeeded with json data
+  ```
+  {"response_date":<UTC timestamp>,
+   "profile":{"username":<Username>,
+               "points":<Points>,
+               "cultural_background":<Cultural background>,
+               "first_name":<First name>,
+               "last_name":<Last name>,
+               "email":<Email address>
+  ```
+
 ##Association request
 
 ###Get a list of all available languages
@@ -102,12 +124,12 @@ if a new request.
   * `language` language code of the word and association
   * `word` the word
   * `association` the association
-  * `u` username
+  * `u` int
   * `token` hash of n and token
 * Responses
   * `400` if parameter is missing
   * `403` if token is wrong
-  * `404` if username, language, word was not found
+  * `404` if u, language, word was not found
   * `200` if reuqest succeeded with json data
   ```
   {"response_date":<UTC timestamp>, "points":<Points>}
