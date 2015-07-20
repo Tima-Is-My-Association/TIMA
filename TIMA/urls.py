@@ -46,7 +46,7 @@ urlpatterns = [
     url(r'^api/applications/auth/revoke/$', 'applications.views.api.auth.revoke'),
     url(r'^api/languages/$', 'association.views.api.languages.list'),
     url(r'^api/leaderboard/$', 'app.views.api.leaderboard.leaderboard'),
-    url(r'^api/profile/$', 'app.views.api.profile'),
+    url(r'^api/profile/$', 'app.views.api.profile.profile'),
     url(r'^api/profile/associationhistory/$', 'app.views.api.profile.associationhistory'),
     url(r'^api/statistics/$', 'app.views.api.statistics.statistics'),
     url(r'^api/association/$', 'association.views.api.associations.association'),
