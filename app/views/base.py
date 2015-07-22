@@ -3,7 +3,7 @@ from app.functions.piwik import track
 from app.models import Profile
 from django.core.urlresolvers import reverse
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, views
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import redirect, render
 from django.views.decorators.csrf import csrf_protect
@@ -55,3 +55,11 @@ def signup(request):
     else:
         form = UserCreationForm()
         return render(request, 'registration/signup.html', locals())
+
+@csrf_protect
+def password_reset_confirm(request, uidb64=None, token=None):
+    return views.password_reset_confirm(request, uidb64=uidb64, token=token, post_reset_redirect=reverse('signin'))
+
+@csrf_protect
+def password_reset(request):
+    return views.password_reset(request, post_reset_redirect=reverse('signin'))

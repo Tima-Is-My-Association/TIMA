@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1.0Report-Msgid-Bugs-To: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-22 14:21+0000\n"
+"POT-Creation-Date: 2015-07-22 15:11+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Nathanael Philipp <me@jnphilipp.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -96,7 +96,11 @@ msgstr "%(word)s wurde zum Newsletter hinzugefügt."
 msgid "Thanks for spending some quality time with TIMA today."
 msgstr "Vielen Dank für deinen Besuch bei TIMA."
 
-#: templates/registration/login.html:25 templates/tima/base.html:66
+#: templates/registration/login.html:25
+msgid "Forgot your password?"
+msgstr "Password vergessen?"
+
+#: templates/registration/login.html:29 templates/tima/base.html:66
 msgid "Sign in"
 msgstr "Anmelden"
 
@@ -117,6 +121,30 @@ msgstr ""
 #: templates/tima/app/profile/form.html:24
 msgid "Save"
 msgstr "Speichern"
+
+#: templates/registration/password_reset_confirm.html:7
+#: templates/registration/password_reset_form.html:7
+msgid "Reset your password"
+msgstr "Password zurücksetzen"
+
+#: templates/registration/password_reset_confirm.html:12
+msgid "Please enter a new password and confirme it."
+msgstr "Bitte geben Sie ein neues Passwort ein und bestätigen Sie es."
+
+#: templates/registration/password_reset_confirm.html:29
+msgid "Change password"
+msgstr "Password ändern"
+
+#: templates/registration/password_reset_form.html:12
+msgid ""
+"Please enter your email address, so we can send you a link to type in your "
+"new password."
+msgstr "Bitte geben Sie ihre E-Mail Adresse ein, damit wir Ihnen einen Link "
+"zusenden können, sodass Sie ein neues Passwort vergeben können."
+
+#: templates/registration/password_reset_form.html:29
+msgid "Send"
+msgstr "Senden"
 
 #: templates/registration/signup.html:10 templates/registration/signup.html:32
 #: templates/tima/base.html:65
@@ -279,7 +307,7 @@ msgstr "hinzufügen"
 msgid "FAQ"
 msgstr "FAQ"
 
-#: templates/tima/base.html:47 templates/tima/base.html.py:85
+#: templates/tima/base.html:47
 msgid "Imprint"
 msgstr "Impressum"
 
@@ -312,8 +340,8 @@ msgid ""
 "\"_blank\">association</a> is the first thought that you have in mind by "
 "looking at the displayed word."
 msgstr ""
-"Als <a href=\"https://de.wikipedia.org/wiki/Assoziation_(Psychologie"
-")\" target=\"_blank\">Assoziation</a> wird der erste Gedanke angesehen, der "
+"Als <a href=\"https://de.wikipedia.org/wiki/Assoziation_(Psychologie)\" "
+"target=\"_blank\">Assoziation</a> wird der erste Gedanke angesehen, der "
 "Ihnen beim angezeigten Wort als erstes in den Kopf kommt."
 
 #: templates/tima/pages/faq.html:25
@@ -347,11 +375,11 @@ msgstr ""
 "Textfeld eintragen und die Eingabe bestätigen. Dieser Vorgang kann solange "
 "wiederholt werden wie Sie möchten. &#9786;"
 
-#: templates/tima/pages/faq.html:33 templates/tima/pages/faq.html.py:37
+#: templates/tima/pages/faq.html:33
 msgid "What does TIMA mean?"
 msgstr "Was bedeutet TIMA?"
 
-#: templates/tima/pages/faq.html:35 templates/tima/pages/faq.html.py:39
+#: templates/tima/pages/faq.html:35
 msgid ""
 "TIMA stands for \"TIMA ist my association\". This works for several "
 "languages like German \"TIMA ist mein Assoziation\" or Afrikaans \"TIMA is "
@@ -360,11 +388,11 @@ msgstr ""
 "TIMA steht für \"TIMA ist meine Assoziation\". Dies funktioniert auch in "
 "anderen Sprachen wir beispielsweise English \"TIMA is my association\"."
 
-#: templates/tima/pages/faq.html:41
+#: templates/tima/pages/faq.html:37
 msgid "Why does TIMA exists?"
 msgstr "Warum existiert TIMA?"
 
-#: templates/tima/pages/faq.html:43
+#: templates/tima/pages/faq.html:39
 msgid ""
 "TIMA was created during a lecture about \"Citizen Science\" at the "
 "University of Leipzig."
@@ -372,19 +400,19 @@ msgstr ""
 "TIMA wurde während eines Moduls über \"Citizen Science\" an der Universität "
 "Leipzig erstellt."
 
-#: templates/tima/pages/faq.html:45
+#: templates/tima/pages/faq.html:41
 msgid "Who is behind TIMA?"
 msgstr "Wer steht hinter TIMA?"
 
-#: templates/tima/pages/faq.html:47
+#: templates/tima/pages/faq.html:43
 msgid "TIMA was created by three students and is still supported by them."
 msgstr "TIMA wurde von drei Studenten erstellt und weiterhin betreut."
 
-#: templates/tima/pages/faq.html:54
+#: templates/tima/pages/faq.html:50
 msgid "What should I enter into TIMA?"
 msgstr "Was sollte ich bei TIMA eintragen?"
 
-#: templates/tima/pages/faq.html:56
+#: templates/tima/pages/faq.html:52
 msgid ""
 "Basicly you should enter the first though you have on the displayed word. "
 "This can be a noun, a verb, a adjective or multi-word unit. For example "
@@ -399,11 +427,11 @@ msgstr ""
 "TIMA versucht nach besten Möglichkeiten Sie auf möglicherweise falsch "
 "geschriebene Worte hinzuweisen."
 
-#: templates/tima/pages/faq.html:58
+#: templates/tima/pages/faq.html:54
 msgid "How many languages does TIMA support?"
 msgstr "Wie viele Sprachen unterstützt TIMA?"
 
-#: templates/tima/pages/faq.html:60
+#: templates/tima/pages/faq.html:56
 msgid ""
 "As many as you want it to be. TIMA tries to support as many languages as "
 "possible and we attempt to add constantly more. In order to add a new "
@@ -418,11 +446,11 @@ msgstr ""
 "eine Sprache untersützt, senden Sie uns eine <a href=\"mailto:tima@jnphilipp."
 "org?subject=[TIMA] Request language\">freundliche Anfrage</a>."
 
-#: templates/tima/pages/faq.html:62
+#: templates/tima/pages/faq.html:58
 msgid "What about data protection and privacy?"
 msgstr "Wie steht es um den Datenschutz und die Privatsphäre?"
 
-#: templates/tima/pages/faq.html:64
+#: templates/tima/pages/faq.html:60
 msgid ""
 "TIMA collects as less private data as possible. TIMA does not sell any data. "
 "Private data like email are just visible to the user himself."
