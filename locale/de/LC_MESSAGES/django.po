@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1.0Report-Msgid-Bugs-To: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-12 20:57+0000\n"
+"POT-Creation-Date: 2015-07-22 14:21+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Nathanael Philipp <me@jnphilipp.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -52,18 +52,18 @@ msgstr[1] "%(words)s wurden zum Newsletter hinzugefügt."
 msgid "Filter"
 msgstr "Filter"
 
-#: association/forms.py:12
+#: association/forms.py:13
 #: templates/tima/app/profile/association_history.html:11
 #: templates/tima/association/association.html:8
 #: templates/tima/association/association.html:23
 msgid "Association"
 msgstr "Assoziation"
 
-#: association/forms.py:21
+#: association/forms.py:22
 msgid "The word and the association may not match."
 msgstr "Das Wort und die Assoziation dürfen nicht übereinstimmen."
 
-#: association/forms.py:26
+#: association/forms.py:29
 msgid ""
 "We have not recognized your input as word. Are you sure you have no spelling "
 "mistakes, in order to confirm your input press \"Save\"."
@@ -96,7 +96,7 @@ msgstr "%(word)s wurde zum Newsletter hinzugefügt."
 msgid "Thanks for spending some quality time with TIMA today."
 msgstr "Vielen Dank für deinen Besuch bei TIMA."
 
-#: templates/registration/login.html:25 templates/tima/base.html:62
+#: templates/registration/login.html:25 templates/tima/base.html:66
 msgid "Sign in"
 msgstr "Anmelden"
 
@@ -119,7 +119,7 @@ msgid "Save"
 msgstr "Speichern"
 
 #: templates/registration/signup.html:10 templates/registration/signup.html:32
-#: templates/tima/base.html:61
+#: templates/tima/base.html:65
 msgid "Sign up"
 msgstr "Registrieren"
 
@@ -153,7 +153,7 @@ msgid "Language"
 msgstr "Sprache"
 
 #: templates/tima/app/profile/base.html:8
-#: templates/tima/app/profile/base.html:20 templates/tima/base.html:51
+#: templates/tima/app/profile/base.html:20 templates/tima/base.html:55
 msgid "Profile"
 msgstr "Profil"
 
@@ -275,13 +275,161 @@ msgstr "entfernen"
 msgid "add"
 msgstr "hinzufügen"
 
-#: templates/tima/base.html:55
+#: templates/tima/base.html:45 templates/tima/pages/faq.html:8
+msgid "FAQ"
+msgstr "FAQ"
+
+#: templates/tima/base.html:47 templates/tima/base.html.py:85
+msgid "Imprint"
+msgstr "Impressum"
+
+#: templates/tima/base.html:59
 msgid "Sign out"
 msgstr "Abmelden"
 
-#: templates/tima/base.html:82
-msgid "Imprint"
-msgstr "Impressum"
+#: templates/tima/pages/faq.html:15
+msgid "What it TIMA?"
+msgstr "Was ist TIMA?"
+
+#: templates/tima/pages/faq.html:17
+msgid ""
+"TIMA is a database for associations. The entire project stands under the "
+"terminology \"Citizen Science\". There is no product behind TIMA and every "
+"information is freely available under the Creative Commons License."
+msgstr ""
+"TIMA ist eine Datenbank für Assoziationen. Das gesamte Projekt steht unter "
+"der Begrifflichkeit \"Citizen Science\". Es steht kein Produkt hinter TIMA "
+"und jegliche Informationen sind für jeden frei zugänglich unter der Creative "
+"Commons License."
+
+#: templates/tima/pages/faq.html:20
+msgid "What are associations?"
+msgstr "Was sind Assoziationen?"
+
+#: templates/tima/pages/faq.html:22
+msgid ""
+"An <a href=\"https://en.wikipedia.org/wiki/Association_(psychology)\" target="
+"\"_blank\">association</a> is the first thought that you have in mind by "
+"looking at the displayed word."
+msgstr ""
+"Als <a href=\"https://de.wikipedia.org/wiki/Assoziation_(Psychologie"
+")\" target=\"_blank\">Assoziation</a> wird der erste Gedanke angesehen, der "
+"Ihnen beim angezeigten Wort als erstes in den Kopf kommt."
+
+#: templates/tima/pages/faq.html:25
+msgid "What can I use TIMA for?"
+msgstr "Wofür kann ich TIMA verwenden?"
+
+#: templates/tima/pages/faq.html:27
+msgid ""
+"The data are freely available for everyone and can be used for nearly every "
+"purpose. Limitations are defined in the <a href=\"https://github.com/Tima-Is-"
+"My-Association/TIMA/blob/master/LICENSE\" target=\"_blank\">license</a>."
+msgstr ""
+"Die Daten sind für jeden frei verfügbar und können für fast jeden "
+"Verwendungszweck genutzt werden. Einschränkungen sind in der <a href="
+"\"https://github.com/Tima-Is-My-Association/TIMA/blob/master/LICENSE\" "
+"target=\"_blank\">Lizenz</a> definiert."
+
+#: templates/tima/pages/faq.html:29
+msgid "How to use TIMA?"
+msgstr "Wie verwende ich TIMA?"
+
+#: templates/tima/pages/faq.html:31
+msgid ""
+"You can use TIMA anonymously or as a registered user. After the language "
+"selection a word will be displayed. Now you can enter your association for "
+"this word. Repeat this process as long as you wish. &#9786;"
+msgstr ""
+"TIMA kann sowohl Anonym als auch mit einem Nutzerkonto verwendet werden. "
+"Nach einer Auswahl der zu verwendenden Sprache wird Ihnen ein Wort "
+"angezeigt. Nun können Sie Ihre Assoziation zu dem angezeigten Wort in das "
+"Textfeld eintragen und die Eingabe bestätigen. Dieser Vorgang kann solange "
+"wiederholt werden wie Sie möchten. &#9786;"
+
+#: templates/tima/pages/faq.html:33 templates/tima/pages/faq.html.py:37
+msgid "What does TIMA mean?"
+msgstr "Was bedeutet TIMA?"
+
+#: templates/tima/pages/faq.html:35 templates/tima/pages/faq.html.py:39
+msgid ""
+"TIMA stands for \"TIMA ist my association\". This works for several "
+"languages like German \"TIMA ist mein Assoziation\" or Afrikaans \"TIMA is "
+"my assosiasie\"."
+msgstr ""
+"TIMA steht für \"TIMA ist meine Assoziation\". Dies funktioniert auch in "
+"anderen Sprachen wir beispielsweise English \"TIMA is my association\"."
+
+#: templates/tima/pages/faq.html:41
+msgid "Why does TIMA exists?"
+msgstr "Warum existiert TIMA?"
+
+#: templates/tima/pages/faq.html:43
+msgid ""
+"TIMA was created during a lecture about \"Citizen Science\" at the "
+"University of Leipzig."
+msgstr ""
+"TIMA wurde während eines Moduls über \"Citizen Science\" an der Universität "
+"Leipzig erstellt."
+
+#: templates/tima/pages/faq.html:45
+msgid "Who is behind TIMA?"
+msgstr "Wer steht hinter TIMA?"
+
+#: templates/tima/pages/faq.html:47
+msgid "TIMA was created by three students and is still supported by them."
+msgstr "TIMA wurde von drei Studenten erstellt und weiterhin betreut."
+
+#: templates/tima/pages/faq.html:54
+msgid "What should I enter into TIMA?"
+msgstr "Was sollte ich bei TIMA eintragen?"
+
+#: templates/tima/pages/faq.html:56
+msgid ""
+"Basicly you should enter the first though you have on the displayed word. "
+"This can be a noun, a verb, a adjective or multi-word unit. For example "
+"\"ball\", \"run\", \"cute\" or \"Star Wars\", ... It is important to check "
+"your spelling. TIMA tries to warn you of misspelled words as best as it can."
+msgstr ""
+"Einfach ausgedrückt sollen Sie das Erste eintragen, was Ihnen bei dem "
+"angezeigen Wort in den Kopf kommt. Dies kann sowohl ein Substantiv, ein "
+"Verb, ein Adjektiv oder eine Gruppe aus mehreren Wörtern sein. "
+"Beispielsweise \"Ball\", \"laufen\", \"hübsch\" oder \"Die Sendung mit der "
+"Maus\", ... Wichtig ist hierbei auf eine korrekte Schreibweise zu achten. "
+"TIMA versucht nach besten Möglichkeiten Sie auf möglicherweise falsch "
+"geschriebene Worte hinzuweisen."
+
+#: templates/tima/pages/faq.html:58
+msgid "How many languages does TIMA support?"
+msgstr "Wie viele Sprachen unterstützt TIMA?"
+
+#: templates/tima/pages/faq.html:60
+msgid ""
+"As many as you want it to be. TIMA tries to support as many languages as "
+"possible and we attempt to add constantly more. In order to add a new "
+"language we need a small basic set of words and a way to check the spelling. "
+"If you want TIMA to support a language <a href=\"mailto:tima@jnphilipp.org?"
+"subject=[TIMA] Request language\">send us a friendly request</a>."
+msgstr ""
+"So viele wie Sie wollen. TIMA versucht so viel Sprachen wie möglich zu "
+"unterstützen und wir versuchen ständig weitere Sprachen hinzuzufügen. Um "
+"eine neue Sprache hinzuzufügen, benötigen wir eine Grundmenge an Worten und "
+"eine Möglichkeit die Rechtschreibung zu prüfen. Wenn Sie wollen, dass TIMA "
+"eine Sprache untersützt, senden Sie uns eine <a href=\"mailto:tima@jnphilipp."
+"org?subject=[TIMA] Request language\">freundliche Anfrage</a>."
+
+#: templates/tima/pages/faq.html:62
+msgid "What about data protection and privacy?"
+msgstr "Wie steht es um den Datenschutz und die Privatsphäre?"
+
+#: templates/tima/pages/faq.html:64
+msgid ""
+"TIMA collects as less private data as possible. TIMA does not sell any data. "
+"Private data like email are just visible to the user himself."
+msgstr ""
+"TIMA sammelt so wenige persönliche Daten wie möglich. TIMA verkauft keine "
+"Daten. Private Daten wie die E-Mail Adresse sind nur von Ihnen selbst "
+"einsehbar."
 
 #~ msgid "Number of users"
 #~ msgstr "Anzahl der Benutzer"

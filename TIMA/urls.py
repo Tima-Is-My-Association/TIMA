@@ -33,6 +33,7 @@ urlpatterns = [
     url(r'^profile/edit/password/done/$', 'django.contrib.auth.views.password_change_done', name='password_change_done'),
     url(r'^profile/newsletter/$', 'app.views.profile.newsletter', name='newsletter'),
 
+    url(r'^pages/faq/$', 'pages.views.faq', name='faq'),
     url(r'^pages/(?P<slug>[\w-]+)/$', 'pages.views.page', name='page'),
 
     url(r'^signin/$', 'app.views.base.signin', name='signin'),

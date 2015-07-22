@@ -41,6 +41,10 @@
                         <li {% if leaderboard_url == request.path %} class="active"{% endif %}><a href="{% url 'leaderboard' %}">{% trans 'Leaderboard' %}</a></li>
                         {% url 'statistics' as statistics_url %}
                         <li {% if statistics_url == request.path %} class="active"{% endif %}><a href="{% url 'statistics' %}">{% trans 'Statistics' %}</a></li>
+                        {% url 'faq' as faq_url %}
+                        <li {% if faq_url == request.path %} class="active"{% endif %}><a href="{% url 'faq' %}">{% trans 'FAQ' %}</a></li>
+                        {% url 'imprint' as imprint_url %}
+                        <li {% if imprint_url == request.path %} class="active"{% endif %}><a href="{% url 'page' 'imprint' %}">{% trans 'Imprint' %}</a></li>
                     </ul>
 
                     {% if user.is_authenticated %}
@@ -75,12 +79,9 @@
 			</div>
 		</div>
         <footer class="footer">
-            <div class="container">
+            <div class="container-fluid">
                 <div class="text-right">
-                    <div class="col-md-12">
-                        <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" title="TIMA is licensed under a Creative Commons Attribution 4.0 International License"/></a>
-                        <a href="{% url 'page' 'imprint' %}">{% trans 'Imprint' %}</a>
-                    </div>
+                        <a rel="license" href="http://creativecommons.org/licenses/by/4.0/" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" title="TIMA is licensed under a Creative Commons Attribution 4.0 International License"/></a>
                 </div>
             </div>
         </footer>

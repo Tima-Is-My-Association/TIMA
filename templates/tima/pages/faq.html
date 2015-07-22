@@ -1,0 +1,65 @@
+{% extends "tima/base.html" %}
+{% load i18n %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="page-header">
+            <h1>{% trans 'FAQ' %}</h1>
+        </div>
+    </div>
+</div>
+<div>
+    <div class="col-md-10 col-md-offset-1">
+        <div class="panel panel-info">
+            <div class="panel-heading">{% trans "What it TIMA?" %}</div>
+            <div class="panel-body">
+                <p>{% blocktrans %}TIMA is a database for associations. The entire project stands under the terminology "Citizen Science". There is no product behind TIMA and every information is freely available under the Creative Commons License.{% endblocktrans %}</p>
+            </div>
+
+            <div class="panel-heading">{% trans "What are associations?" %}</div>
+            <div class="panel-body">
+                <p>{% blocktrans %}An <a href="https://en.wikipedia.org/wiki/Association_(psychology)" target="_blank">association</a> is the first thought that you have in mind by looking at the displayed word.{% endblocktrans %}</p>
+            </div>
+
+            <div class="panel-heading">{% trans "What can I use TIMA for?" %}</div>
+            <div class="panel-body">
+                <p>{% blocktrans %}The data are freely available for everyone and can be used for nearly every purpose. Limitations are defined in the <a href="https://github.com/Tima-Is-My-Association/TIMA/blob/master/LICENSE" target="_blank">license</a>.{% endblocktrans %}</p>
+            </div>
+            <div class="panel-heading">{% trans "How to use TIMA?" %}</div>
+            <div class="panel-body">
+                <p>{% blocktrans %}You can use TIMA anonymously or as a registered user. After the language selection a word will be displayed. Now you can enter your association for this word. Repeat this process as long as you wish. &#9786;{% endblocktrans %}</p>
+            </div>
+            <div class="panel-heading">{% trans "What does TIMA mean?" %}</div>
+            <div class="panel-body">
+                <p>{% blocktrans %}TIMA stands for "TIMA ist my association". This works for several languages like German "TIMA ist mein Assoziation" or Afrikaans "TIMA is my assosiasie".{% endblocktrans %}</p>
+            </div>
+            <div class="panel-heading">{% trans "Why does TIMA exists?" %}</div>
+            <div class="panel-body">
+                <p>{% blocktrans %}TIMA was created during a lecture about "Citizen Science" at the University of Leipzig.{% endblocktrans %}</p>
+            </div>
+            <div class="panel-heading">{% trans "Who is behind TIMA?" %}</div>
+            <div class="panel-body">
+                <p>{% blocktrans %}TIMA was created by three students and is still supported by them.{% endblocktrans %}</p>
+                <ul>
+                    <li><a href="https://jnphilipp.org" target="_blank">jnphilipp</a></li>
+                    <li><a href="https://github.com/kaiq" target="_blank">KaiQ</a></li>
+                    <li>Anonymous</li>
+                </ul>
+            </div>
+            <div class="panel-heading">{% trans "What should I enter into TIMA?" %}</div>
+            <div class="panel-body">
+                <p>{% blocktrans %}Basicly you should enter the first though you have on the displayed word. This can be a noun, a verb, a adjective or multi-word unit. For example "ball", "run", "cute" or "Star Wars", ... It is important to check your spelling. TIMA tries to warn you of misspelled words as best as it can.{% endblocktrans %}</p>
+            </div>
+            <div class="panel-heading">{% trans "How many languages does TIMA support?" %}</div>
+            <div class="panel-body">
+                <p>{% blocktrans %}As many as you want it to be. TIMA tries to support as many languages as possible and we attempt to add constantly more. In order to add a new language we need a small basic set of words and a way to check the spelling. If you want TIMA to support a language <a href="mailto:tima@jnphilipp.org?subject=[TIMA] Request language">send us a friendly request</a>.{% endblocktrans %}</p>
+            </div>
+            <div class="panel-heading">{% trans "What about data protection and privacy?" %}</div>
+            <div class="panel-body">
+                <p>{% blocktrans %}TIMA collects as less private data as possible. TIMA does not sell any data. Private data like email are just visible to the user himself.{% endblocktrans %}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
