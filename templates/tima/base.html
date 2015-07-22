@@ -1,7 +1,7 @@
 {% load admin_urls static tima %}
 {% load i18n %}
 
-<!DOCTYPE html>
+<!DOCTYPE html itempscope itemtype="http://schema.org/{% block schema %}WebPage{% endblock %}">
 <html lang="{{ LANGUAGE_CODE|default:"en" }}">
     <head>
         <meta charset="utf-8"/>
@@ -15,7 +15,8 @@
         <script type="text/javascript" src="{% static 'js/jquery-ui.min.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
         {% include 'autocomplete_light/static.html' %}
-        <title>{% block title %}TIMA{% endblock %}</title>
+        <title itemprop="name">{% block title %}TIMA{% endblock %}</title>
+        <meta itemprop=""/>
         {% block extrahead %}{% endblock %}
     </head>
     <body>
@@ -29,7 +30,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="{% url 'home' %}">
-                        <img alt="TIMA" src="{% static 'images/tima.png' %}" style="margin-top: -5px; height: 30px; display: inline-block;">
+                        <img itemprop="primaryImageOfPage" itemprop="image" alt="TIMA" src="{% static 'images/tima.png' %}" style="margin-top: -5px; height: 30px; display: inline-block;">
                     </a>
                 </div>
 
