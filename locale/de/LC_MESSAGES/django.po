@@ -3,20 +3,20 @@
 # This file is distributed under the same license as the TIMA package.
 # Nathanael Philipp <me@jnphilipp.org>, 2015.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: 0.1.0Report-Msgid-Bugs-To: \n"
+"Project-Id-Version: 0.1.0Report-Msgid-Bugs-To:\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-22 15:11+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Nathanael Philipp <me@jnphilipp.org>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2015-07-22 18:46+0200\n"
+"Last-Translator: Simon Vetter <translation@netzente.de>\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language-Team: \n"
+"X-Generator: Poedit 1.8.2\n"
 
 #: app/forms.py:8 templates/tima/app/leaderboard.html:20
 #: templates/tima/app/profile/profile.html:9
@@ -34,7 +34,7 @@ msgstr "Dein Profil wurde erfolgreich aktualisiert."
 
 #: app/views/profile.py:70
 msgid "Without specifying an email-address, you can not receive a newsletter."
-msgstr "Ohne Angabe einer E-Mail-Adresse kann keine Newsletter empfangen."
+msgstr "Ohne Angabe einer E-Mail-Adresse kann kein Newsletter empfangen."
 
 #: app/views/profile.py:75 association/views/words.py:23
 #, python-format
@@ -68,9 +68,8 @@ msgid ""
 "We have not recognized your input as word. Are you sure you have no spelling "
 "mistakes, in order to confirm your input press \"Save\"."
 msgstr ""
-"Wir haben deine Eingabe nicht als Wort erkannt. Bist du sicher, dass du "
-"keine Schreibfehler hast, um deine Eingabe zu bestätigen drücke \"Speichern"
-"\"."
+"Wir haben deine Eingabe nicht als Wort erkannt. Bitte stelle sicher, dass du "
+"keine Schreibfehler hast und bestätige deine Eingabe mit \"Speichern\"."
 
 #: association/views/association.py:45
 #, python-format
@@ -84,8 +83,8 @@ msgid ""
 "Your association %(association)s has been saved. If you had been signed in "
 "you would have received %(points)s points."
 msgstr ""
-"Deine Assoziation %(association)s wurde gespeicher. Wenn du angemeldet "
-"gewesen wärst hättest du %(points)s Punkte bekommen."
+"Deine Assoziation %(association)s wurde gespeichert. Wenn du angemeldet "
+"gewesen wärst, hättest du %(points)s Punkte bekommen."
 
 #: association/views/words.py:27
 #, python-format
@@ -98,7 +97,7 @@ msgstr "Vielen Dank für deinen Besuch bei TIMA."
 
 #: templates/registration/login.html:25
 msgid "Forgot your password?"
-msgstr "Password vergessen?"
+msgstr "Passwort vergessen?"
 
 #: templates/registration/login.html:29 templates/tima/base.html:66
 msgid "Sign in"
@@ -106,14 +105,14 @@ msgstr "Anmelden"
 
 #: templates/registration/password_change_done.html:7
 msgid "Your password has been successfully changed."
-msgstr "Dein Password wurde erfolgreich geändert."
+msgstr "Dein Passwort wurde erfolgreich geändert."
 
 #: templates/registration/password_change_form.html:7
 msgid ""
 "Please enter your old password, for security's sake, and then enter your new "
 "password twice so we can verify you typed it in correctly."
 msgstr ""
-"Bitte gibt dein altes Passwort zur Sicherheit ein, und gib dann zweimal dein "
+"Bitte gib dein altes Passwort zur Sicherheit ein, und gib dann zweimal dein "
 "neues Passwort ein, damit wir überprüfen können, dass du es korrekt "
 "eingegeben hast."
 
@@ -125,7 +124,7 @@ msgstr "Speichern"
 #: templates/registration/password_reset_confirm.html:7
 #: templates/registration/password_reset_form.html:7
 msgid "Reset your password"
-msgstr "Password zurücksetzen"
+msgstr "Passwort zurücksetzen"
 
 #: templates/registration/password_reset_confirm.html:12
 msgid "Please enter a new password and confirme it."
@@ -133,14 +132,15 @@ msgstr "Bitte geben Sie ein neues Passwort ein und bestätigen Sie es."
 
 #: templates/registration/password_reset_confirm.html:29
 msgid "Change password"
-msgstr "Password ändern"
+msgstr "Passwort ändern"
 
 #: templates/registration/password_reset_form.html:12
 msgid ""
 "Please enter your email address, so we can send you a link to type in your "
 "new password."
-msgstr "Bitte geben Sie ihre E-Mail Adresse ein, damit wir Ihnen einen Link "
-"zusenden können, sodass Sie ein neues Passwort vergeben können."
+msgstr ""
+"Bitte geben Sie Ihre E-Mail Adresse ein, damit wir Ihnen einen Link zusenden "
+"können, sodass Sie ein neues Passwort vergeben können."
 
 #: templates/registration/password_reset_form.html:29
 msgid "Send"
@@ -200,7 +200,7 @@ msgstr "Newsletter"
 
 #: templates/tima/app/profile/newsletter.html:13
 msgid "Get a weekly newsletter of words you're interrested in."
-msgstr "Bekomme wöchentliche Newsletter über Wörter in du intressiert bist."
+msgstr "Bekomme wöchentliche Newsletter über Wörter, die dich interessieren."
 
 #: templates/tima/app/profile/newsletter.html:27
 msgid "Add words"
@@ -257,7 +257,7 @@ msgid ""
 "We want to build a large database of associations and we need your help to "
 "do it. So choose a language and give us your associations."
 msgstr ""
-"Wir wollen eine große Assoziationsdatenbank aufbauen und brauchen  deine "
+"Wir wollen eine große Assoziationsdatenbank aufbauen und brauchen deine "
 "Hilfe. Wähle eine Sprache aus und gib uns deine Assoziationen."
 
 #: templates/tima/association/home.html:15
@@ -271,11 +271,11 @@ msgstr "Male gefragt"
 #: templates/tima/association/word/word.html:21
 #: templates/tima/association/word/words.html:34
 msgid "Number of occurrences as association"
-msgstr "Anzahl des Auftretens als Assoziations"
+msgstr "Anzahl des Auftretens als Assoziation"
 
 #: templates/tima/association/word/word.html:22
 msgid "Export"
-msgstr "Exportierung"
+msgstr "Exportieren"
 
 #: templates/tima/association/word/word.html:22
 msgid "download"
@@ -420,10 +420,10 @@ msgid ""
 "your spelling. TIMA tries to warn you of misspelled words as best as it can."
 msgstr ""
 "Einfach ausgedrückt sollen Sie das Erste eintragen, was Ihnen bei dem "
-"angezeigen Wort in den Kopf kommt. Dies kann sowohl ein Substantiv, ein "
+"angezeigen Wort in den Kopf kommt. Dies kann entweder ein Substantiv, ein "
 "Verb, ein Adjektiv oder eine Gruppe aus mehreren Wörtern sein. "
 "Beispielsweise \"Ball\", \"laufen\", \"hübsch\" oder \"Die Sendung mit der "
-"Maus\", ... Wichtig ist hierbei auf eine korrekte Schreibweise zu achten. "
+"Maus\", ... Wichtig ist, hierbei auf eine korrekte Schreibweise zu achten. "
 "TIMA versucht nach besten Möglichkeiten Sie auf möglicherweise falsch "
 "geschriebene Worte hinzuweisen."
 
