@@ -1,11 +1,13 @@
 {% extends 'tima/base.html' %}
 {% load i18n %}
 
+{% block schema %}WebPage{% endblock %}
+
 {% block content %}
 <div class="row">
     <div class="col-md-12">
-        <h1 class="page-header text-center">{% trans 'Welcome to TIMA' %} <small>{% trans 'TIMA is my association' %}</small></h1>
-        <p class="text-center">{% trans 'We want to build a large database of associations and we need your help to do it. So choose a language and give us your associations.' %}</p>
+        <h1 class="page-header text-center">{% trans 'Welcome to TIMA' %} <small itemprop="alternativeHeadline">{% trans 'TIMA is my association' %}</small></h1>
+        <p class="text-center" itemprop="description">{% trans 'We want to build a large database of associations and we need your help to do it. So choose a language and give us your associations.' %}</p>
     </div>
 </div>
 <div class="row">
