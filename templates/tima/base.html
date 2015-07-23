@@ -1,7 +1,7 @@
 {% load admin_urls static tima %}
 {% load i18n %}
 
-<!DOCTYPE html itempscope itemtype="http://schema.org/{% block schema %}WebPage{% endblock %}">
+<!DOCTYPE html itempscope itemtype="http://schema.org/{% block schema %}WebSite{% endblock %}">
 <html lang="{{ LANGUAGE_CODE|default:"en" }}">
     <head>
         <meta charset="utf-8"/>
@@ -16,7 +16,6 @@
         <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
         {% include 'autocomplete_light/static.html' %}
         <title itemprop="name">{% block title %}TIMA{% endblock %}</title>
-        <meta itemprop=""/>
         {% block extrahead %}{% endblock %}
     </head>
     <body>
