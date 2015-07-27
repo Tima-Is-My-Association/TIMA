@@ -6,8 +6,8 @@ from association.functions.words import get_next_word
 from association.models import Association, Language, Word
 from django.contrib import messages
 from django.shortcuts import get_object_or_404, render
-from django.views.decorators.csrf import csrf_protect
 from django.utils.translation import ugettext as _
+from django.views.decorators.csrf import csrf_protect
 
 def home(request):
     languages = Language.objects.all()

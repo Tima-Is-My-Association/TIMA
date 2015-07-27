@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1.0Report-Msgid-Bugs-To:\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-23 09:47+0000\n"
+"POT-Creation-Date: 2015-07-27 11:19+0000\n"
 "PO-Revision-Date: 2015-07-22 18:46+0200\n"
 "Last-Translator: Simon Vetter <translation@netzente.de>\n"
 "Language-Team: \n"
@@ -27,6 +27,26 @@ msgstr "Kultureller Hintergrund"
 #: templates/tima/base.html:39
 msgid "Words"
 msgstr "Worte"
+
+#: app/views/base.py:24
+msgid "You have successfully signed in."
+msgstr "Sie haben sich erfolgreich eingeloggt."
+
+#: app/views/base.py:33
+msgid "Your account is disabled."
+msgstr "Ihr Benutzerkonto ist deaktiviert."
+
+#: app/views/base.py:36
+msgid ""
+"Please enter a correct username and password to log in. Note that both "
+"fields may be case-sensitive."
+msgstr ""
+"Bitte geben Sie einen korrekten Benutzernamen und Passwort ein, um sich "
+"anzumelden. Bitte beachten Sie ein korrekte Groß- und Kleinschriebung."
+
+#: app/views/base.py:50
+msgid "Thanks for signing up. You are now signed in."
+msgstr "Danke das Sie sich registiert haben. Sie sind jetzt angemenldet."
 
 #: app/views/profile.py:54
 msgid "Your profile has been successfully updated."
@@ -463,6 +483,3 @@ msgstr ""
 "TIMA sammelt so wenige persönliche Daten wie möglich. TIMA verkauft keine "
 "Daten. Private Daten wie die E-Mail Adresse sind nur von Ihnen selbst "
 "einsehbar."
-
-#~ msgid "Number of users"
-#~ msgstr "Anzahl der Benutzer"
