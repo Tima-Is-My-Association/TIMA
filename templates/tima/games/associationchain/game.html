@@ -1,0 +1,43 @@
+{% extends 'tima/base.html' %}
+{% load i18n %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h1 class="page-header">
+            <a href="{% url 'associationchain' %}">{% trans 'AssociationChain' %}</a>
+            <small>{{ language.name }}</small>
+        </h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        <h4 class="text-center">{% trans 'Type your association for' %}:</h4>
+        <h3 class="text-center">{{ word }}</h3>
+
+        <form action="{% url 'associationchain' language.slug %}" method="post" class="form-horizontal text-center">
+            {% csrf_token %}
+            {{ form.word }}
+            {{ form.language }}
+            {{ form.chain_id }}
+            <input type="hidden" id="{{ form.association1.auto_id }}" name="{{ form.association1.name }}" value="{{ association1 }}">
+            <div class="form-group{% if form.errors %} {{ form.association.errors|yesno:'has-error,has-success' }}{% endif %}">
+                <label class="sr-only" for="association">{% trans 'Association' %}</label>
+                <div class="input-group">
+                    <div class="input-group-addon">{{ language.code }}</div>
+                    {{ form.association }}
+                </div>
+                <span class="help-block">{{ form.association.errors }}</span>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-success">{% trans 'Save association' %}</button>
+                <a href="{% url 'associationchain' language.slug %}?stop=True" class="btn btn-danger" role="btn">{% trans 'Stop game' %}</a>
+            </div>
+        </form>
+        <script type="text/javascript">
+            $('#id_association').focus();
+        </script>
+
+    </div>
+</div>
+{% endblock %}

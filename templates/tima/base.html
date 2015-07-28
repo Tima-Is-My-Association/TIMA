@@ -35,6 +35,8 @@
 
                 <div class="collapse navbar-collapse" id="tima-navbar-collapse">
                     <ul class="nav navbar-nav">
+                        {% url 'games' as games_url %}
+                        <li {% if request.path|startswith:games_url %}class="active"{% endif %}><a href="{% url 'games' %}">{% trans 'Games' %}</a></li>
                         {% url 'words' as words_url %}
                         <li {% if words_url == request.path or request.path|startswith:words_url %}class="active"{% endif %}><a href="{% url 'words' %}">{% trans 'Words' %}</a></li>
                         {% url 'leaderboard' as leaderboard_url %}

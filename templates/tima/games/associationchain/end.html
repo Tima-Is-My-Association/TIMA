@@ -1,0 +1,21 @@
+{% extends 'tima/base.html' %}
+{% load i18n %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h1 class="page-header">
+            <a href="{% url 'associationchain' %}">{% trans 'AssociationChain' %}</a>
+            <small>{{ language.name }}</small>
+        </h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+        {% if won %}You won.{% else %}You lost.{% endif %}
+        {% for chain in chains %}
+            {{ chain.word }}{% if not forloop.last %} -> {% endif %}
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

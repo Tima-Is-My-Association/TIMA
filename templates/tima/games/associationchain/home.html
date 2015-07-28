@@ -1,0 +1,30 @@
+{% extends 'tima/base.html' %}
+{% load i18n %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h1 class="page-header">{% trans 'AssociationChain' %}</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+        <p>{% trans 'AssociationChain is a fun game.' %}</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-2 col-md-offset-5 text-center">
+        <div class="btn-group">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                {% trans 'Select Language' %} <span class="caret"></span>
+            </button>
+
+            <ul class="dropdown-menu" role="menu">
+                {% for language in languages %}
+                    <li><a href="{% url 'associationchain' language.slug %}">{{ language }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -20,6 +20,10 @@ def get_next_word(language, user=None, excludes=[]):
         words = words.order_by('count')[:15]
     return words[randint(0, (14 if words.count() == 15 else (words.count() - 1)))]
 
+def get_next_word_by_association(word, association_chain):
+    words = Word.objects.filter(association__word=word).exclude(associationchain__chain_id=association_chain.chain_id)
+    return words[randint(0, (14 if words.count() == 15 else (words.count() - 1)))] if words else None
+
 def build_graph(word, depth=2):
     nodes = []
     links = []
