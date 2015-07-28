@@ -16,6 +16,7 @@ class AssociationForm(forms.Form):
     def clean(self):
         cleaned_data = super(AssociationForm, self).clean()
         word = cleaned_data.get('word')
+        cleaned_data['association'] = cleaned_data.get('association').strip()
         association = cleaned_data.get('association')
         if word == association:
             self.add_error('association',
