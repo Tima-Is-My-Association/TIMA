@@ -10,6 +10,7 @@ from django.utils.translation import ugettext as _
 from django.views.decorators.csrf import csrf_protect
 from games.forms import AssociationChainForm
 from games.models import AssociationChain
+from math import sqrt
 
 def games(request):
     track(request, 'Games | TIMA')
@@ -37,8 +38,8 @@ def associationchain(request, slug=None):
                 word = get_object_or_404(Word, name=form.cleaned_data['word'], language=language)
                 word1, created = Word.objects.get_or_create(name=form.cleaned_data['association'], language=language)
 
-                if AssociationChain.objects.filter(chain_id=chain.id).filter(word=word).exists():
-                    messages.add_message(request, messages.ERROR, _('You lost.'))
+                if AssociationChain.objects.filter(chain_id=chain.chain_id).filter(word=word1).exists():
+                    messages.add_message(request, messages.ERROR, _('You lost the game.'))
                     won = False
                     chains = AssociationChain.objects.filter(chain_id=chain.chain_id)
                     return render(request, 'tima/games/associationchain/end.html', locals())
@@ -55,21 +56,35 @@ def associationchain(request, slug=None):
                     form = AssociationChainForm(initial={'word':word.name, 'language':language.code, 'chain_id':chain.id})
                     return render(request, 'tima/games/associationchain/game.html', locals())
                 else:
-                    messages.add_message(request, messages.SUCCESS, _('You won.'))
+                    messages.add_message(request, messages.SUCCESS, _('You won the game.'))
                     won = True
                     chains = AssociationChain.objects.filter(chain_id=chain.chain_id)
+                    points = round(sqrt(chains.count()), 3)
+                    profile, created = Profile.objects.get_or_create(user=request.user)
+                    profile.points += points
+                    profile.save()
                     return render(request, 'tima/games/associationchain/end.html', locals())
             else:
                 word = Word.objects.get(name=form.cleaned_data['word'], language=language)
                 association1 = form.cleaned_data['association1']
                 return render(request, 'tima/games/associationchain/game.html', locals())
         else:
-            AssociationChain.objects.filter(user=request.user).delete()
-            word = get_next_word(language=language, user=request.user)
-            chain = AssociationChain.objects.create(user=request.user, word=word)
-            association1 = ''
-            form = AssociationChainForm(initial={'word':word.name, 'language':language.code, 'chain_id':chain.id})
-            return render(request, 'tima/games/associationchain/game.html', locals())
+            if 'stop' in request.GET and 'chain' in request.GET:
+                messages.add_message(request, messages.INFO, _('You stopped the game.'))
+                won = True
+                chains = AssociationChain.objects.filter(chain_id=request.GET.get('chain'))
+                points = round(sqrt(chains.count()), 3)
+                profile, created = Profile.objects.get_or_create(user=request.user)
+                profile.points += points
+                profile.save()
+                return render(request, 'tima/games/associationchain/end.html', locals())
+            else:
+                AssociationChain.objects.filter(user=request.user).delete()
+                word = get_next_word(language=language, user=request.user)
+                chain = AssociationChain.objects.create(user=request.user, word=word)
+                association1 = ''
+                form = AssociationChainForm(initial={'word':word.name, 'language':language.code, 'chain_id':chain.id})
+                return render(request, 'tima/games/associationchain/game.html', locals())
     else:
         AssociationChain.objects.filter(user=request.user).delete()
         languages = Language.objects.all()

@@ -21,7 +21,6 @@ urlpatterns = [
     url(r'^languages/(?P<slug>[\w-]+)/association/$', 'association.views.association.association', name='association'),
 
     url(r'^games/$', 'games.views.games.games', name='games'),
-    # url(r'^games/associationchain/$', 'games.views.games.associationchain'),
     url(r'^games/associationchain(?:/(?P<slug>[\w-]+))?/$', 'games.views.games.associationchain', name='associationchain'),
 
     url(r'^words/$', 'association.views.words.words', name='words'),

@@ -12,10 +12,23 @@
 </div>
 <div class="row">
     <div class="col-md-10 col-md-offset-1">
-        {% if won %}You won.{% else %}You lost.{% endif %}
-        {% for chain in chains %}
-            {{ chain.word }}{% if not forloop.last %} -> {% endif %}
-        {% endfor %}
+        <h2 class="text-center {% if won %}bg-success text-success{% else %}bg-danger text-danger{% endif %}" style="padding-top: 5px; paddin-bottom: 5px;">{% if won %}You won.{% else %}You lost.{% endif %}</h2>
+        <p class="text-center">
+            {% if won %}
+                {% blocktrans with links=chains.count points=points %}You build a chain with {{ links }} links that gives you an extra {{ points }} points. Your chain is:{% endblocktrans %}
+            {% else %}
+                {% blocktrans with links=chains.count %}You build a chain with {{ links }} links. Your chain is:{% endblocktrans %}
+            {% endif %}
+        </p>
+        <p class="text-center">
+            {% for chain in chains %}
+                <a href="{% url 'word' chain.word.id %}">{{ chain.word }}</a>{% if not forloop.last %} -> {% endif %}
+            {% endfor %}
+            {% if not won %}
+                -> <a href="{% url 'word' word1.id %}">{{ word1 }}</a>
+            {% endif %}
+        </p>
+        <p class="text-center"><a href="{% url 'associationchain' language.slug %}">{% trans 'Start a new game?' %}</a></p>
     </div>
 </div>
 {% endblock %}
