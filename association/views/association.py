@@ -1,6 +1,6 @@
 from app.functions.piwik import track
 from app.functions.score import calculate_points
-from app.models import Profile
+from app.models import ExcludeWord, Profile
 from association.forms import AssociationForm
 from association.functions.words import get_next_word
 from association.models import Association, Language, Word
@@ -21,7 +21,10 @@ def association(request, slug):
     excludes = []
     if 'excludes' in request.GET:
         for exclude in request.GET.getlist('excludes'):
-            excludes.append(get_object_or_404(Word, name=exclude, language=language))
+            word = get_object_or_404(Word, name=exclude, language=language)
+            excludes.append(word)
+            if not request.user.is_anonymous():
+                ExcludeWord.objects.get_or_create(user=request.user, word=word)
 
     if request.method == 'POST':
         form = AssociationForm(request.POST)

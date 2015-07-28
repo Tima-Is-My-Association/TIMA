@@ -1,4 +1,4 @@
-from app.models import AssociationHistory, Profile, Newsletter, TextFieldSingleLine
+from app.models import AssociationHistory, ExcludeWord, Profile, Newsletter, TextFieldSingleLine
 from django.contrib import admin
 from django.db.models import Count
 from django.forms import TextInput
@@ -28,6 +28,15 @@ class AssociationHistoryAdmin(admin.ModelAdmin):
         (None, {'fields': ['user', 'association', 'points']}),
     ]
 
+class ExcludeWordAdmin(admin.ModelAdmin):
+    list_display = ('user', 'word', 'updated_at')
+    list_filter = ('user', 'word')
+    search_fields = ('word__name', 'user__username')
+
+    fieldsets = [
+        (None, {'fields': ['user', 'word']}),
+    ]
+
 class NewsletterAdmin(admin.ModelAdmin):
     def get_queryset(self, request):
         return Newsletter.objects.annotate(word_count=Count('words'))
@@ -52,5 +61,6 @@ class NewsletterAdmin(admin.ModelAdmin):
     filter_horizontal = ('words',)
 
 admin.site.register(AssociationHistory, AssociationHistoryAdmin)
+admin.site.register(ExcludeWord, ExcludeWordAdmin)
 admin.site.register(Profile, ProfileAdmin)
 admin.site.register(Newsletter, NewsletterAdmin)
