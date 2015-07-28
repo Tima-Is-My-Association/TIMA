@@ -20,6 +20,19 @@ class Profile(models.Model):
     class Meta:
         ordering = ('user',)
 
+class ExcludeWord(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    user = models.ForeignKey(settings.AUTH_USER_MODEL)
+    word = models.ForeignKey(Word)
+
+    def __str__(self):
+        return '%s-%s' % (self.user.username, self.word)
+
+    class Meta:
+        ordering = ('user', 'updated_at')
+
 class AssociationHistory(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True)
