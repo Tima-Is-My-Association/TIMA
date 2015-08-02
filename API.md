@@ -91,23 +91,6 @@ if a new request.
                          ]}
   ```
 
-###Adds a word to the list of exclude list of the user
-* **Path:** `api/profile/excludeword/add/`
-* Parameters
-  * `u` int
-  * `token` hash of n and token
-  * `word` word to add to exclude list
-  * `language` language of the word
-* Responses
-  * `400` if parameter is missing
-  * `403` if token is wrong
-  * `404` if u, word or language was not found
-  * `200` if reuqest succeeded with json data
-  ```
-  {"response_date":<UTC timestamp>,
-   "create":<True if a new entry was created else False>}
-  ```
-
 ###Get the association history of a user
 * **Path:** `/api/profile/associationhistory/`
 * Parameters
@@ -126,6 +109,39 @@ if a new request.
                "first_name":<First name>,
                "last_name":<Last name>,
                "email":<Email address>
+  ```
+
+###Adds a word to the list of exclude list of the user
+* **Path:** `api/profile/excludeword/add/`
+* Parameters
+  * `u` int
+  * `token` hash of n and token
+  * `word` word to add to exclude list
+  * `language` language of the word
+* Responses
+  * `400` if parameter is missing
+  * `403` if token is wrong
+  * `404` if u, word or language was not found
+  * `200` if reuqest succeeded with json data
+  ```
+  {"response_date":<UTC timestamp>,
+   "create":<True if a new entry was created else False>}
+  ```
+
+###Checks if a word is on the list of excluded words of the user
+* **Path:** `api/profile/excludeword/exists/`
+* Parameters
+  * `u` int
+  * `token` hash of n and token
+  * `word` word to add to exclude list
+  * `language` language of the word
+* Responses
+  * `400` if parameter is missing
+  * `403` if token is wrong
+  * `404` if u, word or language was not found or if the word is not on the list
+  * `200` if reuqest succeeded with json data/word is on the users exclude list
+  ```
+  {"response_date":<UTC timestamp>}
   ```
 
 ##Association request

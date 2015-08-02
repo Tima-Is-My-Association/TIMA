@@ -52,6 +52,7 @@ urlpatterns = [
     url(r'^api/profile/$', 'app.views.api.profile.base.profile'),
     url(r'^api/profile/associationhistory/$', 'app.views.api.profile.base.associationhistory'),
     url(r'^api/profile/excludeword/add/$', 'app.views.api.profile.excludeword.add'),
+    url(r'^api/profile/excludeword/exists/$', 'app.views.api.profile.excludeword.exists'),
     url(r'^api/statistics/$', 'app.views.api.statistics.statistics'),
     url(r'^api/association/$', 'association.views.api.associations.association'),
     url(r'^api/words/$', 'association.views.api.words.export', name='words_export'),
