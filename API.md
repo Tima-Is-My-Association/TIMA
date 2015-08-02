@@ -91,6 +91,23 @@ if a new request.
                          ]}
   ```
 
+###Adds a word to the list of exclude list of the user
+* **Path:** `api/profile/excludeword/add/`
+* Parameters
+  * `u` int
+  * `token` hash of n and token
+  * `word` word to add to exclude list
+  * `language` language of the word
+* Responses
+  * `400` if parameter is missing
+  * `403` if token is wrong
+  * `404` if u, word or language was not found
+  * `200` if reuqest succeeded with json data
+  ```
+  {"response_date":<UTC timestamp>,
+   "create":<True if a new entry was created else False>}
+  ```
+
 ###Get the association history of a user
 * **Path:** `/api/profile/associationhistory/`
 * Parameters
