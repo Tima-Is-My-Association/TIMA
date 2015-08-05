@@ -1,0 +1,38 @@
+{% extends 'tima/base.html' %}
+{% load i18n %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        <h1 class="page-header">
+            <a href="{% url 'associationchain' %}">{% trans 'AssociationChain' %}</a>
+            <small>{{ language.name }}</small>
+        </h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        <div class="panel panel-{% if won %}success{% else %}danger{% endif %}">
+            <div class="panel-heading">{% if won %}{% trans 'You won the game.' %}{% else %}{% trans 'You lost the game.' %}{% endif %}</div>
+            <div class="panel-body">
+                <p class="text-center">
+                    {% if won %}
+                        {% blocktrans with links=chains.count points=points %}You build a chain with {{ links }} links that gives you an extra {{ points }} points. Your chain is:{% endblocktrans %}
+                    {% else %}
+                        {% blocktrans with links=chains.count %}You build a chain with {{ links }} links. Your chain is:{% endblocktrans %}
+                    {% endif %}
+                </p>
+                <p class="text-center">
+                    {% for chain in chains %}
+                        <a href="{% url 'word' chain.word.id %}">{{ chain.word }}</a>{% if not forloop.last %} &#10132; {% endif %}
+                    {% endfor %}
+                    {% if not won %}
+                        &#10132; <a href="{% url 'word' word1.id %}">{{ word1 }}</a>
+                    {% endif %}
+                </p>
+                <p class="text-center"><a class="btn btn-success" href="{% url 'associationchain' language.slug %}">{% trans 'Start a new game?' %}</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

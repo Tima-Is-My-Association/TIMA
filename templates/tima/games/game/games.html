@@ -1,0 +1,28 @@
+{% extends 'tima/base.html' %}
+{% load i18n %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h1 class="page-header">{% trans 'Games' %}</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>{% trans 'Name' %}</th>
+                    <th>{% trans 'Description' %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th><a href="{% url 'associationchain' %}">{% trans 'AssociationChain' %}</a></th>
+                    <td><p>{% blocktrans %}In AssociationChain you and TIMA build an association chain togther. The rules are as follows: You and TIMA alternately associate a word to the previous association. The goal is to build long chains.{% endblocktrans %}</p></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'tima/base.html' %}
+{% load i18n %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        <h1 class="page-header">{% trans 'AssociationChain' %}</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        <p>{% blocktrans %}In AssociationChain you and TIMA build an association chain togther. The rules are as follows: You and TIMA alternately associate a word to the previous association. The goal is to build long chains.{% endblocktrans %}</p>
+        <p>{% blocktrans %}The game ends either when TIMA has no more associations to your word or when a cycle was created.{% endblocktrans %}</p>
+        <p class="text-center">{% trans 'Start by selecting your language.' %}</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-2 col-md-offset-5 text-center">
+        <div class="btn-group">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                {% trans 'Select Language' %} <span class="caret"></span>
+            </button>
+
+            <ul class="dropdown-menu" role="menu">
+                {% for language in languages %}
+                    <li><a href="{% url 'associationchain' language.slug %}">{{ language }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

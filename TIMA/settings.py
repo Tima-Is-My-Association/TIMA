@@ -64,6 +64,7 @@ INSTALLED_APPS = (
     'app',
     'applications',
     'association',
+    'games',
     'pages',
     'oai_pmh',
     'django_cron',

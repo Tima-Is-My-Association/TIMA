@@ -20,6 +20,9 @@ urlpatterns = [
     url(r'^$', 'association.views.association.home', name='home'),
     url(r'^languages/(?P<slug>[\w-]+)/association/$', 'association.views.association.association', name='association'),
 
+    url(r'^games/$', 'games.views.games.games', name='games'),
+    url(r'^games/associationchain(?:/(?P<slug>[\w-]+))?/$', 'games.views.games.associationchain', name='associationchain'),
+
     url(r'^words/$', 'association.views.words.words', name='words'),
     url(r'^words/(?P<word_id>\d+)/$', 'association.views.words.word', name='word'),
 

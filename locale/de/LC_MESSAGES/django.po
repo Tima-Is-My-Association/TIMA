@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1.0Report-Msgid-Bugs-To:\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-27 11:19+0000\n"
+"POT-Creation-Date: 2015-08-04 11:52+0000\n"
 "PO-Revision-Date: 2015-07-22 18:46+0200\n"
 "Last-Translator: Simon Vetter <translation@netzente.de>\n"
 "Language-Team: \n"
@@ -24,7 +24,7 @@ msgid "Cultural background"
 msgstr "Kultureller Hintergrund"
 
 #: app/forms.py:31 templates/tima/association/word/words.html:8
-#: templates/tima/base.html:39
+#: templates/tima/base.html:40
 msgid "Words"
 msgstr "Worte"
 
@@ -76,14 +76,15 @@ msgstr "Filter"
 #: templates/tima/app/profile/association_history.html:11
 #: templates/tima/association/association.html:8
 #: templates/tima/association/association.html:23
+#: templates/tima/games/associationchain/game.html:25
 msgid "Association"
 msgstr "Assoziation"
 
-#: association/forms.py:22
+#: association/forms.py:23
 msgid "The word and the association may not match."
 msgstr "Das Wort und die Assoziation dürfen nicht übereinstimmen."
 
-#: association/forms.py:29
+#: association/forms.py:30
 msgid ""
 "We have not recognized your input as word. Are you sure you have no spelling "
 "mistakes, in order to confirm your input press \"Save\"."
@@ -92,13 +93,13 @@ msgstr ""
 "Sie keine Schreibfehler haben und bestätigen Sie Ihre Eingabe mit \"Speichern"
 "\"."
 
-#: association/views/association.py:45
+#: association/views/association.py:48 games/views/games.py:49
 #, python-format
 msgid "You received %(points)s points for your association of %(association)s."
 msgstr ""
 "Sie haben %(points)s Punkte für Ihre Assoziation %(association)s erhalten."
 
-#: association/views/association.py:47
+#: association/views/association.py:50
 #, python-format
 msgid ""
 "Your association %(association)s has been saved. If you had been signed in "
@@ -112,6 +113,18 @@ msgstr ""
 msgid "You added %(word)s successfully to your newsletter."
 msgstr "%(word)s wurde zum Newsletter hinzugefügt."
 
+#: games/views/games.py:42 templates/tima/games/associationchain/end.html:16
+msgid "You lost the game."
+msgstr "Sie haben das Spiel verloren."
+
+#: games/views/games.py:59 templates/tima/games/associationchain/end.html:16
+msgid "You won the game."
+msgstr "Sie haben das Spiel gewonnen."
+
+#: games/views/games.py:73
+msgid "You stopped the game."
+msgstr "Sie haben das Spiel beendet."
+
 #: templates/registration/logged_out.html:11
 msgid "Thanks for spending some quality time with TIMA today."
 msgstr "Vielen Dank für deinen Besuch bei TIMA."
@@ -120,7 +133,7 @@ msgstr "Vielen Dank für deinen Besuch bei TIMA."
 msgid "Forgot your password?"
 msgstr "Passwort vergessen?"
 
-#: templates/registration/login.html:29 templates/tima/base.html:66
+#: templates/registration/login.html:29 templates/tima/base.html:69
 msgid "Sign in"
 msgstr "Anmelden"
 
@@ -168,11 +181,11 @@ msgid "Send"
 msgstr "Senden"
 
 #: templates/registration/signup.html:10 templates/registration/signup.html:32
-#: templates/tima/base.html:65
+#: templates/tima/base.html:68
 msgid "Sign up"
 msgstr "Registrieren"
 
-#: templates/tima/app/leaderboard.html:8 templates/tima/base.html:41
+#: templates/tima/app/leaderboard.html:8 templates/tima/base.html:44
 msgid "Leaderboard"
 msgstr "Rangliste"
 
@@ -202,7 +215,7 @@ msgid "Language"
 msgstr "Sprache"
 
 #: templates/tima/app/profile/base.html:10
-#: templates/tima/app/profile/base.html:22 templates/tima/base.html:55
+#: templates/tima/app/profile/base.html:22 templates/tima/base.html:58
 msgid "Profile"
 msgstr "Profil"
 
@@ -237,7 +250,7 @@ msgstr "Name"
 msgid "Email"
 msgstr "Email"
 
-#: templates/tima/app/statistics.html:8 templates/tima/base.html:43
+#: templates/tima/app/statistics.html:8 templates/tima/base.html:46
 msgid "Statistics"
 msgstr "Statistik"
 
@@ -256,6 +269,7 @@ msgid "Number of associations"
 msgstr "Anzahl der Assoziationen"
 
 #: templates/tima/association/association.html:14
+#: templates/tima/games/associationchain/game.html:15
 msgid "Type your association for"
 msgstr "Schreibe deine Assoziation für"
 
@@ -264,6 +278,7 @@ msgid "Next word"
 msgstr "Nächstes Wort"
 
 #: templates/tima/association/association.html:32
+#: templates/tima/games/associationchain/game.html:33
 msgid "Save association"
 msgstr "Assoziation speichern"
 
@@ -284,6 +299,7 @@ msgstr ""
 "Hilfe. Wählen Sie eine Sprache aus und geben Sie uns Ihre Assoziationen."
 
 #: templates/tima/association/home.html:17
+#: templates/tima/games/associationchain/home.html:21
 msgid "Select Language"
 msgstr "Sprache auswählen"
 
@@ -326,17 +342,78 @@ msgstr "entfernen"
 msgid "add"
 msgstr "hinzufügen"
 
-#: templates/tima/base.html:45 templates/tima/pages/faq.html:10
+#: templates/tima/base.html:42 templates/tima/games/game/games.html:7
+msgid "Games"
+msgstr "Spiele"
+
+#: templates/tima/base.html:48 templates/tima/pages/faq.html:10
 msgid "FAQ"
 msgstr "FAQ"
 
-#: templates/tima/base.html:47
+#: templates/tima/base.html:50
 msgid "Imprint"
 msgstr "Impressum"
 
-#: templates/tima/base.html:59
+#: templates/tima/base.html:62
 msgid "Sign out"
 msgstr "Abmelden"
+
+#: templates/tima/games/associationchain/end.html:8
+#: templates/tima/games/associationchain/game.html:8
+#: templates/tima/games/associationchain/home.html:7
+#: templates/tima/games/game/games.html:21
+msgid "AssociationChain"
+msgstr "AssoziationsKette"
+
+#: templates/tima/games/associationchain/end.html:20
+#, python-format
+msgid ""
+"You build a chain with %(links)s links that gives you an extra %(points)s "
+"points. Your chain is:"
+msgstr "Sie haben eine Kette mit %(links)s Kettengliedern erstellt. Dafür bekommen "
+"Sie %(points)s Extrapunkte. Ihre Kette ist:"
+
+#: templates/tima/games/associationchain/end.html:22
+#, python-format
+msgid "You build a chain with %(links)s links. Your chain is:"
+msgstr "Sie haben eine Kette mit %(links)s Kettengliedern erstellt. Ihre Kette ist:"
+
+#: templates/tima/games/associationchain/end.html:33
+msgid "Start a new game?"
+msgstr "Möchten Sie ein neues Spiel starten."
+
+#: templates/tima/games/associationchain/game.html:34
+msgid "Stop game"
+msgstr "Spiel beenden"
+
+#: templates/tima/games/associationchain/home.html:12
+#: templates/tima/games/game/games.html:22
+msgid ""
+"In AssociationChain you and TIMA build an association chain togther. "
+"The rules are as follows: You and TIMA alternately associate a word "
+"to the previous association. The goal is to build long chains."
+msgstr "Bei AssoziationsKette bilden Sie und TIMA gemeinsam eine Assoziationskette. "
+"Die Regeln sind wie folgt: Sie und TIMA assoziieren abwechselnd ein Wort zur "
+"vorherigen Assoziation. Ziel des Spieles ist es lange Ketten zu formen."
+
+#: templates/tima/games/associationchain/home.html:13
+msgid ""
+"The game ends either when TIMA has no more associations to your word "
+"or when a cycle was created."
+msgstr "Das Spiel endet entweder, wenn TIMA keine Assoziation mehr zu Ihrem Wort "
+"hat oder wenn ein Zyklus erstellt wurde."
+
+#: templates/tima/games/associationchain/home.html:14
+msgid "Start by selecting your language."
+msgstr "Beginnen Sie mit dem Auswählen Ihrer Sprache."
+
+#: templates/tima/games/game/games.html:15
+msgid "Name"
+msgstr "Name"
+
+#: templates/tima/games/game/games.html:16
+msgid "Description"
+msgstr "Beschreibung"
 
 #: templates/tima/pages/faq.html:17
 msgid "What it TIMA?"
