@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1.0Report-Msgid-Bugs-To:\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-04 11:52+0000\n"
+"POT-Creation-Date: 2015-08-05 16:16+0000\n"
 "PO-Revision-Date: 2015-07-22 18:46+0200\n"
 "Last-Translator: Simon Vetter <translation@netzente.de>\n"
 "Language-Team: \n"
@@ -48,20 +48,20 @@ msgstr ""
 msgid "Thanks for signing up. You are now signed in."
 msgstr "Danke das Sie sich registiert haben. Sie sind jetzt angemenldet."
 
-#: app/views/profile.py:54
+#: app/views/profile.py:77
 msgid "Your profile has been successfully updated."
 msgstr "Dein Profil wurde erfolgreich aktualisiert."
 
-#: app/views/profile.py:70
+#: app/views/profile.py:93
 msgid "Without specifying an email-address, you can not receive a newsletter."
 msgstr "Ohne Angabe einer E-Mail-Adresse kann kein Newsletter empfangen."
 
-#: app/views/profile.py:75 association/views/words.py:23
+#: app/views/profile.py:98 association/views/words.py:23
 #, python-format
 msgid "You removed %(word)s successfully from your newsletter."
 msgstr "%(word)s wurde vom Newsletter entfernt."
 
-#: app/views/profile.py:83
+#: app/views/profile.py:106
 #, python-format
 msgid "Added %(words)s to your newsletter."
 msgid_plural "Added %(words)s to your newsletter."
@@ -205,32 +205,45 @@ msgid "Languages"
 msgstr "Sprachen"
 
 #: templates/tima/app/profile/association_history.html:10
+#: templates/tima/app/profile/excluded_words.html:10
 msgid "Timestamp"
 msgstr "Zeitstempel"
 
 #: templates/tima/app/profile/association_history.html:12
+#: templates/tima/app/profile/excluded_words.html:12
 #: templates/tima/app/statistics.html:20
 #: templates/tima/association/word/words.html:32
 msgid "Language"
 msgstr "Sprache"
 
 #: templates/tima/app/profile/base.html:10
-#: templates/tima/app/profile/base.html:22 templates/tima/base.html:58
+#: templates/tima/app/profile/base.html:23 templates/tima/base.html:58
 msgid "Profile"
 msgstr "Profil"
 
-#: templates/tima/app/profile/base.html:23
+#: templates/tima/app/profile/base.html:24
 msgid "Association History"
 msgstr "Assoziationsgeschichte"
 
-#: templates/tima/app/profile/base.html:24
+#: templates/tima/app/profile/base.html:25
+#, fuzzy
+#| msgid "Add words"
+msgid "Excluded Words"
+msgstr "Worte hinzufügen"
+
+#: templates/tima/app/profile/base.html:26
 msgid "Edit Profile"
 msgstr "Profil bearbeiten"
 
-#: templates/tima/app/profile/base.html:25
+#: templates/tima/app/profile/base.html:27
 #: templates/tima/association/word/words.html:36
 msgid "Newsletter"
 msgstr "Newsletter"
+
+#: templates/tima/app/profile/excluded_words.html:11
+#: templates/tima/association/word/words.html:31
+msgid "Word"
+msgstr "Wort"
 
 #: templates/tima/app/profile/newsletter.html:13
 msgid "Get a weekly newsletter of words you're interrested in."
@@ -330,10 +343,6 @@ msgstr "Tiefe"
 msgid "Search"
 msgstr "Suche"
 
-#: templates/tima/association/word/words.html:31
-msgid "Word"
-msgstr "Wort"
-
 #: templates/tima/association/word/words.html:50
 msgid "remove"
 msgstr "entfernen"
@@ -370,13 +379,15 @@ msgstr "AssoziationsKette"
 msgid ""
 "You build a chain with %(links)s links that gives you an extra %(points)s "
 "points. Your chain is:"
-msgstr "Sie haben eine Kette mit %(links)s Kettengliedern erstellt. Dafür bekommen "
+msgstr ""
+"Sie haben eine Kette mit %(links)s Kettengliedern erstellt. Dafür bekommen "
 "Sie %(points)s Extrapunkte. Ihre Kette ist:"
 
 #: templates/tima/games/associationchain/end.html:22
 #, python-format
 msgid "You build a chain with %(links)s links. Your chain is:"
-msgstr "Sie haben eine Kette mit %(links)s Kettengliedern erstellt. Ihre Kette ist:"
+msgstr ""
+"Sie haben eine Kette mit %(links)s Kettengliedern erstellt. Ihre Kette ist:"
 
 #: templates/tima/games/associationchain/end.html:33
 msgid "Start a new game?"
@@ -389,19 +400,21 @@ msgstr "Spiel beenden"
 #: templates/tima/games/associationchain/home.html:12
 #: templates/tima/games/game/games.html:22
 msgid ""
-"In AssociationChain you and TIMA build an association chain togther. "
-"The rules are as follows: You and TIMA alternately associate a word "
-"to the previous association. The goal is to build long chains."
-msgstr "Bei AssoziationsKette bilden Sie und TIMA gemeinsam eine Assoziationskette. "
+"In AssociationChain you and TIMA build an association chain togther. The "
+"rules are as follows: You and TIMA alternately associate a word to the "
+"previous association. The goal is to build long chains."
+msgstr ""
+"Bei AssoziationsKette bilden Sie und TIMA gemeinsam eine Assoziationskette. "
 "Die Regeln sind wie folgt: Sie und TIMA assoziieren abwechselnd ein Wort zur "
 "vorherigen Assoziation. Ziel des Spieles ist es lange Ketten zu formen."
 
 #: templates/tima/games/associationchain/home.html:13
 msgid ""
-"The game ends either when TIMA has no more associations to your word "
-"or when a cycle was created."
-msgstr "Das Spiel endet entweder, wenn TIMA keine Assoziation mehr zu Ihrem Wort "
-"hat oder wenn ein Zyklus erstellt wurde."
+"The game ends either when TIMA has no more associations to your word or when "
+"a cycle was created."
+msgstr ""
+"Das Spiel endet entweder, wenn TIMA keine Assoziation mehr zu Ihrem Wort hat "
+"oder wenn ein Zyklus erstellt wurde."
 
 #: templates/tima/games/associationchain/home.html:14
 msgid "Start by selecting your language."
