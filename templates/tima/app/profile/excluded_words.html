@@ -1,0 +1,32 @@
+{% extends 'tima/app/profile/base.html' %}
+{% load i18n tima %}
+
+{% block tab_content %}
+<div class="row" style="margin-top: 10px;">
+    <div class="col-md-8 col-md-offset-2">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>{% trans 'Timestamp' %}</th>
+                    <th>{% trans 'Word' %}</th>
+                    <th>{% trans 'Language' %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for excluded_word in excluded_words %}
+                    <tr>
+                        <td>{{ excluded_word.updated_at|date:'l, d. F Y H:i:s T' }}</td>
+                        <td><a href="?word={% if word != excluded_word.word.id %}{{ excluded_word.word.id }}{% endif %}">{{ excluded_word.word }}</a></td>
+                        <td><a href="?l={% if not l %}{{ excluded_word.word.language.code }}{% endif %}">{{ excluded_word.word.language }}</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-8 col-md-offset-2 text-center">
+        {% pagination paginator excluded_words l=l word=word %}
+    </div>
+</div>
+{% endblock %}

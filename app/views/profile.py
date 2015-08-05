@@ -1,6 +1,6 @@
 from app.forms import NewsletterForm, UserChangeForm
 from app.functions.piwik import track
-from app.models import AssociationHistory, Newsletter, Profile
+from app.models import AssociationHistory, ExcludeWord, Newsletter, Profile
 from association.models import Language, Word
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -38,6 +38,29 @@ def association_history(request):
 
     track(request, 'Association history | Profile | TIMA')
     return render(request, 'tima/app/profile/association_history.html', locals())
+
+@login_required(login_url='/signin/')
+def excluded_words(request):
+    word = request.GET.get('word')
+    l = request.GET.get('l')
+    excluded_words_list = ExcludeWord.objects.filter(user=request.user).order_by('-updated_at')
+    if word:
+        word = int(word)
+        excluded_words_list = excluded_words_list.filter(word__id=word)
+    if l:
+        excluded_words_list = excluded_words_list.filter(word__language__code=l)
+
+    paginator = Paginator(excluded_words_list, 50)
+    page = request.GET.get('page')
+    try:
+        excluded_words = paginator.page(page)
+    except PageNotAnInteger:
+        excluded_words = paginator.page(1)
+    except EmptyPage:
+        excluded_words = paginator.page(paginator.num_pages)
+
+    track(request, 'Excluded Words | Profile | TIMA')
+    return render(request, 'tima/app/profile/excluded_words.html', locals())
 
 @login_required(login_url='/signin/')
 @csrf_protect
