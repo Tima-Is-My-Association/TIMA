@@ -112,7 +112,7 @@ if a new request.
   ```
 
 ###Adds a word to the list of exclude list of the user
-* **Path:** `api/profile/excludeword/add/`
+* **Path:** `api/profile/excludedwords/add/`
 * Parameters
   * `u` int
   * `token` hash of n and token
@@ -129,7 +129,7 @@ if a new request.
   ```
 
 ###Checks if a word is on the list of excluded words of the user
-* **Path:** `api/profile/excludeword/exists/`
+* **Path:** `api/profile/excludedwords/exists/`
 * Parameters
   * `u` int
   * `token` hash of n and token
@@ -142,6 +142,26 @@ if a new request.
   * `200` if reuqest succeeded with json data/word is on the users exclude list
   ```
   {"response_date":<UTC timestamp>}
+  ```
+
+###Lists all excluded words of the user
+* **Path:** `api/profile/excludedwords/lists/`
+* Parameters
+  * `u` int
+  * `token` hash of n and token
+* Responses
+  * `400` if parameter is missing
+  * `403` if token is wrong
+  * `404` if u was not found
+  * `200` if reuqest succeeded with json data
+  ```
+  {"response_date":<UTC timestamp>,
+   "words":[{"word":<Word>,
+            "language":<Code>,
+            "identifier":<OAI-PMH identifier>,
+            "url":<Website URL>,
+            "json_url":<JSON export URL>}
+  ]}
   ```
 
 ##Association request
