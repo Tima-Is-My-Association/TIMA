@@ -193,7 +193,7 @@ def do_resumption_token(params, errors, objs):
     metadata_prefix = None
     from_timestamp = None
     until_timestamp = None
-    resumptionToken = None
+    resumption_token = None
     if 'resumptionToken' in params:
         resumption_token = params.pop('resumptionToken')[-1]
         try:
