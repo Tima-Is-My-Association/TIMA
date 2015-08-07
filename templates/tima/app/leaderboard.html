@@ -11,26 +11,39 @@
 </div>
 <div class="row">
     <div class="col-md-10 col-md-offset-1">
-        <table class="table table-striped table-hover">
-            <thead>
-                <tr>
-                    <th>{% trans 'Citizen scientist' %}</th>
-                    <th>{% trans 'Points' %}</th>
-                    <th>{% trans 'Languages' %}</th>
-                    <th>{% trans 'Cultural background' %}</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for profile in profiles %}
+        <form method="get" class="form-inline">
+            <div class="form-group">
+                <label for="search" class="sr-only">{% trans 'Search' %}:</label>
+                <input id="search" type="text" class="form-control" name="search" placeholder="{% trans 'Search' %}" {% if search %}value="{{ search }}"{% endif %}>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">{% trans 'Search' %}</button>
+            </div>
+        </form>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead>
                     <tr>
-                        <td>{{ profile.user }}</td>
-                        <td>{{ profile.points }}</td>
-                        <td>{% for language in profile.languages.all %}<a href="{% url 'words' %}?l={{ language.code}}">{{ language }}</a>{% if not forloop.last %}, {% endif%}{% endfor %}</td>
-                        <td>{{ profile.cultural_background|default_if_none:'' }}</td>
+                        <th>{% trans 'Rank' %}</th>
+                        <th>{% trans 'Citizen scientist' %}</th>
+                        <th>{% trans 'Points' %}</th>
+                        <th>{% trans 'Languages' %}</th>
+                        <th>{% trans 'Cultural background' %}</th>
                     </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    {% for profile in profiles %}
+                        <tr>
+                            <td>{{ profile|rank }}</td>
+                            <td>{{ profile.user }}</td>
+                            <td>{{ profile.points }}</td>
+                            <td>{% for language in profile.languages.all %}<a href="{% url 'words' %}?l={{ language.code}}">{{ language }}</a>{% if not forloop.last %}, {% endif%}{% endfor %}</td>
+                            <td>{{ profile.cultural_background|default_if_none:'' }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 <div class="row">

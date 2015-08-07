@@ -25,38 +25,40 @@
 </div>
 <div class="row" style="margin-top: 10px;">
     <div class="col-md-10 col-md-offset-1">
-        <table class="table table-striped table-hover">
-            <thead>
-                <tr>
-                    <th><a href="?o={% if not o|startswith:'-' %}-{% endif %}name{% if l %}&amp;l={{ l }}{% endif %}{% if search %}&amp;search={{ search }}{% endif %}">{% trans 'Word' %} {% if o|endswith:'name' %}<span class="glyphicon glyphicon-chevron-{% if o|startswith:'-' %}up{% else %}down{% endif %}"></span>{% endif %}</a></th>
-                    <th><a href="?o={% if not o|startswith:'-' %}-{% endif %}language{% if l %}&amp;l={{ l }}{% endif %}{% if search %}&amp;search={{ search }}{% endif %}">{% trans 'Language' %} {% if o|endswith:'language' %}<span class="glyphicon glyphicon-chevron-{% if o|startswith:'-' %}up{% else %}down{% endif %}"></span>{% endif %}</a></th>
-                    <th><a href="?o={% if not o|startswith:'-' %}-{% endif %}c{% if l %}&amp;l={{ l }}{% endif %}{% if search %}&amp;search={{ search }}{% endif %}">{% trans 'Number of associations' %} {% if o|endswith:'c' %}<span class="glyphicon glyphicon-chevron-{% if o|startswith:'-' %}up{% else %}down{% endif %}"></span>{% endif %}</a></th>
-                    <th><a href="?o={% if not o|startswith:'-' %}-{% endif %}a{% if l %}&amp;l={{ l }}{% endif %}{% if search %}&amp;search={{ search }}{% endif %}">{% trans 'Number of occurrences as association' %} {% if o|endswith:'a' %}<span class="glyphicon glyphicon-chevron-{% if o|startswith:'-' %}up{% else %}down{% endif %}"></span>{% endif %}</a></th>
-                    {% if user.is_authenticated %}
-                        <th>{% trans 'Newsletter' %}</th>
-                    {% endif %}
-                </tr>
-            </thead>
-            <tbody>
-                {% for word in words %}
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead>
                     <tr>
-                        <td><a href="{% url 'word' word.id %}">{{ word }}</a></td>
-                        <td><a href="?l={% if l != word.language.code %}{{ word.language.code }}{% endif %}{% if o %}&amp;o={{ o }}{% endif %}{% if search %}&amp;search={{ search }}{% endif %}">{{ word.language }}</a></td>
-                        <td>{{ word.c }}</td>
-                        <td>{{ word.a }}</td>
+                        <th><a href="?o={% if not o|startswith:'-' %}-{% endif %}name{% if l %}&amp;l={{ l }}{% endif %}{% if search %}&amp;search={{ search }}{% endif %}">{% trans 'Word' %} {% if o|endswith:'name' %}<span class="glyphicon glyphicon-chevron-{% if o|startswith:'-' %}up{% else %}down{% endif %}"></span>{% endif %}</a></th>
+                        <th><a href="?o={% if not o|startswith:'-' %}-{% endif %}language{% if l %}&amp;l={{ l }}{% endif %}{% if search %}&amp;search={{ search }}{% endif %}">{% trans 'Language' %} {% if o|endswith:'language' %}<span class="glyphicon glyphicon-chevron-{% if o|startswith:'-' %}up{% else %}down{% endif %}"></span>{% endif %}</a></th>
+                        <th><a href="?o={% if not o|startswith:'-' %}-{% endif %}c{% if l %}&amp;l={{ l }}{% endif %}{% if search %}&amp;search={{ search }}{% endif %}">{% trans 'Number of associations' %} {% if o|endswith:'c' %}<span class="glyphicon glyphicon-chevron-{% if o|startswith:'-' %}up{% else %}down{% endif %}"></span>{% endif %}</a></th>
+                        <th><a href="?o={% if not o|startswith:'-' %}-{% endif %}a{% if l %}&amp;l={{ l }}{% endif %}{% if search %}&amp;search={{ search }}{% endif %}">{% trans 'Number of occurrences as association' %} {% if o|endswith:'a' %}<span class="glyphicon glyphicon-chevron-{% if o|startswith:'-' %}up{% else %}down{% endif %}"></span>{% endif %}</a></th>
                         {% if user.is_authenticated %}
-                            <td>
-                                {% if word|isInNewsletter:user %}
-                                    <a href="?r={{ word.id }}{% if o %}&amp;o={{ o }}{% endif %}{% if l %}&amp;l={{ l }}{% endif %}{% if search %}&amp;search={{ search }}{% endif %}">{% trans 'remove' %}</a>
-                                {% else %}
-                                    <a href="?a={{ word.id }}{% if o %}&amp;o={{ o }}{% endif %}{% if l %}&amp;l={{ l }}{% endif %}{% if search %}&amp;search={{ search }}{% endif %}">{% trans 'add' %}</a>
-                                {% endif %}
-                            </td>
+                            <th>{% trans 'Newsletter' %}</th>
                         {% endif %}
                     </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    {% for word in words %}
+                        <tr>
+                            <td><a href="{% url 'word' word.id %}">{{ word }}</a></td>
+                            <td><a href="?l={% if l != word.language.code %}{{ word.language.code }}{% endif %}{% if o %}&amp;o={{ o }}{% endif %}{% if search %}&amp;search={{ search }}{% endif %}">{{ word.language }}</a></td>
+                            <td>{{ word.c }}</td>
+                            <td>{{ word.a }}</td>
+                            {% if user.is_authenticated %}
+                                <td>
+                                    {% if word|isInNewsletter:user %}
+                                        <a href="?r={{ word.id }}{% if o %}&amp;o={{ o }}{% endif %}{% if l %}&amp;l={{ l }}{% endif %}{% if search %}&amp;search={{ search }}{% endif %}">{% trans 'remove' %}</a>
+                                    {% else %}
+                                        <a href="?a={{ word.id }}{% if o %}&amp;o={{ o }}{% endif %}{% if l %}&amp;l={{ l }}{% endif %}{% if search %}&amp;search={{ search }}{% endif %}">{% trans 'add' %}</a>
+                                    {% endif %}
+                                </td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 <div class="row">
