@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1.0Report-Msgid-Bugs-To:\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-05 16:16+0000\n"
+"POT-Creation-Date: 2015-08-07 12:08+0000\n"
 "PO-Revision-Date: 2015-07-22 18:46+0200\n"
 "Last-Translator: Simon Vetter <translation@netzente.de>\n"
 "Language-Team: \n"
@@ -18,7 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 1.8.2\n"
 
-#: app/forms.py:8 templates/tima/app/leaderboard.html:20
+#: app/forms.py:8 templates/tima/app/leaderboard.html:31
 #: templates/tima/app/profile/profile.html:9
 msgid "Cultural background"
 msgstr "Kultureller Hintergrund"
@@ -189,18 +189,32 @@ msgstr "Registrieren"
 msgid "Leaderboard"
 msgstr "Rangliste"
 
+#: templates/tima/app/leaderboard.html:16
 #: templates/tima/app/leaderboard.html:17
+#: templates/tima/app/leaderboard.html:20
+#: templates/tima/association/word/words.html:16
+#: templates/tima/association/word/words.html:17
+#: templates/tima/association/word/words.html:21
+msgid "Search"
+msgstr "Suche"
+
+#: templates/tima/app/leaderboard.html:27
+#: templates/tima/app/profile/profile.html:10
+msgid "Rank"
+msgstr ""
+
+#: templates/tima/app/leaderboard.html:28
 msgid "Citizen scientist"
 msgstr "Bürgerwissenschaftler"
 
-#: templates/tima/app/leaderboard.html:18
+#: templates/tima/app/leaderboard.html:29
 #: templates/tima/app/profile/association_history.html:13
-#: templates/tima/app/profile/profile.html:10
+#: templates/tima/app/profile/profile.html:11
 msgid "Points"
 msgstr "Punkte"
 
-#: templates/tima/app/leaderboard.html:19
-#: templates/tima/app/profile/profile.html:11
+#: templates/tima/app/leaderboard.html:30
+#: templates/tima/app/profile/profile.html:12
 msgid "Languages"
 msgstr "Sprachen"
 
@@ -212,7 +226,7 @@ msgstr "Zeitstempel"
 #: templates/tima/app/profile/association_history.html:12
 #: templates/tima/app/profile/excluded_words.html:12
 #: templates/tima/app/statistics.html:20
-#: templates/tima/association/word/words.html:32
+#: templates/tima/association/word/words.html:33
 msgid "Language"
 msgstr "Sprache"
 
@@ -236,12 +250,12 @@ msgid "Edit Profile"
 msgstr "Profil bearbeiten"
 
 #: templates/tima/app/profile/base.html:27
-#: templates/tima/association/word/words.html:36
+#: templates/tima/association/word/words.html:37
 msgid "Newsletter"
 msgstr "Newsletter"
 
 #: templates/tima/app/profile/excluded_words.html:11
-#: templates/tima/association/word/words.html:31
+#: templates/tima/association/word/words.html:32
 msgid "Word"
 msgstr "Wort"
 
@@ -277,7 +291,7 @@ msgstr "Anzahl der Wörter"
 
 #: templates/tima/app/statistics.html:22
 #: templates/tima/association/word/word.html:20
-#: templates/tima/association/word/words.html:33
+#: templates/tima/association/word/words.html:34
 msgid "Number of associations"
 msgstr "Anzahl der Assoziationen"
 
@@ -321,7 +335,7 @@ msgid "Times asked"
 msgstr "Male gefragt"
 
 #: templates/tima/association/word/word.html:21
-#: templates/tima/association/word/words.html:34
+#: templates/tima/association/word/words.html:35
 msgid "Number of occurrences as association"
 msgstr "Anzahl des Auftretens als Assoziation"
 
@@ -337,17 +351,11 @@ msgstr "herunterladen"
 msgid "Depth"
 msgstr "Tiefe"
 
-#: templates/tima/association/word/words.html:16
-#: templates/tima/association/word/words.html:17
-#: templates/tima/association/word/words.html:21
-msgid "Search"
-msgstr "Suche"
-
-#: templates/tima/association/word/words.html:50
+#: templates/tima/association/word/words.html:51
 msgid "remove"
 msgstr "entfernen"
 
-#: templates/tima/association/word/words.html:52
+#: templates/tima/association/word/words.html:53
 msgid "add"
 msgstr "hinzufügen"
 
