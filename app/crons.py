@@ -20,14 +20,13 @@ class NewsletterCronJob(CronJobBase):
         messages = []
         for newsletter in Newsletter.objects.all():
             user = newsletter.user
-            if user.email:
+            if user.email and newsletter.words.count():
                 message = 'Greetings 👋 %s!\n\nThis is the weekly TIMA newsletter with information about your selected words.\n\n' % user.username
                 for word in newsletter.words.all():
                     s = ' * %s\n  - top 10 associations (%s -> *):\n      %s\n  - top 10 occurrences as association (* -> %s):\n      %s' % (word, word, '\n      '.join(['%s (%s)' % (a.association, a.count) for a in word.word.all().order_by('-count')[:10]]), word, '\n      '.join(['%s (%s)' % (a.word, a.count) for a in word.association.all().order_by('-count')[:10]]))
                     message += '%s\n\n' % s
                 message += 'Thank you,\nyour TIMA team.'
                 messages.append(('[TIMA] Weekly words newsletter', message, 'tima@jnphilipp.org', [newsletter.user.email]))
-
         send_mass_mail(messages)
 
 class UpdateMetadataCronJob(CronJobBase):
