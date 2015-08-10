@@ -16,7 +16,7 @@ response even if it is an error response need to generate a new token with n+1
 if a new request.
 
 ####Request a user for auth
-* **Path:** `api/applications/auth/request/`
+* **Path:** `/api/applications/auth/request/`
 * Parameters
   * `username` username
   * `client_id` client_id of the application
@@ -26,7 +26,7 @@ if a new request.
   * `200` if reuqest succeeded with json data `{'timestamp':<UTC timestamp>}`
 
 ####Request to auth a user
-* **Path:** `api/applications/auth/user/`
+* **Path:** `/api/applications/auth/user/`
 * Parameters
   * `username` username
   * `password` password
@@ -40,7 +40,7 @@ if a new request.
   * `200` if reuqest succeeded with json data `{'n':<unit>, 'u':<int>, 'token':<Hash token>}`
 
 ####Request to revoke a user auth
-* **Path:** `api/applications/auth/revoke/`
+* **Path:** `/api/applications/auth/revoke/`
 * Parameters
   * `u` int
   * `token` hash of user token and n
@@ -112,7 +112,7 @@ if a new request.
   ```
 
 ###Adds a word to the list of exclude list of the user
-* **Path:** `api/profile/excludedwords/add/`
+* **Path:** `/api/profile/excludedwords/add/`
 * Parameters
   * `u` int
   * `token` hash of n and token
@@ -129,7 +129,7 @@ if a new request.
   ```
 
 ###Checks if a word is on the list of excluded words of the user
-* **Path:** `api/profile/excludedwords/exists/`
+* **Path:** `/api/profile/excludedwords/exists/`
 * Parameters
   * `u` int
   * `token` hash of n and token
@@ -145,7 +145,7 @@ if a new request.
   ```
 
 ###Lists all excluded words of the user
-* **Path:** `api/profile/excludedwords/lists/`
+* **Path:** `/api/profile/excludedwords/lists/`
 * Parameters
   * `u` int
   * `token` hash of n and token
