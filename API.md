@@ -213,11 +213,11 @@ if a new request.
   ]}
  ```
 
-###Check if a word is a word
+###Graph data for d3 word graph
 * **Path:** `/api/words/graph/`
 * Parameters
   * `language` language of the word
-  * `word` word to check
+  * `word` word
   * `depth` depth of the associations (default 2)
 * Responses
   * `400` if parameter is missing
