@@ -3,6 +3,7 @@ from django.db import models
 from django.forms import TextInput, Textarea
 from oai_pmh.models import DCRecord, Header, MetadataFormat, ResumptionToken, Set, TextFieldSingleLine
 
+
 class DCRecordAdmin(admin.ModelAdmin):
     list_display = ('dc_identifier', 'dc_title', 'dc_creator')
     list_filter = ('dc_date',)
@@ -17,12 +18,14 @@ class DCRecordAdmin(admin.ModelAdmin):
         (None, {'fields': ['header', 'dc_title', 'dc_creator', 'dc_subject', 'dc_description', 'dc_publisher', 'dc_contributor', 'dc_date', 'dc_type', 'dc_format', 'dc_identifier', 'dc_source', 'dc_language', 'dc_relation', 'dc_coverage', 'dc_rights']}),
     ]
 
+
 class DCRecordInline(admin.StackedInline):
     formfield_overrides = {
         TextFieldSingleLine: {'widget': TextInput(attrs={'autocomplete':'off'})},
     }
 
     model = DCRecord
+
 
 class HeaderAdmin(admin.ModelAdmin):
     list_display = ('identifier', 'timestamp', 'deleted')
@@ -43,6 +46,7 @@ class HeaderAdmin(admin.ModelAdmin):
     filter_horizontal = ('metadata_formats', 'sets')
     inlines = [DCRecordInline,]
 
+
 class MetadataFormatAdmin(admin.ModelAdmin):
     list_display = ('prefix', 'schema', 'namespace')
     search_fields = ('prefix', 'schema', 'namespace')
@@ -54,6 +58,7 @@ class MetadataFormatAdmin(admin.ModelAdmin):
     fieldsets = [
         (None, {'fields': ['prefix', 'schema', 'namespace']}),
     ]
+
 
 class ResumptionTokenAdmin(admin.ModelAdmin):
     list_display = ('token', 'expiration_date', 'complete_list_size', 'cursor')
@@ -69,6 +74,7 @@ class ResumptionTokenAdmin(admin.ModelAdmin):
         ('Optinal', {'fields': ['from_timestamp', 'until_timestamp', 'metadata_prefix', 'set_spec']}),
     ]
 
+
 class SetAdmin(admin.ModelAdmin):
     list_display = ('name', 'spec', 'description')
     search_fields = ('name', 'spec', 'description')
@@ -81,6 +87,7 @@ class SetAdmin(admin.ModelAdmin):
     fieldsets = [
         (None, {'fields': ['name', 'spec', 'description']}),
     ]
+
 
 admin.site.register(DCRecord, DCRecordAdmin)
 admin.site.register(Header, HeaderAdmin)

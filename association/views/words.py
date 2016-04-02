@@ -15,6 +15,9 @@ def words(request):
     a = request.GET.get('a')
     search = request.GET.get('search')
 
+    if o not in ['name', 'language', 'c', 'a']:
+        o = 'name'
+
     if request.user.is_authenticated():
         newsletter, created = Newsletter.objects.get_or_create(user=request.user)
         if r:
